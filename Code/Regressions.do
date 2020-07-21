@@ -2,8 +2,8 @@
 *********************** REGRESSIONS  *******************************************
 ********************************************************************************
 
-log using "Results/EstimationLog.txt", replace
-use regressionData_2q, clear
+*log using "Results/EstimationLog.txt", replace
+use Data/regressionData_2q, clear
 
 *********************************************************************************************************************************************************
 * Create Independent Variables
@@ -501,4 +501,4 @@ eststo modOfMod_CASCOT_dh
 
 
 estimates clear
-log close
+*log close
