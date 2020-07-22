@@ -94,11 +94,11 @@ pause off
 
 reshape long `vars' , i(date) j(uresmc1)
 compress 
-save "Data/uresmc_date_Unemp_r.dta", replace
+save "uresmc_date_Unemp_r.dta", replace
 
 
 restore
-merge m:1 date uresmc1 using "Data/uresmc_date_Unemp_r.dta", keepusing(`vars')
+merge m:1 date uresmc1 using "uresmc_date_Unemp_r.dta", keepusing(`vars')
 
 drop _merge
 
@@ -110,3 +110,6 @@ gen Aggre_Ur=Urate-Devia_U_r // Aggregate unemployment rate
 
 * save data
 save Data/regressionData_2q.dta, replace
+
+erase gov_date_Unemp_r.dta 
+erase uresmc_date_Unemp_r.dta

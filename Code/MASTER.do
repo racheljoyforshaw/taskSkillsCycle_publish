@@ -14,7 +14,7 @@ global my_python_path = "/Users/Rachel/anaconda/bin/" /* path to where Python st
 * INPUTS: all files in Extracted folders (_2q, _5q)
 * OUTPUTS: LFS_all_raw_2q.dta
 * 	       LFS_all_raw_5q.dta
-do Code/Data_extraction.do
+*do Code/Data_extraction.do
 
 
 ************************** Data Cleaning ***************************************

@@ -99,7 +99,7 @@ label variable age1_sq "Age squared"
 
 * mar_cohab (marriage status)
 gen mar_cohab=. 
-label variable mar_cohab "Maried/cohabitating, 1=yes, 0=no/na"
+label variable mar_cohab "Maried/cohabitating, 1=yes, 0=no"
 replace mar_cohab=1 if (marsta1==2 & marstt1==. ) | ( marsta1==6 & marstt1==.)| (marstt1==2 & marsta1==.) /*married/cohabitating*/
 replace mar_cohab=0 if (marsta1==1 | marsta1==3 | marsta1==4 | marsta1==5 | marsta1==7 | marsta1==8 | marsta1==9 ) & marstt1==. /*not married/cohabitating*/
 replace mar_cohab=0 if (marstt1==1 | marstt1==3 | marstt1==4 | marstt1==5 ) & marsta1==. /*not married/cohabitating*/
@@ -108,49 +108,61 @@ drop marsta* marstt*
 
 * part/full-time work
 gen fpt_job1=1 if ftptwk1==1 /*fulltime*/
-label variable fpt_job1 "Full-time/part-time job, 1=FT, 0=PT, .=dk/na"
+*label variable fpt_job1 "Full-time/part-time job, 1=FT, 0=PT, .=dk/na"
+label variable fpt_job1 "Full-time, 1=yes, 0=no"
 replace fpt_job1=0 if ftptwk1==2 /* parttime*/
-replace fpt_job1=. if ftptwk1==-9 |ftptwk1==-8 /* missing */
+*replace fpt_job1=. if ftptwk1==-9 |ftptwk1==-8 /* missing */
 gen fpt_job2=1 if ftptwk2==1 /*fulltime*/
-label variable fpt_job2 "Full-time/part-time job, 1=FT, 0=PT, .=dk/na"
+label variable fpt_job2 "Full-time, 1=yes, 0=no"
 replace fpt_job2=0 if ftptwk2==2 /* parttime*/
-replace fpt_job2=. if ftptwk2==-9 |ftptwk2==-8 /* missing */
+*replace fpt_job2=. if ftptwk2==-9 |ftptwk2==-8 /* missing */
 drop ftptwk*
 
 
 * temporary 
-gen temporary1= 1 if jobtyp1==2 /* temporary */
-label variable temporary1 "Temporary/permanent job, 1=T, 0=P, .=dk/na"
-replace temporary1= 0 if jobtyp1==1 /* permanent */
-replace temporary1=. if jobtyp1==-9 | jobtyp1==-8 /* missing */
-gen temporary2= 1 if jobtyp2==2 /* temporary */
-label variable temporary2 "Temporary/permanent job, 1=T, 0=P, .=dk/na"
-replace temporary2= 0 if jobtyp2==1 /* permanent */
-replace temporary2=. if jobtyp2==-9 | jobtyp2==-8 /* missing */
+*gen temporary1= 1 if jobtyp1==2 /* temporary */
+gen temporary1=0
+label variable temporary1 "Temporary job, 1=yes 0=no"
+replace temporary1= 1 if jobtyp1==2 /* temporary */
+*replace temporary1= 0 if jobtyp1==1 /* permanent */
+*replace temporary1=. if jobtyp1==-9 | jobtyp1==-8 /* missing */
+*gen temporary2= 1 if jobtyp2==2 /* temporary */
+gen temporary2=0
+label variable temporary2 "Temporary job, 1=yes 0=no"
+replace temporary2= 1 if jobtyp2==2 /* temporary */
+*replace temporary2= 0 if jobtyp2==1 /* permanent */
+*replace temporary2=. if jobtyp2==-9 | jobtyp2==-8 /* missing */
 drop jobtyp*
 
 
 * public/private sector
 
-gen public1 = . if publicr1==-9 | publicr1==-8 /*missing*/
-label variable public1 "Public/private job, 1=Pub, 0=Pri, .=dk/na"
+*gen public1 = . if publicr1==-9 | publicr1==-8 /*missing*/
+gen public1 =0
+*label variable public1 "Public/private job, 1=Pub, 0=Pri, .=dk/na"
+label variable public1 "Public job, 1=Yes, 0=No"
 replace public1=0 if publicr1==1 /* private */
 replace public1=1 if publicr1==2 /* public */
 gen public2 = . if publicr2==-9 | publicr2==-8 /*missing*/
-label variable public2 "Public/private job, 1=Pub, 0=Pri, .=dk/na"
+*label variable public2 "Public/private job, 1=Pub, 0=Pri, .=dk/na"
+label variable public2 "Public job, 1=Yes, 0=No"
 replace public2=0 if publicr2==1 /* private */
 replace public2=1 if publicr2==2 /* public */
 drop publicr*
 
 
 * self-employed or not
+*gen selfe1=. /*missing*/
 gen selfe1=0
+*label variable selfe1 "Self-employed, 1=Yes, 0=No, .=dk/na"
 label variable selfe1 "Self-employed, 1=Yes, 0=No"
-replace selfe1=0 if inecacr1==1| inecacr1==3 | incac051==1 | incac051==3 /*not self-employed*/
+*replace selfe1=0 if inecacr1==1| inecacr1==3 | incac051==1 | incac051==3 /*not self-employed*/
 replace selfe1=1 if inecacr1==2 | incac051==2 /*self-employed*/
-gen selfe2 =0
+*gen selfe2 =.
+gen selfe2=0
+*label variable selfe2 "Self-employed, 1=Yes, 0=No, .=dk/na"
 label variable selfe2 "Self-employed, 1=Yes, 0=No"
-replace selfe2=0 if inecacr2==1| inecacr2==3 | incac052==1 | incac052==3 /*not self-employed*/
+*replace selfe2=0 if inecacr2==1| inecacr2==3 | incac052==1 | incac052==3 /*not self-employed*/
 replace selfe2=1 if inecacr2==2 | incac052==2 /*self-employed*/
 drop inecacr* incac05*
 
@@ -213,12 +225,13 @@ replace durats1=5 if ilodefr1==1 & empmon1>=24 & empmon1<=35 /* 2-3 yrs */
 replace durats1=6 if ilodefr1==1 & empmon1>=36 & empmon1<=47 /* 3-4 yrs */
 replace durats1=7 if ilodefr1==1 & empmon1>=48 & empmon1<=59 /* 4-5 yrs */
 replace durats1=8 if ilodefr1==1 & empmon1>=60 /* 5+ years */
-
+char durats1[omit] 8
 
 * whether looking for a job
-gen lookfor1=.
+*gen lookfor1=.
+gen lookfor1=0
 label variable lookfor1 "Whether looking for a job, 1=yes 0=no"
-replace lookfor1=0 if lkwfwm1== 15 /* not looking */
+*replace lookfor1=0 if lkwfwm1== 15 /* not looking */
 replace lookfor1=1 if lkwfwm1>0 & lkwfwm1<15 /* looking */
 drop lkwfwm*
 
