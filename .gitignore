@@ -10,8 +10,8 @@
 *.pytxcode
 *.synctex.gz!
 !Data/
-!Data/Extracted_2q
-!Data/Extracted_5q
+!Extracted_2q/
+!Extracted_5q/
 Data/Extracted_5q/*
 Data/Extracted_2q/*
 
