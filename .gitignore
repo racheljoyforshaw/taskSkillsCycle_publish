@@ -9,13 +9,8 @@
 *.out
 *.pytxcode
 *.synctex.gz
-<<<<<<< HEAD
 Extracted_5q/*
 Extracted_2q/*
-=======
-Extracted_5q/
-Extracted_2q/
->>>>>>> 278df0077fd3e6d9f54ddae6fae8a96d451bbf44
 Data/
 
 
