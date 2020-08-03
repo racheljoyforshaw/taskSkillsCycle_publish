@@ -9,7 +9,7 @@
 *.out
 *.pytxcode
 *.synctex.gz
-Extracted_5q/*
-Extracted_2q/*
+Extracted_5q/UKDA*
+Extracted_2q/UKDA*
 
 
