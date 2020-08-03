@@ -17,15 +17,14 @@ Data_organisation_*q.do - cleans 2q/5q extracted data
 
 ************ REPLICATION STEPS ************
 
+
 1. Download LFS data for the 2000s (see list below) from ukdataservice.ac.uk/ and save the .dta files into the Extracted_2q and Extracted_5q 
- 	folders (depending on whether they are the two quarter or five quarter versions)
 
 2. Open Code/MASTER.do in Stata
 	Change lines 9 and 10 to reflect the paths to your repository and to Python
 	(you will need Python in order to create graphs and format Stata output)
 	
 3. Run MASTER.do
-
 
 
 ************ REQUIRED DATA ************
