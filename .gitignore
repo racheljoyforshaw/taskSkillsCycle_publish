@@ -10,9 +10,9 @@
 *.pytxcode
 *.synctex.gz!
 !Data/
-!Extracted_2q/
-!Extracted_5q/
-Data/Extracted_5q/*
-Data/Extracted_2q/*
+!Data/Extracted_5q/
+!Data/Extracted_2q/
+Data/Extracted_2q/UKDA*
+Data/Extracted_5q/UKDA*
 
 
