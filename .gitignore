@@ -1,0 +1,15 @@
+*_thesis.py
+*_thesis.tex
+*.dta
+!CPI_uk_base_2015.dta
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.pytxcode
+*.synctex.gz!
+Extracted_5q/*/
+Extracted_2q/*/
+
+
