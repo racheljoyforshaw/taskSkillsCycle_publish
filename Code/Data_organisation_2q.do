@@ -32,20 +32,13 @@ keep lgwt ///
 
 split source, p("Extracted_2q/") gen(stub)
 split stub2, p("_") gen(stib)
+split stib1, p("/") gen(stob)
 
 *** quarter ***
-* ->2009
-gen quarter = substr(stib1,1,2)
-* 2010s
-replace quarter = substr(stib3,1,2) if substr(stib1,1,2)=="tw"
-* all together
-replace quarter = "q1" if quarter=="ws" | quarter=="jm"
-replace quarter = "q2" if quarter=="ss" | quarter=="aj"
-replace quarter = "q3" if quarter=="sa" | quarter=="js"
-replace quarter = "q4" if quarter=="aw" | quarter=="od"
+gen quarter = substr(stob3,1,2)
 
 *** year ***
-gen year = substr(stib1,3,2)
+gen year = substr(stob3,3,2)
 * ->2009
 replace year = substr(stib1,5,2) if substr(stib1,1,2)=="lg"
 replace year = stib2 if year =="" 
