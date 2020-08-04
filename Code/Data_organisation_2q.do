@@ -39,11 +39,7 @@ gen quarter = substr(stob3,1,2)
 
 *** year ***
 gen year = substr(stob3,3,2)
-* ->2009
-replace year = substr(stib1,5,2) if substr(stib1,1,2)=="lg"
-replace year = stib2 if year =="" 
-* 2010s
-replace year = substr(stib3,3,2) if substr(stib1,1,2)=="tw"
+replace year = stib2 if year==""
 * format the year
 replace year = "20" + year
 
@@ -56,6 +52,7 @@ drop date
 rename qtime date
 drop stib*
 drop stub*
+drop stob*
 drop source
 
 * drop any non-2000s data
@@ -69,12 +66,19 @@ replace empmon1=. if empmon1==-9 | empmon1==-8
 replace empmon2=. if empmon2==-9 | empmon2==-8
 
 * industry
-gen industry=inds92m1 if date<=yq(2008,4) & inds92m1!=.
-label variable industry "Industry category, 1-21"
-replace industry= inds07m1 if date>yq(2008,4) & inds07m1!=.
-replace industry=. if industry==-8| industry==-9
+gen industry_temp=inds92m1 if date<=yq(2008,4) & inds92m1!=.
+
+replace industry_temp= inds07m1 if date>yq(2008,4) & inds07m1!=.
+replace industry_temp=. if industry==-8| industry==-9
+*keep if industry<20 
+gen industry = .
+replace industry = 1 if industry_temp>=1 & industry_temp<=2 /* primary */
+replace industry = 2 if industry_temp>=3 & industry_temp<=6 /* secondary */
+replace industry = 3 if industry_temp>=7  /* tertiary */
+label variable industry "Industry category, 1=primary 2=secondary 3=tertiary"
+
 drop inds*
-char industry[omit] 21
+char industry[omit] 1
 
 * available to start work dummy
 gen available = 0
