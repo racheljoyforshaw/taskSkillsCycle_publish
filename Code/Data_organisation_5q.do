@@ -2,7 +2,7 @@
 *********************** DATA CLEANING  *****************************************
 ********************************************************************************
 
-use Data/LFS_all_raw_2q.dta, clear
+use Data/LFS_all_raw_5q.dta, clear
 
 ******************  keep only these variables needed ***************************
  
@@ -30,7 +30,7 @@ keep lgwt ///
 		
 ****************** define time *************************************************
 
-split source, p("Extracted_2q/") gen(stub)
+split source, p("Extracted_5q/") gen(stub)
 split stub2, p("_") gen(stib)
 split stib1, p("/") gen(stob)
 
