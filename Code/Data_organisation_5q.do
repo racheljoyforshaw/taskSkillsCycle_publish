@@ -8,24 +8,14 @@ use Data/LFS_all_raw_5q.dta, clear
  
 keep lgwt ///
  source* /* -> date */ ///
- ilodefr* ///
- empmon* ///
- inds* /* -> industry */ ///
- start* ///
- age* /* -> age_sq */ ///
- marsta* /* -> mar_cohab */ ///
- marstt* /* -> mar_cohab */ ///
- sex* ///
- ftptwk* /* -> fpt_job */ ///
- jobtyp* /* -> temporary */ ///
- publicr* ///
- inecacr* /* -> selfe */ ///
- incac05* /* -> selfe */ ///
- hiqua* /* -> edulevel */ ///
- uresmc* ///
- redylft* /* -> f_v_retire */  ///
- lkwfwm* /* -> seek_method */ ///
- soc2km*
+ grsswk1 /* -> wages */ ///
+ hiqual* /* -> edulevel */ ///
+ soc2km1 /* -> socCode */ ///
+ age1 ///
+ sex ///
+ ftptwk1 /* fpt_job1 */ ///
+ empmon1 /* months employed */
+ 
 
 		
 ****************** define time *************************************************
@@ -59,6 +49,52 @@ drop source
 keep if date>= yq(2000,1) & date<yq(2010,4)
 
 
+****************** variables ***************************************************
+* edulevel 
+gen edulevel1=. if (hiqual1==-9| hiqual1==-8 |hiqual1==41) & date>yq(1996,1) & date< yq(2004,2)
+label variable edulevel1 "Education level, 1=high, 2=med, 3=low"
+replace edulevel1=1 if hiqual1>0 & hiqual1<=4 & date>yq(1996,1) & date< yq(2004,2)
+replace edulevel1=2 if hiqual1>4 & hiqual1<=39 & date>yq(1996,1) & date< yq(2004,2)
+replace edulevel1=3 if hiqual1==40 & date>yq(1996,1) & date< yq(2004,2)
+
+replace edulevel1=. if (hiqual41==-9| hiqual41==-8 |hiqual41==46) & date>yq(2004,1) & date< yq(2005,2)
+replace edulevel1=1 if hiqual41>0 & hiqual41<=4 & date>yq(2004,1) & date< yq(2005,2)
+replace edulevel1=2 if hiqual41>4 & hiqual41<=44 & date>yq(2004,1) & date< yq(2005,2)
+replace edulevel1=3 if hiqual41==45 & date>yq(2004,1) & date< yq(2005,2)
+
+replace edulevel1=. if (hiqual51==-9| hiqual51==-8 |hiqual51==49) & date>yq(2005,1) & date< yq(2008,1)
+replace edulevel1=1 if hiqual51>0 & hiqual51<=4 & date>yq(2005,1) & date< yq(2008,1)
+replace edulevel1=2 if hiqual51>4 & hiqual51<48 & date>yq(2005,1) & date< yq(2008,1)
+replace edulevel1=3 if hiqual51==48 & date>yq(2005,1) & date< yq(2008,1)
+
+replace edulevel1=. if (hiqual81==-9 & hiqual81==-8 | hiqual81==50) & date>yq(2007,4) & date <yq(2011,1)
+replace edulevel1=1 if hiqual81>0 & hiqual81<=4 & date>yq(2007,4) & date< yq(2011,1)
+replace edulevel1=2 if hiqual81>4 & hiqual81<=48 & date>yq(2007,4) & date< yq(2011,1)
+replace edulevel1=3 if hiqual81==49 & date>yq(2007,4) & date< yq(2011,1)
+drop hiqual*
+char edulevel1[omit] 3
+
+* age - drop u-16s o-64s
+drop if age1>64 | age1>64
+drop if age1<16 | age1<16
+
+* create age squared
+gen age1_sq= age1*age1
+label variable age1_sq "Age squared"
+
+* empmon (months employed)
+replace empmon1=. if empmon1==-9 | empmon1==-8
+
+* part/full-time work
+gen fpt_job1=1 if ftptwk1==1 /*fulltime*/
+label variable fpt_job1 "Full-time, 1=yes, 0=no"
+replace fpt_job1=0 if ftptwk1==2 /* parttime*/
+drop ftptwk*
+
+
+save Data/LFS_5q.dta, replace
+
+/*
 ****************** variables ***************************************************
 
 * empmon (months employed)

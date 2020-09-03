@@ -126,12 +126,19 @@ xi: reg logWage skillTotal i.date i.edulevel1 age1 age1_sq sex empmon1 if fpt_jo
 estimates store returns_skills
 
 	* output to latex file 
-	    esttab returns_skills using Results/returns_skill_2000s.tex, replace  star(* 0.10 ** 0.05 *** 0.01) mtitles se nogaps pr2 r2 margin  ///
+	    esttab returns_skills using Results/returns_skill_2000s_temp.tex, replace  star(* 0.10 ** 0.05 *** 0.01) mtitles se nogaps pr2 r2 margin  ///
 		b(2) ///
 		unstack compress keep(skillTotal age1 age1_sq sex _Iedul* empmon1) ///
 		order(skillTotal age1 age1_sq sex empmon1 edulevel1)  /// 
-		varwidth(15) modelwidth(8) coeflabels(skillTotal "Skill Level" date date age Age age_sq "Age$^{2}$" sex Female empmon5 "Months Tenure" _Iedulevel1_1 "High Education" _Iedulevel1_2 "Medium Education") nonumbers 
-
+		varwidth(15) modelwidth(8) coeflabels(skillTotal "Skill Level" date date age1 Age age1_sq "Age$^{2}$" sex Female empmon1 "Months Tenure" _Iedulevel1_1 "High Education" _Iedulevel1_2 "Medium Education") nonumbers 
+	
+	shell $my_python_path Code/format_returns_skill_2000s.py
+	
+	* output coefficent on skillTotal to tex file 
+	 scalar beta_skillTotal = round(_b[skillTotal],0.01)*100
+			file open beta_skillTotal using "Results/beta_skillTotal.txt", write replace
+			file write beta_skillTotal (beta_skillTotal)
+			file close beta_skillTotal
 estimates clear
 
 
