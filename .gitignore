@@ -9,6 +9,7 @@
 *.out
 *.pytxcode
 *.synctex.gz!
+Paper/
 !Data/
 !Data/Extracted_5q/
 !Data/Extracted_2q/
