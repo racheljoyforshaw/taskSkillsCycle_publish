@@ -11,6 +11,7 @@
 *.synctex.gz!
 Paper/
 Figures/
+Inputs/
 !Data/
 !Data/Extracted_5q/
 !Data/Extracted_2q/
