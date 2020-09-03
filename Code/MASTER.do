@@ -7,7 +7,7 @@ clear
 *** change directory
 
 cd "/Users/Rachel/Documents/Research/taskSkillsCycle/" /* path to where repository stored */
-global my_python_path = "/Users/Rachel/anaconda/bin/" /* path to where Python stored */
+global my_python_path = "/usr/bin/python" /* path to where Python stored */
 
 ************************** Data Cleaning ***************************************
 *** put together all 2Q and 5q files from extracted
@@ -51,9 +51,9 @@ do Code/Add_agg_unemployment.do
 
 
 
-************************** Add Unemployment Rate *******************************
-**** add in aggregate unemployment rate
+************************** Do Analysis *******************************
+**** run regressions for the paper
 * INPUTS: regressionData_2q.dta
 * OUTPUTS:
 do Code/Regressions.do
-*erase all_variables_2q.dta
+
