@@ -51,7 +51,14 @@ do Code/Add_agg_unemployment.do
 
 
 
-************************** Do Analysis *******************************
+************************** Summary Stats, Preliminary Regressions *******************************
+**** summary stats
+* INPUTS: regressionData_2q.dta
+* OUTPUTS: min_date.txt, max_date.txt
+do Code/summaryStats.do
+
+
+************************** Main Analysis *******************************
 **** run regressions for the paper
 * INPUTS: regressionData_2q.dta
 * OUTPUTS:
