@@ -273,7 +273,7 @@ tab modOfMod_CASCOT_AGG_stdz if modOfMod_CASCOT_AGG_stdz<=`modOfMod_leftLimit_AG
 				scalars ("ll Log llik.") order(Aggre_Ur_pct)  /// 
 				varwidth(15) modelwidth(8) coeflabels( Aggre_Ur_pct agg_urate) nonumbers //
 
-				shell  $my_python_path/python Code/tobit_simple_2000s.py
+				shell  $my_python_path Code/tobit_simple_2000s.py
 				erase Results/tobit_simple_2000s_temp.tex
 				estimates clear 
 		
