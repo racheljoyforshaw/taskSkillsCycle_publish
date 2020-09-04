@@ -61,6 +61,11 @@ keep if date>= yq(2000,1) & date<yq(2010,4)
 
 ****************** variables ***************************************************
 
+* sex - make 1/0
+replace sex = 0 if sex==1
+replace sex = 1 if sex==2
+label variable sex "Sex, 1=female 0=male"
+
 * empmon (months employed)
 replace empmon1=. if empmon1==-9 | empmon1==-8
 replace empmon2=. if empmon2==-9 | empmon2==-8
