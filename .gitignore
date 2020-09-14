@@ -9,7 +9,9 @@
 *.out
 *.pytxcode
 *.synctex.gz!
-Paper/
+!Paper/
+!Paper/taskSkillsCycle.bib
+!Paper/taskSkillsCycle.tex
 Figures/
 Inputs/
 !Results/
