@@ -34,7 +34,7 @@ clear
 			 
 *Step 2: Match angSep and modofMod scores to LFS 
 
-local filenames _2q 
+local filenames _2q _5q
 
 foreach filename of local filenames {
 use Data/LFS`filename'.dta, clear

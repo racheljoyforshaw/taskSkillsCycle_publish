@@ -2,7 +2,7 @@
 *********************** REGRESSIONS  *******************************************
 ********************************************************************************
 
-*log using "Results/EstimationLog.txt", replace
+log using "Results/EstimationLog.txt", replace
 use Data/regressionData_2q, clear
 
 *********************************************************************************************************************************************************
@@ -315,7 +315,7 @@ eststo modOfMod_CASCOT_dh
 					* sigma 
 					mat temp = e(b)
 					matlist temp
-					scalar sigma = temp[1,67] // stata doesn't seem to have 'last element' capability so always check this
+					scalar sigma = temp[1,49] // stata doesn't seem to have 'last element' capability so always check this
 					di sigma
 
 
@@ -501,4 +501,7 @@ eststo modOfMod_CASCOT_dh
 
 
 estimates clear
-*log close
+shell $my_python_path Code/get_pseudor2.py
+shell $my_python_path Code/formatTobitResults_2000s.py
+*erase Results/tobit_temp_2000s.tex
+log close

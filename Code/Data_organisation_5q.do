@@ -7,14 +7,22 @@ use Data/LFS_all_raw_5q.dta, clear
 ******************  keep only these variables needed ***************************
  
 keep lgwt ///
+ ilodefr* ///
  source* /* -> date */ ///
- grsswk1 /* -> wages */ ///
+ grsswk* /* -> wages */ ///
  hiqual* /* -> edulevel */ ///
- soc2km1 /* -> socCode */ ///
- age1 ///
+ soc2km* /* -> socCode */ ///
+ age* ///
  sex ///
- ftptwk1 /* fpt_job1 */ ///
- empmon1 /* months employed */
+ publicr* ///
+ ftptwk* /* fpt_job1 */ ///
+ jobtyp* ///
+ lkwfwm* ///
+ marsta* ///
+ marstt1* ///
+ inecacr* ///
+ incac05* ///
+ empmon* /* months employed */
  
 
 		
@@ -89,7 +97,68 @@ replace empmon1=. if empmon1==-9 | empmon1==-8
 gen fpt_job1=1 if ftptwk1==1 /*fulltime*/
 label variable fpt_job1 "Full-time, 1=yes, 0=no"
 replace fpt_job1=0 if ftptwk1==2 /* parttime*/
+gen fpt_job5=1 if ftptwk5==1 /*fulltime*/
+label variable fpt_job5 "Full-time, 1=yes, 0=no"
+replace fpt_job5=0 if ftptwk5==2 /* parttime*/
 drop ftptwk*
+
+
+* create strings for types of flows 
+	 
+	 forvalues i=1/5{
+	 
+	 gen q`i'_status ="." 
+	 gen q`i'_dummy = .
+	 gen oneminus_q`i'_dummy = .
+	 replace q`i'_status ="E" if ilodefr`i'==1
+	 replace q`i'_dummy = 1 if ilodefr`i'==1
+	 replace oneminus_q`i'_dummy = 0 if ilodefr`i'==1
+	 replace q`i'_status = "U" if ilodefr`i'==2
+	 replace q`i'_dummy = 0 if ilodefr`i'==2 | ilodefr`i'==3
+	 replace oneminus_q`i'_dummy = 1 if ilodefr`i'==2 | ilodefr`i'==3
+	 replace q`i'_status = "I" if ilodefr`i'==3
+	
+}	 
+	
+gen status = q1_status + q2_status + q3_status + q4_status + q5_status
+
+
+* get rid of missing transitions
+
+drop if strpos(status, ".")!=0
+
+
+* create transition dummies
+
+forvalues i=1/5{
+replace empmon`i' = . if empmon`i'==-8 | empmon`i'==-9
+}
+
+gen EEE = 0
+replace EEE = 1 if status=="EEEEE" & empmon5<=12
+gen EUE = 0 
+replace EUE = 1 if status=="EEEUE" | status=="EEUEE" | status=="EEUUE" | status=="EUEEE"| status=="EUUEE" | status=="EUUUE" & empmon5<=12
+gen EIE = 0 
+replace EIE = 1 if status=="EEEIE" | status=="EEIEE" | status=="EEIIE" | status=="EIEEE"| status=="EIIEE" | status=="EIIIE" & empmon5<=12
+gen EUIE = 0
+replace EUIE =1 if EUE ==1 | EIE==1
+
+gen EEE_stayers = 0
+replace EEE_stayers = 1 if status=="EEEEE" & empmon5>12
+
+
+* public/private sector
+
+
+gen public1 =0
+label variable public1 "Public job, 1=Yes, 0=No"
+replace public1=0 if publicr1==1 /* private */
+replace public1=1 if publicr1==2 /* public */
+gen public5 = . if publicr5==-9 | publicr5==-8 /*missing*/
+label variable public5 "Public job, 1=Yes, 0=No"
+replace public5=0 if publicr5==1 /* private */
+replace public5=1 if publicr5==2 /* public */
+drop publicr*
 
 
 save Data/LFS_5q.dta, replace

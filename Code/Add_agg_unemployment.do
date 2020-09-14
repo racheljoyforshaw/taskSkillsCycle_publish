@@ -111,5 +111,6 @@ gen Aggre_Ur=Urate-Devia_U_r // Aggregate unemployment rate
 * save data
 save Data/regressionData_2q.dta, replace
 
+
 erase gov_date_Unemp_r.dta 
 erase uresmc_date_Unemp_r.dta

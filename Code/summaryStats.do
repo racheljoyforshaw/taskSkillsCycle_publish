@@ -148,6 +148,7 @@ estimates store returns_skills
 			file close beta_skillTotal
 estimates clear
 
+erase skillTotal_SOC2000.dta
 
 
 

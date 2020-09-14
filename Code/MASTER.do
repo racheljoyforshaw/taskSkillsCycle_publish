@@ -25,8 +25,8 @@ global my_python_path = "/usr/bin/python" /* path to where Python stored */
 *          LFS_5q.dta
 do Code/Data_organisation_2q.do
 *do Code/Data_organisation_5q.do
-*erase LFS_all_raw_2q.dta
-*erase LFS_all_raw_5q.dta
+*erase Data/LFS_all_raw_2q.dta
+*erase Data/LFS_all_raw_5q.dta
 
 
 ************************** Task & Skills Data **********************************
@@ -39,22 +39,22 @@ do Code/Data_organisation_2q.do
 * INPUTS: all angSep & modOfMod csv files, LFS_2q, LFS_5q.dta
 * OUTPUTS: all_variables_2q all_variables_5q.dta
 do Code/Add_tasks_skills.do
-*erase LFS_2q.dta
-*erase LFS_5q.dta
+*erase Data/LFS_2q.dta
+*erase Data/LFS_5q.dta
 
 ************************** Add Unemployment Rate *******************************
-**** add in aggregate unemployment rate
+**** add in aggregate unemployment rate to 2q
 * INPUTS: all_variables_2q.dta
 * OUTPUTS: regressionData_2q.dta
 do Code/Add_agg_unemployment.do
-*erase all_variables_2q.dta
+*erase Data/all_variables_2q.dta
 
 
 
 ************************** Summary Stats, Preliminary Regressions *******************************
 **** summary stats
 * INPUTS: regressionData_2q.dta
-* OUTPUTS: min_date.txt, max_date.txt
+* OUTPUTS: min_date.txt, max_date.txt, beta_skillTotal.txt, returns_skill_2000s.tex
 do Code/summaryStats.do
 
 
@@ -63,4 +63,10 @@ do Code/summaryStats.do
 * INPUTS: regressionData_2q.dta
 * OUTPUTS:
 do Code/Regressions.do
+
+*** Real Wage change calculations 
+* INPUTS: all_variables_5q.dta
+* OUTPUTS: modOfMod_wage_distribution_by_channels_skills.xml 
+do DoFiles/wagesUpskillDownskill.do
+
 

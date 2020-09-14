@@ -6,7 +6,7 @@ This repository replicates the results of Bizopoulou & Forshaw
 ************ REQUIRED SOFTWARE ************
 
 STATA
-Python 2
+Python 2 - including numpy, pandas, seaborn
 A Latex compiler
 
 ************ FILES ************
