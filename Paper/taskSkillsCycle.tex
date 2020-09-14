@@ -1,0 +1,827 @@
+\documentclass[11pt, oneside]{article}
+\usepackage{geometry}   
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+\usepackage{amsmath}
+\usepackage{fixmath}
+\usepackage{natbib}
+\usepackage{comment}
+\DeclareMathOperator{\Jac}{J}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+%\usepackage{subfig}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{booktabs,calc}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{color,soul}
+\usepackage{authblk}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\usepackage{threeparttable}
+\usepackage{lscape}
+\usepackage{adjustbox}
+%\usepackage{floatrow}
+%\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{pythontex}
+\usepackage{dcolumn} 
+\usepackage[toc,page]{appendix}
+\newcolumntype{d}[1]{D{.}{\cdot}{#1}}  
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=false}
+\usepackage{footmisc}
+%\renewcommand{\footnotelayout}{\doublespacing}
+\usepackage{setspace}
+\usepackage{dsfont}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,arrows.meta}
+%\linespread{1.2}
+
+
+\begin{document}
+	
+
+
+
+		
+	\author{Aspasia Bizopoulou\footnote{Senior Researcher, VATT Institute for Economic Research, 7 Arkadiankatu, 00101 Helsinki, Finland\\ email: aspasia.bizopoulou@vatt.fi} $\quad$ Rachel J. Forshaw\footnote{Assistant Professor, Heriot-Watt University, Edinburgh, EH14 4AS UK; email: r.forshaw@hw.ac.uk}} 
+	\title{\textbf{The Task \& Skill Content of Occupational Transitions over the Business Cycle: Evidence for the UK\footnotetext{\llap{\textsuperscript{}}We would like to thank our advisors Liang Bai, Mike Elsby, Maia G\"{u}ell, and Ludo Visschers. We also thank Cristina Lafuente, Eva Pocher, Jean-Marc Robin, Mark Schaffer, Tuomas Pekkarinen, Anna Salomons as well as participants from the RES, SMYE, ESPE, EEA-ESEM, SaM, EALE, SGPE, Economics at Panmure House conferences; from seminars at VATT, ETLA, Aalto University, Edinburgh, the Scottish Government and from the IAB Nuremberg. Any remaining errors are our own.}}}
+
+	%\date{\textbf{Preliminary Draft- please do not distribute}}
+	
+	\maketitle
+	
+	\vspace{-5mm}
+	
+	\begin{abstract}
+		
+		Using the UK Labour Force Survey matched with O*NET detailed task and skill data for the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}, we present evidence that the change in tasks and skill level in job-to-job transitions is broadly similar within and outside of recessions. These results are in contrast to studies using occupation category as a proxy for occupational content, which have tended to find that the probability of making occupational category changes is strongly pro-cyclical. 
+
+	
+	
+
+		
+	\end{abstract}
+
+	\textbf{Keywords}: occupational mobility, tasks, skills, business cycles. 
+	
+	\vspace{2mm}
+	
+	\textbf{JEL Codes}: J62, E32
+	
+	\newpage
+	\doublespacing
+	\section{Introduction}
+	\label{sec:Introduction}
+	
+	Periods of increased unemployment entail changes to the reallocation processes of the labour market. In particular, there is a well-documented pro-cyclical relationship in the number of job-to-job transitions both in the UK and the US\footnote{See for example, \cite{Carrillo-Tudela2016},  \cite{MurphyTopel1987}, \cite{Moscarini2007} and \cite{Kambourov2008}}. Yet, while there many studies documenting how the number of transitions decreases in recessions, comparatively less is known about what happens to the content of those transitions in terms of the tasks and skills undertaken as part of occupations. Previous literature has used occupational titles as a proxy for the content of occupations, finding occupational transitions to be strongly pro-cyclical (e.g. \cite{MurphyTopel1987}, \cite{Moscarini2007}, \cite{Kambourov2008}, \cite{Carrillo-Tudela2014}, \cite{Carrillo-Tudela2016}).
+In this paper, we break down occupational titles to actual job tasks and specific skill levels, and show that this strong pro-cyclical relationship is no longer evident: the cycle has little impact on individuals' propensity to change their occupational content. The intuition for why our paper finds contradictory results is twofold.  Firstly, we are able to calculate the combined impact of recessions on both i) the probability of changing tasks at all as measured by an occupational transition (which we will call the \textit{extensive} effect) and ii) the extent of the task change for those undertaking an occupational change (which we will call the \textit{intensive} effect). Using the \cite{Mcdonald1980} decomposition we estimate that \input{../Results/fracMeanPos_angSep_CASCOT_r.txt}\hspace{-1mm}\% of the overall effect that we obtain is the result of the latter intensive effect. Previous studies captured only the extensive effect and as such tended to over-estimate the relationship between business cycles and the task content of occupational transitions. The second reason for why we find contradictory results is that there is a selection bias in the types of individuals that change occupations in recessions. We use a Double Hurdle model to explicitly capture the both the intensive and extensive margins, and allow for correlation in the errors of the two. As such, we show that when controlling for selection effects, this further reduces the magnitude of the total relationship between business cycles and occupational change.
+	
+	\vspace{2mm}
+	
+	In our analysis we focus on the part of the working population that makes employment-to-employment (henceforth E2E) moves, which represents just over 50\% of new hires in the UK. This population of new hires is an important barometer of the labour market's relationship with  business cycles since, adjusting for productivity, the rate of job-to-job transitions is a sufficient statistic for the average real wage in the economy (\cite{MoscariniPostelVinay}). Our analysis requires a way to quantify task and skill changes, leading us to focus the first part of the paper on presenting a suitable measure of change in task composition from the literature which we modify to fit our specific purposes. We also propose a second measure to extract skill level information from the task data. We then detail the empirical methods used to understand the relationship between tasks and skill content of occupational changes and the business cycle. Using unemployment rate as a proxy for fluctuations in economic conditions, we estimate the relationship between an increase in unemployment and task changes and the degree of skill change. Since the decision to change tasks consists of two parts, namely i) the decision to change tasks at all and ii) how big a task move to make, we decompose the estimates to obtain separate figures for each element. Finally, we correlate the changes in up- and downskilling with observed wage changes along different levels of the wage distribution. We find no significant difference in the wages of new hires inside and outside of recessions. We argue that this is due to the cyclical nature of task and skill changes being quantitatively small, and being partially offset by the composition effects of the types of people who get hired in a recession. 
+	
+	
+	\vspace{2mm}
+	
+	
+	Section \ref{sec:Lit} begins by discussing the literature related to this study. In section \ref{sec:Data} we describe the data that we use. Section \ref{sec:measures} presents the measures of task and skill difference between occupations. Section \ref{sec:Model} describes the econometric models used, and section \ref{sec:results} reports the results. Finally, section \ref{sec:Conclusion} concludes.
+	
+	
+	\section{Related Literature}
+	\label{sec:Lit}
+	\vspace{2mm}
+	
+	Characterising an occupation as a group of separate tasks is a relatively recent but already well-established practice in the literature studying job transitions. Among applied papers, \cite{Poletaev2008} are one of the first to map occupational titles to tasks from the US Dictionary for Occupational Titles. %Using factor analysis, they group the tasks into four major categories and subsequently rank them by the intensity that they are used in each occupation. 
+	They study content difference in occupational switchers, which they define as the situation when the new occupation employs the previous occupation's main skill with much lower or much higher intensity. They find that wage losses are closely associated with switching skill portfolio, in particular a decrease in skills. The key difference to our study is that their sample is of displaced workers, whereas we focus on all job-to-job transitions. %[add the \cite{Robinson2018 reference too}] 
+	In a similar vein, \cite{Gathmann2010} and subsequently \cite{robinson2018} construct a measure of occupational distance based on tasks, which we modify to use in this paper. Using German administrative data, they find that individuals tend to switch to occupations with similar task requirements, and the change in task composition of occupational moves tends to decrease over time. Our work differs from \cite{Gathmann2010} and \cite{Poletaev2008} in that they look at the long-term trends of task change whereas our concern is the variation over the business cycle.
+	
+	\vspace{2mm}
+	
+	A separate literature studies job transitions over the business cycle. \cite{Carrillo-Tudela2016} look at the propensity for individuals to change careers over the cycle and find that the probability of a career change co-moves positively with the cycle. In addition, they find that career movers receive higher wages than those who do not change occupations. \cite{Devereux2000} offers an early study of the cyclicality of task assignment, focusing within the firm. He finds that firms tend to re-assign individuals to tasks of lower quality during recessions. \cite{Summerfield2016} shows that recessions lead to an increase in the share of tasks in the economy that are classified as manual. The contribution of the current paper to this literature is to address whether individuals overall tend to move to more or less similar jobs in terms of tasks during recessions, and whether the direction of these moves in terms of the required skill level is affected by economic conditions.
+
+
+	
+	\section{Data}
+	\label{sec:Data}
+	
+	\subsection{UK Labour Force Survey (LFS)}
+	
+	We use the UK Quarterly Labour Force Surve (LFS) for the years \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}. We focus on this time period as our data contains a consistent classification of occupations, Standard Occupational Classification (SOC2010) codes throughout the sample, and it spans the 2008-9 recession.\footnote{While occupational classifications are available for the 1990s and 2010s, occupations are classified according to a very different set of criteria. As such, when compared over time it is unclear what is true variation in occupations and what is simply reclassification.}  In the LFS respondents are followed over a maximum of five quarters, and in each quarter a fifth of the sample is replaced by an incoming group. For the majority of our analysis, we focus on individuals over two quarters only, with the exception of the wage analysis, where we use the 5 quarter longitudinal sample. The advantage of using the 2 over the 5 quarter is that we have a much larger number of observations, on average 30,000 individuals per quarter.\footnote{Over time, the LFS has decreased the number of interviewed individuals. In the early years of our sample, each sample has close to 60,000 individuals, while in the later years it drops to about 20,000 per quarter. All estimations and graphs include population weights so that the decreasing number of respondents doesn't bias the results.} We are able to study job-to-job transitions that do not involve a quarter or more of unemployment or inactivity between employment spells.\footnote{The individual may still experience a small period of unemployment, given the nature of a quarterly survey.} 
+	%The survey contains information on individuals' employment status, their employment SOC code, employer tenure, sex, education, reasons for leaving their last job, methods of searching for new jobs, type of work contract (permanent or temporary) and type of employment (employed or self-employed). The series are weighted using census population weights provided by the Office for National Statistics (ONS).
+	%\newpage
+	
+	\subsection{US O*NET}
+	\label{sec:ONET}
+	
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width=1\linewidth]{../Figures/ONETQn}
+		\caption{O*NET Example Question}
+		\caption*{\small{Example question concerning mathematical reasoning from the O*NET, source: US O*NET Abilities Questionnaire}}
+		\label{fig:ONETQn}
+	\end{figure}
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.30]{../Figures/SOC2ONET2.png}
+			\caption{Example of mapping the SOC2010 to the O*NET }
+			\caption*{\small{The SOC2010 code that covers occupation `Economist' is 2425 and also covers a number of other occupations, including Actuary and Bioinformatician. Code 2425 maps to multiple O*NET occupations. Taking an average over all of the Oral Comprehension scores for the different O*NET occupations gives a score for the SOC2010 code. }}
+			\label{fig:SOC2ONET}
+		\end{center}
+	\end{figure}
+	
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=1\linewidth]{../Figures/ScoreRange}
+		\caption{O*NET Task Vector Example - Economist}
+		\caption*{\small{Example task vector. The y axis lists all the tasks in occupation 2425 (Economist), the x axis is a normalised score of the skill level required for each task. Black dots are the O*NET exact matches for occupation 2425, red dots are the average values across the different possible matches and constitute the final scores that we use in our analysis for this occupation. Source: author's calculations using US O*NET and CASCOT.}}
+		\label{fig:ONETScoreRange}
+	\end{figure}
+	
+	The US Department for Labor's O*NET dataset is a highly detailed survey which provides us with a picture of the tasks that are used in occupations. We standard occupational classifications available in the LFS to match occupations to the US O*NET. Our aim is to obtain a detailed task content and difficulty profile for each occupation and to subsequently measure the distance between different occupations based on similarity of task content and level of skill. We choose to map the O*NET to UK occupational codes as, while some data about the task content of UK jobs exists in the UK Skills Survey, the O*NET is much more suitable for our purposes.\footnote{The UK Skills Survey contains both labour market variables found in the LFS and task data found in the O*NET, however its sample size is too small for focusing only on job-to-job transitions to run our estimations. For the task data, it would be theoretically possible to average over the observations to get job content for occupations. However, the questions are much more qualitative than the O*NET - variables include `Importance of looking the part' and `how often come home from work exhausted'; which, although interesting in their own right, do not readily map to tasks. It also doesn't cover all occupations because they are not sampled. \cite{ONETreport} use the method employed in this paper to map the O*NET to UK SOC codes. They find the method to be robust, to create useful and reasonable data for occupations, and to accord with Skills Survey data in the variables that feature in both.} 
+	
+	Alongside task data, the O*NET allows us to recover information on the required skill level at which each task is used in each occupation. We refer to this as `skill level', since the O*NET gives us information about both the type of task in the occupation and the level at which it is performed. To illustrate, figure \ref{fig:ONETQn} shows the question asked for the job task `mathematical reasoning'. The skill level score ranges from 1 to 7. In this particular example, a skill level of 1 corresponds to ``Determine how much 10 oranges will cost when they are priced at 2 for 20 cents'', and a score of 6 corresponds to ``Determine the mathematics required to simulate a spacecraft landing on the moon'', the latter being clearly higher skilled. In section \ref{sec:taskDistance}, below, we show the measures used to ascertain the difference between two occupations and to separate out task and skill information. 
+	
+	\vspace{2mm}
+	
+	The O*NET contains task profiles for 974 occupations, which we map onto the 374 SOC2010 occupations of the UK LFS using CASCOT software, discussed below. Since the number of separate occupation categories in the US are almost 3 times as many as the number of occupational categories in the UK Standard Occupational Classification that is used in the LFS, the mapping is not one-to-one, but one-to-many. In order to get a single task vector for each UK SOC code, we follow two steps: first we use a confidence-weighted average over all matching O*NET occupations, where the confidence weights for the mapping of O*NET codes to UK SOC codes are provided by the CASCOT software.\footnote{We use a confidence threshold of 70\%, dropping any matches that fall below this confidence level. A visual inspection of the mapping confirms that the matches are sensible.} We obtain a mapping similar to the one shown in Figure \ref{fig:SOC2ONET}, where SOC code 2425 (left panel) is mapped with 6 different O*NET codes (right panel). Each O*NET occupation has scores for each of the 147 tasks in terms of the level of skill needed to perform a job. In this example, we look at the task `oral comprehension'. In figure \ref{fig:SOC2ONET} SOC code 2425 that covers occupation `Economist' is mapped with several possible occupations from the O*NET, including `Actuary' and `Statistician'. Taking an average over all of the oral comprehension scores for the different O*NET matches gives a single score for this task in the SOC2010 code, which we then repeat for all possible tasks in all possible matches. Figure \ref{fig:ONETScoreRange} provides an illustration of the average score for every task that is part of an Economist's portfolio, as calculated in Figure \ref{fig:SOC2ONET}.
+	
+	
+	\subsection{Matching the O*NET task data to the UK LFS}
+	\label{sec:SOCdifferences}
+	
+	A crucial element in this study is the ability to match UK SOC codes from the LFS with task information from the O*NET. To do this we utilise CASCOT (Computer-Assisted Structured Coding Tool), a software tool developed by the Warwick Institute For Employment Research.\footnote{More information available at https://warwick.ac.uk/fac/soc/ier/software/cascot/} CASCOT is a computer program designed to make a semantic match between occupational titles and standard occupational codes. This mapping is created by comparing text descriptions of UK SOC2010 occupations to text descriptions of O*NET occupations.
+	
+	\begin{comment}
+	\begin{figure}[h!]
+		\begin{center}
+			\includegraphics[scale=0.60]{../Figures/SOCcodeReclassification}
+			\caption{Mapping between all SOC90, SOC2000 and SOC2010 codes\label{fig:SOCcodeReclassification}}
+		\end{center}
+	\end{figure}
+	
+	While the task mappings are consistent within each decade of the SOC codes after using CASCOT, we need to control for the differences in occupations across the decades that are due to definitional changes rather than genuine variation. Over the period of study, the LFS modified its occupational categories twice. One set of occupational definitions runs from 2000q2-2000q4, the second from 2001q2-2010q4, and the third from 2011q1-\input{../Results/max_date.txt}\hspace{-1mm}. The codes were updated periodically to account for changing requirements within SOC occupation classifications. Since the SOC classifications are integral in the mapping to task data from the O*NET, the change in the definitions could lead to spurious results. Figure \ref{fig:SOCcodeReclassification} shows a mapping of the SOC1990 to SOC2000 and the SOC2000 to SOC2010, which highlights the changing SOC classifications over time. In the 90s, the codes only had up to 3-digit numbers and a much smaller range, while in the 2000s and 2010s the digits increased to four. The change from the 1990s to the 2000s involved splitting up occupations that were previously under the same code into a greater number of classifications, while the move to the 2010s involved a major re-organisation of occupations within the codes. In the latter recoding, several codes split into finer occupations in the 2010s, while other codes disappeared, highlighting the redundancy of certain occupations over time. 
+	
+	\vspace{2mm}
+	
+	Measures of central tendency in the theoretical distributions of possible task moves are highly similar across decades. Nevertheless, a pairwise t-test of the difference in means of the distribution of possible task moves in the 1990s, 2000s and 2010 cannot be rejected as different from zero at the 10\% level. In our analysis, we control for this difference in means by adding a set of dummies corresponding to the decades of the SOC codes to our regressions.
+	
+	\vspace{2mm}
+	
+	In addition to using CASCOT, we explored a number of different approaches for joining the data across time. Previous literature uses the minimum common denominator of occupational codes and applies it to the entirety of the series. The main idea of the approach is as follows: if a SOC2000 code split into two SOC2010 codes, code the two separate SOC2010 codes as one single occupation for the whole series. One such approach has been used by \cite{Dorn2009} for the US Current Population Survey. We are not able to apply this harmonising technique, due to the fact that the mapping between SOC code crosswalks is many-to-many. As a futher robustness check we used a simple averaging process which converted SOC1990 and SOC2000 codes into their matching SOC2010 codes. This works as follows: if a SOC2000 code split into two SOC2010 codes according to the definitions provided by the SOC, take a simple unweighted average of the task vectors associated with the two SOC2010 codes. Results are qualitatively unchanged by using this different measure. 
+	\end{comment}
+	
+	\begin{comment}
+	\subsection{Occupational transitions over time: the years post-2010 in the LFS}
+	\label{sec:datablip}
+	Looking at the series from 2010q1- \input{../Results/max_date.txt}\hspace{-1mm}, we observe an unusual drop in the number of transitions in the early 2010s. This drop covers 6 quarters from 2011q1 - 2012q2. We illustrate this drop by graphing the probability of occupation change, as defined in \cite{CarrilloTudela2016}, in which the probability of career change at the k-digit (k=1,2,3,4) is estimated as:
+	
+	\begin{equation*}
+	\text{Prob Career Change$^{k}$ = } \frac{E2E^{k}_m}{E2E^{k}_s + E2E^{k}_m}
+	\end{equation*}
+	
+	\noindent where $E2E^{k}_m$ is the number of individuals that changed employers and moved k-digit occupation; and $E2E^{k}_s$ is the number of individuals that changed employers and did not move their k-digit occupation. For example, an Economist is in SOC 2 at the one-digit level. If she changed occupations to become a Florist (SOC 5 at the one-digit level), this would be classed in the numerator as an E2E move. If, however, she became a management consultant (SOC 2), this would be classed in the denominator as a one-digit stay. 
+	
+	\vspace{2mm}
+	
+	Figure \ref{fig:probCareerChange} plots the estimated probability of career change at the 1-, 2-, 3-, or 4- digit level. We can see that the drop in the series occurs at all occupation classification levels from least (1) to most (4) granular. At the time of writing, previous papers using the UK LFS to study occupational transitions stop the analysis in 2010, the year when the SOC code change was introduced. We look at the probabilities of career change at the 1-digit, 2-digit, 3-digit and 4-digit level. Up until 2010, the 1-digit data follows a similar pattern to \cite{CarrilloTudela2016}. Extending the series beyond the 2010s, using 2010-denominated SOC codes, we see that the sharp drop in the probability of changing careers is present in all different digit denominations. 
+	
+	\vspace{2mm}
+	
+	It seems clear that this is not a real phenomenon, but a data anomaly.\footnote{Our suspicions were raised by the provision of a probabilistic matching of SOC2000 and SOC2010 codes by the LFS, which is only available from 2012q2 onwards, while the official switch from SOC2000 and SOC2010 happened in 2011q1. A series of emails with the UK Data Service confirmed the existence of a mistake in the coding of transitions over these six quarters which, at the time of writing, has not yet been fixed.} For this reason, we choose to exclude these six quarters from our analysis. A further note of interest is that the LFS does not provide SOC codes for quarter 2000q1, i.e. the year of the move between SOC1990 and SOC2000. We also exclude that quarter for our analysis since we cannot obtain any task information. 
+	
+	
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{../Figures/prob_career_change}
+	\caption{Probability of Career Change at 1-,2-,3- and 4-digit}
+	\caption*{\small{Probability of career change as estimated as the ratio of E2E movers that changed a) 1-digit, b) 2-digit, c) 3-digit, d) 4-digit occupation to those E2E that stayed within the respective occupational digit.}}
+	\label{fig:probCareerChange}
+	\end{figure}
+	
+	
+	
+	
+	\end{comment}
+	
+	\begin{comment}
+	
+	\section{Measuring occupational distance}
+	\label{sec:MismatchMeasure}
+	
+	A number of papers have undertaken the measurement of the distance of two occupations in terms of their task content.
+	\cite{Poletaev2008} group the tasks of each occupation into four major categories and subsequently rank them by the intensity that they are used in each occupation. The distance between two occupations is defined by looking at the extent to which the new occupation employs the previous occupation's ‘main skill’ with much lower or much higher intensity. In a follow-up paper, \cite{robinson2018} uses the Euclidean distance to quantify the difference in task content between occupations, to find that the mean distance in between occupations following displacement declined in the 1980s and 1990s in the US. \cite{Gathmann2010} construct a measure of occupational distance based on tasks, which we use in this paper and which we augment to include not only occupational distance in terms of tasks, but also the direction of the move in terms of the overall skill level. The measure by \cite{Gathmann2010} is also used by \cite{Cortes2017} though in a different context. Instead of taking the change in task composition at face value, they interpret it as the cost of occupational mobility, the main idea being that the larger the change in task composition between two occupations, they greater the cost of moving from one to the other occupation. This measure of the cost of mobility is then inputted into a gravity model instead of using the more traditional geographical distance. %Our own paper differs from the previous two in that we focus on the change of tasks over the entire population, rather than displaced workers, and we explicitly study the effect of the business cycle on the distance and direction of moves.
+	
+	
+	\vspace{2mm}
+	
+	% Using German administrative data, they find that individuals tend to switch to occupations with similar task requirements, and change in task composition of occupational moves tends to decrease over time. Our own paper differs from in three ways: first, rather than studying the stylised facts of longitudinal occupational moves, we focus on cohorts and study how the change in task composition as well as the direction of skill of moves changes when a cohort is hit by a recession. Second, rather than using US or German data, we generate a working dataset incorporating a mapping between O*NET tasks and UK occupations within the UK Labour Force Survey \footnote{The mapping of O*NET tasks and UK occupational codes (SOC codes) is available from the CASCOT software developed by the University of Warwick}. Using UK data allows us to dive into the effects of the recession, since unemployment did significantly rise for the UK during the 2008 financial crisis, while it did not in Germany. Finally, 
+	
+	\vspace{2mm}
+	
+	
+	Contemporaneously, \cite{Cortes2017} also use the concept of change in task composition which we use here, but within a different context. Instead of taking the change in task composition at face value, they interpret it as the cost of occupational mobility. The main idea is that the larger the change in task composition between two occupations, they greater the cost of moving from one to the other occupation and, as such, the smaller the ratio of movers to stayers. They borrow a gravity model from the trade literature, where job-to-job flows are aggregated at the 2-digit level and are assumed to behave similar to bilateral trade. The traditional geographical distance is replaced with the change in task composition, while destination and origin country fixed effects are now destination and origin 2-digit occupational fixed effects. Thus, their analysis is aggregated at the occupational level, and they find that the ratio of movers to stayers is negatively affected by greater change in task composition. Our approach is different in that we want to understand the effect of business cycles on the distance of occupational moves at the individual level. 
+	content...
+	\end{comment}
+	
+	\section{Capturing content changes across occupations}
+	\label{sec:measures}
+	
+	\subsection{Measuring the Change in Tasks}
+	\label{sec:taskDistance}
+	To measure the change in task composition between two occupations we use the measure of angular separation from \cite{Gathmann2010}, which has also been used in the innovation literature (\cite{Jaffe1986}). The measure of the change in task composition between two occupations is as follows:
+	
+	
+	\begin{equation}
+	\label{eq:angSep}
+	\Delta \text{Tasks}_{o,o'} = \left(1 - \frac{\sum_{t=1}^{T}(q_{t,o}\times q_{t,o'})}{\left[(\sum_{t=1}^{T}q_{t,o}^{2})\times(\sum_{t=1}^{T}q_{t,o'}^{2})\right]^{\frac{1}{2}}}\right)   \in [0,1]
+	\end{equation}
+	
+	\noindent where $o,o'$ is a pair of different occupations, $t$ is tasks, $q_{t,o}$ represents the skill level of a task $t$ within occupation $o$. Intuitively, the change in task composition between a set of occupations $o$ and $o'$ are compared by measuring the angle between their respective vectors. The scores in the vectors range between 0 (this task is not used in an occupation) and 7 (this task is used at the highest level), which we normalise within $[0,1]$, so that the entire measure is within $[0,1]$. Each occupation is represented by a vector of equal length dimension and each element of the vector gives a task score, i.e. the intensity with which the task is used in the given occupation. Some of the elements of the vector are zeros, since occupations do not use all available tasks. 
+	The way we apply equation \ref{eq:angSep} is different to the usage by \cite{Gathmann2010}, in which they use data on the fraction of employees using task $t$ in occupation $o$ to comprise $q_{t,o}$. Their data only carries information about the composition of tasks, rather than the skill level, whereas our task vectors include both. Therefore we develop another measure, detailed below in section \ref{sec:changeSkillLevel} which captures the difference in skill level between task vectors.
+	
+	
+	
+	\begin{comment}
+	\begin{figure}[H]
+	\centering
+	\begin{minipage}{.4\textwidth}
+	\centering
+	\begin{tabular}{lc} %\toprule
+	&\input{../Figures/angSep_diff_quantile.txt} \\
+	%\bottomrule	
+	\end{tabular}
+	\end{minipage}
+	\begin{minipage}{.4\textwidth}
+	\centering
+	\begin{tabular}{lc} %\toprule	
+	&\input{../Figures/angSep_same_quantile.txt} \\
+	%\bottomrule	
+	\end{tabular}
+	\end{minipage}
+	\caption{Quantiles of task similarity of potential occupational moves across (left) and within (right) 1-digit SOC codes (including zeros)}
+	\label{fig:angSep_quantile}
+	\end{figure}
+	\end{comment}
+	
+	\subsection{Measuring the Change in Skills}
+	\label{sec:changeSkillLevel}
+	In our dataset, since the length of the vector for each occupation is determined by the difficulty - or skill level - at which the tasks is required, by measuring its length we can capture the degree of upskilling or downskilling between occupations. We propose the following measure, which takes into account the differences in magnitude between two vectors, to capture the change in skill level: 
+	
+	\begin{equation}
+	\label{eq:skillScore}
+	\Delta\text{Skills}_{o,o'} = \left[\left[\sum_{t=1}^{T}(q_{t,o'}^{2})\right]^{\frac{1}{2}} - \left[\sum_{t=1}^{T}(q_{t,o}^{2})\right]^{\frac{1}{2}} \right]/\sqrt{T} \in[-1,1]
+	\end{equation}
+	
+	
+	\noindent Equation \ref{eq:skillScore} calculates the difference in length of two occupation task vectors and has range $[-1,1]$; -1 means that moving occupations results in complete downskilling in every task, 0 means two occupations are equally skilled in every task, 1 complete upskilling in every task.\footnote{Theoretically, a value of 0 could mean that the two vectors do not have the exact same scores for each task but the differences happen to offset each other perfectly. However, we do not observe this in the data - i.e., no two pairs of different SOC codes return a value of 0. } The measure is therefore symmetric, i.e. $\Delta\text{Skills}_{{A}{B}}  = -1* \Delta\text{Skills}_{{B}{A}}$.
+	
+	\subsubsection{The Relationship between Skill Level and Wages}
+	In using the $\Delta$Skills measure, equation \ref{eq:skillScore}, we are assuming that vector length of occupations is a good proxy for skill level of the tasks completed in an occupation. If the measure is capturing skill level we should expect it to be positively correlated with wages. To test this assumption we calculate the skill level for each occupation in the LFS: \\
+	
+	 Skill Level$_{o}$ = $\left[\sum_{t=1}^{T}(q_{t,o}^{2})\right]^{\frac{1}{2}} $ \\
+	 
+	\noindent  i.e. it is a measure of the vector length of an occupation in the task space. We use this measure in a standard Mincerian wage estimation: 
+	\begin{equation}
+	\label{eq:skill_returns}
+	\ln w_{it}= \alpha + \beta_{1}\text{ Skill Level}_{o}+  \sum_{k} \beta_{k}X_{k,it} + e_{it}, 
+	\end{equation}
+	
+	where $\ln w_{it}$ are log real gross weekly wages for individual $i$ at time $t$. The vector $X_{it}$ includes controls for age, age squared, a dummy equal to 1 for female, years of tenure in the current job and dummies for high, medium and low eduction. Skill Level is standardised by subtracting its mean and dividing by its standard deviation to facilitate interpretation. We use the five quarter LFS and take the wage to be the one seen in the last quarter of interview. The sample includes all types of job histories ending with employment in the fifth quarter of interview.
+	
+	\vspace{2mm}
+	
+	The estimation of Equation \ref{eq:skill_returns} can been seen in table \ref{skill_returns}. A one standard deviation increase in skill level is associated with an increase of \input{../Results/beta_SkillTotal.txt}\hspace{-1mm}\% in weekly gross real wages. This result suggests that our measure of the length of the vector as a skill difficulty proxy is reasonable since it is strongly positively correlated with wages. 
+	
+	
+	\begin{table}[t]
+		\centering
+		\begin{tabular}{l*{1}{c}}
+			\input{../Results/returns_skill_2000s}
+		\end{tabular}
+		\caption{Estimated Returns to Skills} 
+		\caption*{\footnotesize Notes: Dependent variable is log real gross weekly wages. Esimated on the LFS 5Q sample of full time workers using wages observed in the first interview quarter. Skill Level is proxied by linked O*NET data and standardised. The coeficient on Age$^2$ is multiplied by 1000. The reference category for education is Low Education (no qualifications). Standard errors in parentheses;	* \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\)}
+		\label{skill_returns}
+	\end{table}
+	
+	
+	
+	\subsection{Two-Task Example of the Task and Skill Change Measures}
+	\label{sec:twoTaskEx}
+	
+	Figure \ref{fig:AngSep} provides an illustration of how the $\Delta$Task and $\Delta$Skills measures can provide us with information about the content of occupational moves. We construct a basic example in which there are a total of four different occupations ($A$, $B$, $C$, $D$) which comprise two tasks: task 1 and task 2. Moving from occupation $A$, which is highly skilled in task 1 and task 2, to $B$, which is lowly skilled in both tasks gives a change in task composition of 0, since the tasks are still used in the same proportion. The $\Delta$Skills$_{o,o'}$ of $\input{../Figures/AB_skillScore.txt}$ reflects the fact that occupation $B$ is much lower skilled than $A$. Moving from occupation $C$ to $A$ represents both a change in tasks and upskilling, whereas the change in tasks from $A$ to $D$ constitutes downskilling. Finally, moving from and to the same occupation $A$ results in zeros for both measures.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.60]{../Figures/AngularSeparation_example}
+		\qquad
+		\begin{tabular}{lcc}
+			Occupation move & $\Delta$Tasks$ _{o,o'}$& $\Delta$Skills$_{o,o'}$\\
+			\hline
+			\hline
+			A $\rightarrow$ B & 0 & \input{../Figures/AB_skillScore.txt}  \\
+			C $\rightarrow$ A &  \input{../Figures/CA_angSep.txt} & \input{../Figures/CA_skillScore.txt}  \\
+			A $\rightarrow$ D &  \input{../Figures/AD_angSep.txt} & \input{../Figures/AD_skillScore.txt}  \\
+			A $\rightarrow$ A & 0 & 0 \\
+		\end{tabular}
+		\caption{An example of $\Delta$Tasks and $\Delta$Skills with 2 tasks and 5 occupations}
+		\label{fig:AngSep}
+	\end{figure}
+	
+	\subsection{The Advantage of Using Task Data}
+	
+	Before proceeding to apply the above measure in our analysis, we take a moment to highlight the advantage of using task data to characterise how the content of two occupations might be different. In mobility studies, authors usually use highly aggregated occupational codes, as in \cite{Carrillo-Tudela2016} who use 1-digit SOC codes, \cite{kambourov2009occupational} who use 1- and 2- digit occupational codes in the PSID. We argue that such aggregated measures seem to capture very little of the content difference between two occupations. This can be seen anecdotally by looking at the occupation titles across different 1-digit occupations which can be more similar than transitions within the same 1-digit occupation. For example, moving from being a `Manager, food and beverage' employee (5436) to working in `Textiles, garments and related trades' (5419) would not be recorded as a change according to the 1-digit SOC definition of content change whereas the move to `Manager, public house' (1224) would. 
+	
+	\vspace{2mm}
+	
+	Formalising this observation, figures \ref{fig:angSep_diff} shows the distributions of all potential within- and across-1 digit SOC code occupation moves that can be made in terms of the change in task composition (equation \ref{eq:angSep}). We calculate the change in task composition of every occupation pair and plot the score in the left distribution if the first digit of the occupation code differs (an `across' 1-digit occupation move, which is the type of move usually recorded as a `content' change in the literature) or the right hand distribution if the first digit of the occupation code is the same (a `within' 1-digit move, which is not captured as a change in content when using 1-digit SOC codes). If SOC codes capture differences in task content well we should expect the across-distribution (left) to have measures of central tendency to the right of those of the within-SOC (right) code distribution, which would reflect a notion of a large occupational move or `career change' when making across-code moves. However, while larger moves are slightly more likely in the across-code (left) distribution, we see that the two distributions are remarkably similar. 
+	
+	\begin{figure}[H]
+		\centering
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../Figures/all_angSep_diff1Digit_nonzero}
+		\end{minipage}%
+		\begin{minipage}{.5\textwidth}
+			\centering
+			\includegraphics[width=1\linewidth]{../Figures/all_angSep_same1Digit_nonzero}
+		\end{minipage}%
+		\caption{Task distance of potential occupational moves across (left) and within (right) 1-digit SOC codes (excluding zeros)}
+		\label{fig:angSep_diff}
+	\end{figure}
+	
+	
+	\begin{table}[H]
+		\centering
+		\input{../Figures/angSep_diff_same_quantile.tex} 
+		%\bottomrule	
+		\caption{Quantiles of task similarity of potential occupational moves across (left) and within (right) 1-digit SOC codes (including zeros)}
+		\label{fig:angSep_quantile_diff_same}
+	\end{table}
+	
+	
+	
+	
+	
+	\begin{comment}
+
+
+	
+	\subsection{Change in Tasks and Change in Skills over Time}
+	\label{sec:EmpiricalSeries}
+	
+	Figures \ref{fig:angSepEmpirical} and \ref{fig:modOfModEmpirical} show the evolution of Change in Tasks and of the Change in the Skills averaged within quarters over \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm} for those experiencing an employer change. %The solid lines in each of the figures are the unadjusted series, which display 3 structural breaks created by the different definitions of SOC codes between the 1990s, 2000s and 2010s as discussed in section \ref{sec:SOCdifferences}. The dashed series show the adjustment as achieved by using a dummy to shift the mean of the series in line with the reference decade of the 2000s.  It also shows there are a number of quarters that we have to drop due to missing or erroneous SOC-code data.	
+	The series in Figures \ref{fig:angSepEmpirical} and \ref{fig:modOfModEmpirical} tend to be above zero for the most part, suggesting that when individuals switch, it is usually to go to a job that has a different composition of tasks and is at a slightly higher skill level than what they did before, which is in line with previous work (e.g. \cite{Carrillo-Tudela2016} and \cite{robinson2018}). % It also shows some cyclicality in the series: both series are falling in the lead up to the recession, although $\Delta$Skill Level recovers within the recession time period.
+	
+	\begin{figure}[h!]
+		\centering
+		%\begin{minipage}{.6\textwidth}
+		%  \centering
+		\includegraphics[width=1\linewidth]{../Figures/seriesAdjustment_angSep}
+		\caption{$\Delta$Tasks averaged within quarters}
+		\caption*{\footnotesize 5Q centered moving average of the within-quarter mean of $\Delta$Tasks. Source: author's calculations.}
+		\label{fig:angSepEmpirical}
+	\end{figure}
+	\begin{figure}[h!]
+		%\centering
+		%\begin{minipage}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{../Figures/seriesAdjustment_modOfMod}
+		\caption{$\Delta$Skills averaged within quarters}
+		\caption*{\footnotesize 5Q centered moving average of the within-quarter mean of $\Delta$Skills. Source: author's calculations.}
+		\label{fig:modOfModEmpirical}
+	\end{figure}
+	
+	\vspace{1mm}
+	
+
+	
+	\end{comment}	
+	
+ \section{Econometric Specifications}
+\label{sec:Model}
+
+We use three different specifications to estimate the relationship between the economic cycle and i) the size of the change in tasks of occupational moves and ii) the absolute level of change in the skills.
+
+\subsection{Models Without Controls for Selection}
+\label{sec:Tobits}
+
+\subsubsection{4-digit Occupational Level}
+Our first specification is outlined below in Equation \ref{eqn:tobit}. We use a Tobit model since our measures of change in task composition and change in skill level are continuous on $[0,1)$, but with a large portion of the sample (approximately 40\%) censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and an OLS estimation would be inconsistent. Below we summarise the model:
+
+\begin{equation}
+\label{eqn:tobit}
+y_{it,2} =\max(0,\beta_0 + \beta_{1}u_{t} + \sum_{j} \beta_{j}X_{j,it,12} + \sum_{k} \alpha_{k} \text{Q}_{k,1} + \sum_{l} \gamma_{l} \text{R}_{l,1} + \sum_{m} \delta_{m} \text{I}_{m,1}+ e_{it})
+\end{equation}
+
+\noindent Here, $i$ represents individuals; $t$ is time; $j$ are separate individual-level and job-level controls, $k$ are the number of quarters Q, $l$ are the number of regions $R$, $m$ are the number of industries $I$; $e_{it}$ is the error term. $y_{i}$ is the dependent variable, which is either $\Delta\text{\textit{Tasks}}_{i}$ when estimating the relationship between the cycle and the change in task composition of moves or $|\Delta\text{\textit{Skills}}_{i}|$ when estimating the relationship between the cycle and the absolute change in skill level. We take the absolute value of the change in skill level since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). A subscript of $,\hspace{-0.5mm}1$ or $,\hspace{-0.5mm}2$ designates whether the data is taken from the first quarter that a respondent is interviewed, second quarter, and $,\hspace{-0.5mm}12$ denotes both.
+
+\vspace{2mm}
+
+Our independent variable of interest is $u_{t}$, i.e. the aggregate unemployment rate. We add a set of demographic characteristics, namely age and age squared, marital status, sex, level of education.\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications whatsoever; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. The rest of the controls are a set of dummies marking quarters to control for seasonality as well as a set of regional dummies to capture regional differences within the UK.
+
+\subsubsection{1-digit Occupational Level}
+
+Our second specification addresses the concern that our use of 4-digit occupation codes may obscure the phenomenon that we are investigating. Previous literature has used much more aggregated 1- or 2-digit occupational codes to look at this question, which make occupational change in general less likely, and large occupational changes more likely. To illustrate this point, we graph the probability of occupation change, as defined in \cite{Carrillo-Tudela2016}, in which the probability of career change at the k-digit (k=1,2,3,4) is estimated as:
+
+\begin{equation*}
+\text{Prob Career Change$^{k}$ = } \frac{E2E^{k}_m}{E2E^{k}_s + E2E^{k}_m}
+\end{equation*}
+
+\noindent where $E2E^{k}_m$ is the number of individuals that changed jobs and moved k-digit occupation; and $E2E^{k}_s$ is the number of individuals that changed jobs and did not move their k-digit occupation. For example, an Economist is in occupational code 2 at the one-digit level. If she changed occupations to become a Florist (SOC 5 at the one-digit level), this would be classed in the numerator as an E2E move. If, however, she became a management consultant (occupational code 2), this would be classed in the denominator as a one-digit stay.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{../Figures/prob_career_change}
+	\caption{Probability of Career Change at 1-,2-,3- and 4-digit Occupation Codes}
+	\caption*{\small{Five quarter moving average of the probability of career change as estimated as the ratio of E2E movers that changed a) 1-digit, b) 2-digit, c) 3-digit, d) 4-digit occupation to those E2E that stayed within the respective occupational digit.}}
+	\label{fig:probCareerChange}
+\end{figure}
+
+To make our analysis as comparable to previous results as possible, we also estimate equation \ref{eqn:tobit} with dependent variables  $\Delta\text{\textit{Tasks}}_{i}$ and $|\Delta\text{\textit{Skills}}_{i}|$ aggregated to the 1-digit occupational code level. To do so, we calculate the average potential task or skill move from all 4-digit occupational codes with first digit $j$ to all 4-digit occupational codes with first digit $k$ to be the task or skill change for any moves between $j\hspace{-1mm}\star\hspace{-1mm}\star\star$ and $k\hspace{-1mm}\star\hspace{-1mm}\star\star$. Moves from 4-digit code $j\hspace{-1mm}\star\hspace{-1mm}\star\star$ to the same first digit $j\hspace{-1mm}\star\hspace{-1mm}\star\star$ will have task and skill distance zero. For example, a move from 1121 to 2462 has the same task distance, 0.07 (the average task change of all possible moves from occupations with first digit 1 to first digit 2), as a move from 1221 to 2444.
+
+\subsection{Selection Controls}
+
+One issue that arises in the estimation of equation \ref{eqn:tobit}  is the possibility of selection bias. Our population of interest consists of individuals undertaking a job-to-job transition. Since the volume of job transitions decreases in recessions, the composition of those who make a job-to-job transition in a recession is likely different to those who do so in normal economic conditions. Table \ref{tab:diffMeans} confirms there are significant differences in observable characteristics between the recession and and non-recession samples. Those that make a job-to-job transition in a recession are older, more likely to be married and have longer tenure. Fewer are in temporary roles for their previous or current job, and a larger fraction are self employed or work for the public sector in either their previous or current job. More are high-educated and a lower fraction are medium- or low- educated. Fewer have quit (made a voluntary separation) from their previous employer, and a larger fraction have been fired (made an involuntary separation).  
+
+
+\begin{table}[h]
+	\centering
+	\caption{Difference in Means of E2E Sample In and Outside Recession}\label{tab:diffMeans}
+	\begin{adjustbox}{max width=16cm, max height=11cm}
+		\begin{threeparttable}
+			\input{../Results/t_test.tex}
+			\begin{tablenotes}
+				\item \footnotesize{Notes: Difference in longitudinal-weighted means inside=1 and outside=0 of recession for E2E movers in the LFS 2Q sample. Recession periods defined using UK ECRI indicator. Significance levels:$ \quad ^{*}<10\% \quad ^{**}<5\% \quad ^{***}<1\%$. Standard errors in parentheses. Source: author's calculations.}  
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{adjustbox}
+\end{table}
+
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}[sibling distance=4cm,
+		every node/.style = {shape=rectangle, rounded corners,
+			draw, align=center,
+			top color=white}]]
+		\tikzset{level distance=72pt}
+		\node {Change jobs?}
+		child {node {Change occupations?} child {node[draw=none,fill=none]{EE mover\\$\Delta$Tasks, $\Delta$Skills$\neq$0} edge from parent node[left] {Yes}} child {node[draw=none,fill=none]{EE mover \\ $\Delta$Tasks, $\Delta$Skills=0} edge from parent node[right] {No}} edge from parent node[left] {Yes}}
+		child {node[draw=none,fill=none]{EE stayer \\ $\Delta$Tasks, $\Delta$Skills=0} edge from parent node[right] {No}};
+		\end{tikzpicture}
+		\begin{tikzpicture}
+		\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (3.5,7.5) -- (3.5,4.65) node [black,midway,xshift=35pt,text width=1.5cm] {\footnotesize  Selection};
+		\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (3.5,4.5) -- (3.5,1.65) node [black,midway,xshift=35pt] {\footnotesize Censoring};
+		\end{tikzpicture}
+	\end{center}
+	\caption{Illustration of Double Hurdle model} \label{fig:flowE2E}
+	\caption*{\small{First step: whether an individual changes jobs. Second step: whether an individual changes occupations (whether they have a task and skill change.)}}
+\end{figure}
+
+
+While we control for these observable composition changes in our estimations, a question remains about whether this selected sample will bias estimates if there is remaining unobserved heterogeneity. To explore this, we adopt a third regression specification using a Double Hurdle model proposed by \cite{cragg1971}, and applied in a labour market setting by \cite{BlundellMeghir} and \cite{Blundell1989}. This bivariate model captures the intensive and extensive effects of recessions on job transitions, illustrated in figure \ref{fig:flowE2E}. The first hurdle, is a Probit model, capturing whether an individual decides to change jobs or not. If they do not change jobs, their $\Delta$ Tasks and $\Delta$ Skills will be always be zero. In the second hurdle, if the individual has changed jobs, they must decide whether to change occupations. If they change occupations, $\Delta$ Tasks and $\Delta$ Skills will be non-zero. If they do not change occupations, their $\Delta$ Tasks and $\Delta$ Skills will appear as zero in the data. Note though, there is the same censoring issue as discussed in section \ref{sec:Tobits} - they may change tasks and skills but not occupation codes -  so for this second step a Tobit model is also the correct specification. Concretely, the equations of the Double Hurdle model are:
+
+
+\begin{subequations}
+	\label{eqn:heckman}
+	\begin{align}
+	& EE_{it,2} = \tilde{\beta}_0 + \tilde{\beta}_{1}\text{Available}_{t,1} + \sum_{j} \tilde{\beta}_{j}\hat{X}_{j,it,1} + \sum_{k} \tilde{\alpha}_{k} \text{Q}_{k,1} + \sum_{l} \tilde{\gamma}_{l} \text{R}_{l,1} + \sum_{m} \tilde{\delta}_{m} \text{I}_{m,1}+  \tilde{e}_{it} \label{eqn:heckmanProbit}\\
+	& y_{it,2}^{**} = \check{\beta}_0 + \check{\beta}_{1}u_{t} + \sum_{j} \check{\beta}_{j}X_{j,it,12} + \sum_{k}\check{\alpha}_{k} \text{Q}_{k,1} + \sum_{l} \check{\gamma}_{l} \text{R}_{l,1} + \sum_{m} \check{\delta}_{m} \text{I}_{m,1}+ \hat{\lambda}_t + \check{e}_{it} \label{eqn:heckmanTobit_start} \\
+	& y_{it,2}^* =\max(0, y_{it,2}^{**})\\
+	& y_{it,2} = EE_{it,2}y_{it,2}^* \label{eqn:heckmanTobit_end} 
+	\end{align}
+\end{subequations}
+
+
+Equation \ref{eqn:heckmanProbit} is the Probit selection model which has dependent variable $EE$ equal to one if an individual changes jobs between the first and second quarter of interview, and zero otherwise. Note that control variables $\hat{X}$ differ from those in the structural equation, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} is the Tobit structural model with dependent variables as in equation \ref{eqn:tobit}, either $\Delta\text{\textit{Tasks}}_{i}$ or $|\Delta\text{\textit{Skills}}_{i}|$. This specification is the same as \ref{eqn:tobit}, with the addition of the estimated inverse Mills ratio obtained from estimating equation \ref{eqn:heckmanProbit}, $\hat{\lambda}$, to control for selection. Equations \ref{eqn:heckmanTobit_start} through \ref{eqn:heckmanTobit_end} govern the relationship once the hurdle `changed jobs' has been passed.  The Double Hurdle model is similar to the Tobit model of \ref{eqn:tobit}, but allows the extensive and intensive margins to be governed by distinct stochastic processes. That is, unlike the Tobit model, allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. It is also related to the control function approach advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows a zero observations to arise. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated. As such, to avoid multicollinearity issues we also include the instrument \textit{Available}, whether the individual is available to start work in the next two weeks. The instrument for the selection equation is a dummy which captures whether an individual is available to start work in the next two weeks. This will be equal to one if the respondent is looking for a new job, is waiting to start a new job or would like a new job but has not yet started searching and would be able to start a job in the next two weeks. This instrument is highly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey. However, it should not have any bearing on the size of the task or skill change that an individual makes after changing jobs, the dependent variable in the two structural equations. 
+	
+\section{Results}
+\label{sec:results}
+\begin{comment}
+\subsection{Unconditional Changes in Tasks  and Skills during Recessions}
+\label{sec:TobitProbit}
+
+Table \ref{tab:tobit_simple} details the estimates of the unconditional regression. It is the model specification of equation \ref{eqn:tobit} where $y_i=\Delta\text{Tasks}_i$ in the first column and $|\Delta\text{Skills}_i|$ in the second, with all controls omitted except those correcting for the SOC code breaks. Both dependent variables are standardised by subtracting the mean and dividing by the standard deviation of each.
+\begin{table}[H]
+\caption{Tobit without Covariates}\label{tab:tobit_simple}
+\centering
+\begin{threeparttable}
+\input{../Results/tobit_simple_2000s.tex}
+\begin{tablenotes}
+\item \footnotesize{Tobit model with dependent variables $\Delta$Tasks (first column) and the absolute value of $\Delta$Skills (second column). Dependent variables standardised by subtracting the mean and dividing by the standard deviation. LFS 2Q sample, E2E transitions. Source: author's calculations. Marginal effects, standard errors in parentheses, \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The estimates for both $\Delta$Tasks and $|\Delta\text{Skills}|$ are both negative and significantly different from zero. This suggests the overall relationship between job content and business cycles, without controlling for composition effects, is negative: individuals tend to make smaller task composition and skill level moves in recessions. However the magnitude of change is small: a one percentage point increase in the unemployment rate is associated with a \input{../Results/agg_urate_angSep_ape_simple.txt}\hspace{-1mm} standard deviation fall in both the change in task composition and the absolute value of the change in skill level.\footnote{$\Delta$Tasks: the point estimate \input{../Results/agg_urate_angSep_simple.txt}\hspace{-1mm} times the APE factor, \input{../Results/angSep_simple_APE.txt}.} In the following section, we add controls for compositional changes of the types of people who make E2E moves in the recession.
+
+\end{comment}
+
+\subsection{Changes in Tasks and  Skills over the Cycle}
+\label{sec:TobitProbit}
+
+
+To control for the changing composition of E2E transitions over the cycle, we estimate the Tobit model of equation \ref{eqn:tobit}. Results are shown in model (1) of table \ref{tab:TobitResults}. We see that an increase in the unemployment rate of one percentage point is associated with \input{../Results/angSep_sd_CASCOT.txt}\hspace{-1mm} of a standard deviation reduction in task change.\footnote{\input{../Results/agg_urate_angSep_CASCOT.txt}\hspace{-1mm} times the APE factor, \input{../Results/APEfactor_angSep_CASCOT.txt}\hspace{-1mm}} The magnitude of this relationship is very small. To put this into context, we estimate that the conditional average of $\Delta$Task Change is \input{../Results/angSep_s_mean.txt}\hspace{-1mm}\footnote{Conditional on the compositional controls listed in table \ref{tab:TobitResults}.}. An example of a move with $\Delta$Task composition equal to \input{../Results/angSep_s_mean.txt}\hspace{-1mm}  is from $4159$ `Fraud Inspector' to $3533$ `Insurance Underwriter'. During the 2008 recession, the unemployment rate increased by approximately 2.5 percentage points. The estimated standard deviation of $\Delta$Task composition, conditional on the controls listed in section \ref{sec:Model}, is \input{../Results/angSep_s_sd.txt}\hspace{-1mm}. An increase in the unemployment rate by 2.5 percentage points would therefore correspond to an approximate change of:
+\[
+\underbrace{2.5}_{\Delta Xu}* \underbrace{\input{../Results/agg_urate_modOfMod_ape_CASCOT.txt}}_{\widehat{\frac{\partial E(y| X)}{\partial Xu}}} *\underbrace{\input{../Results/angSep_s_sd.txt}}_{ \widehat{E(\sigma|X)}} = \input{../Results/agg_urate_context.txt}
+\]
+
+\noindent In our example, this would be an occupational move with $\Delta$Tasks=\input{../Results/angSep_s_mean.txt}\hspace{-1mm} \input{../Results/agg_urate_context.txt} =  \input{../Results/agg_urate_context2.txt}\hspace{-1.5mm}. An example of such a task move is 3532 `Insurance Broker' to 4132 `Administrative Officer, Insurance'. Both of these examples are small occupational moves, and there seems to be minimal difference between the two types of moves.
+
+\vspace{2mm}
+
+In terms of the absolute change skill level (i.e. when $y_i=|\Delta\text{\textit{Skills}}_{i}|$), the effect is in the same direction and of a similar magnitude. An increase in the aggregate unemployment rate corresponds to a \input{../Results/agg_urate_modOfMod_ape_CASCOT.txt} change in skill level.\footnote{\input{../Results/agg_urate_modOfMod_CASCOT.txt} times the APE factor,\input{../Results/APEfactor_modOfMod_CASCOT.txt}\hspace{-1mm}, table \ref{tab:TobitResults}} This effect is similarly economically insignificant.
+\newpage
+\newgeometry{a4paper,left=1in,right=1in,top=1in,bottom=1in,nohead}
+%\begin{landscape}
+\thispagestyle{empty}
+\begin{table}[htbp]
+	\centering
+	\caption{Changes in Tasks and Skills over the Cycle}\label{tab:TobitResults}
+	\begin{adjustbox}{width=\textwidth}
+		\begin{threeparttable}
+			% \input{../Results/tobit_ALL_2000s.tex}
+			
+			\input{../Results/tobit_ALL_2000s.tex}
+			\begin{tablenotes}
+				\item{\footnotesize{(1) Tobit at the 4-digit occupation category level. (2) Tobit at the aggregated 1-digit occupation category level (3) Double Hurdle at the 4-digit occupation category level. The sample in the selection equation of specification (3) is all individuals aged 16-64 years old over the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm} and employed in both the first and second quarter of their survey. The sample in all other other specifications have the additional restriction that individuals undertook a job transition over two quarters (i.e., changed employers). The coefficient on age squared is multiplied by 1000. The reference category for education is Low Education; for Job Separation it is `Voluntary';  for Job seeking method it is `Not Looking'. The regression includes seasonal, regional and industry fixed effects. Coefficients should be  multiplied by the APE factor where given to obtain correct marginal effect. Standard errors in parentheses.}}
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{adjustbox}
+\end{table}
+%\end{landscape}
+\restoregeometry % Restore the global document page margins
+\newpage
+\vspace{2mm}
+
+With the addition of task data to occupations, we are able to look not just at the \textit{probability of changing occupations} during recessions but also the \textit{extent of the change} of the task content. \cite{Mcdonald1980} show that the marginal effect of a Tobit model can be decomposed as follows:\footnote{See appendix \ref{app:TobitDecomp} for details}$^{,}$\footnote{Note that, unlike the reported Tobit marginal effects in table \ref{tab:TobitResults}, for ease of interpretation of probabilities this decomposition is not standardised and so it sums to the unstandardised marginal effect, \input{../Results/totalEffect.txt}\hspace{-1mm}.}
+
+
+\begin{equation}
+\resizebox{\columnwidth}{!}{$\displaystyle
+	\label{eqn:tobit_decomp}
+	\underbrace{\frac{\partial E(y| X)}{\partial Xu}}_{\text{Total marginal effect}} = \underbrace{P(y>0|X)}_{\substack{\text{Probability of changing} \\ \text{ occupations}\\=\input{../Results/APEfactor_angSep_CASCOT_t.txt}}}\underbrace{\frac{\partial E(y|X, y>0)}{\partial Xu}}_{\substack{\text{Change in expected task move} \\ \text{given occupation move} \\ \text{following a change in} \\ \text{the unemployment rate} \\ =\input{../Results/dEystarbydXi_angSep_CASCOT.txt}}} + \underbrace{ E(y|X, y>0)}_{\substack{\text{Expected task move} \\ \text{given occupation move}\\=\input{../Results/Eystar_angSep_CASCOT.txt}}} \underbrace{\frac{\partial P(y>0|X)}{\partial Xu}}_{\substack{\text{Change in probability of} \\ \text{occupation move}  \\ \text{following a change in} \\ \text{the unemployment rate}\\=\input{../Results/dFzbydXi_angSep_CASCOT.txt}}}
+	$}
+\end{equation}
+
+
+\vspace{3mm}
+Of particular interest to this chapter is the relationship between the unemployment rate and the change in task composition given that there is an occupation change, i.e. the term $\frac{\partial E(y|X, y>0)}{\partial X_{u}}$, as opposed to the term $\frac{\partial P(y>0|X)}{\partial X_u}$ which only measures the impact on the probability of changing occupation and has previously been shown to be negative and economically significant. Here, we estimate this change in probability to still be negative, but it is not as large in magnitude as in previous research. This is due to our definition of occupational change being much more granular, at the 4-digit occupational code rather than 1-digit as in previous work.
+Using $z \equiv X\beta/\sigma$ and the cumulative normal distribution function $F(z)\equiv P(y>0|X)$ and dividing both sides of equation \ref{eqn:tobit_decomp} by $F(z)\beta_{u}$, we can get the expression:
+
+\begin{equation}
+\frac{\partial E(y|X, y>0)}{\partial X_{u}}=\pi_{u}*\beta_{u}
+\end{equation}
+
+\noindent where:
+
+\begin{equation*}
+\label{eqn:fracMeanResponse}
+\pi_{u} = (1- zf( z)/F( z) - f( z)^2/F( z)^2)
+\end{equation*}
+
+\noindent  is the fraction of the mean total response attributable to the response from those who change occupations \textit{and} tasks. We obtain the estimate of this fraction $\hat{\pi}_{u}$,  by calculating $\hat{z}$ using our reduced-form estimates in $\hat{z}= \sum_{i=1}^N F^{-1}(X_i \hat{\beta}_{u}/ \hat{\sigma})$ as:
+
+\begin{equation*}
+\label{eqn:fracMeanResponseequals}
+\hat{\pi}_{u} = \input{../Results/fracMeanPos_angSep_CASCOT.txt} \%
+\end{equation*}
+
+This is a substantial fraction attributed to the intensive margin of those who switch occupations (the \textit{extent of task change}). It explains why studies look at only the extensive margin of whether to make an occupational move or not will miss a large portion of the overall relationship between recessions and occupational content changes.
+
+\vspace{2mm}
+
+Regression specification (2) in table \ref{tab:TobitResults} shows further that our results are not entirely driven by our use of more granular occupational codes. Model (2) shows the same Tobit model as (1) but with task and skill moves aggregated to 1-digit occupational categories. While,  as expected, the coefficient on the unemployment rate is larger in magnitude  it remains economically insignificant.
+
+\vspace{2mm}
+
+Regression specification (3) in table \ref{tab:TobitResults} further controls for selection bias using a Double Hurdle model. Controlling for the selection effects of those who move occupations in recessions, we see that the coefficient on the unemployment rate is smaller in magnitude for both task and skill moves and is now statistically insignificant.
+
+
+
+
+\vspace{2mm}
+
+In each specification control variables are, for the most part, significant, and in a number of cases they are a magnitude larger than the estimated coefficient on the unemployment rate. Older individuals (\textit{Age}) tend to make smaller task and skill moves, consistent with the idea that individuals tend to specialise over their careers. For the same reasons, those with a higher relative to lower education level (\textit{High Education}), and those with greater tenure  (\textit{Tenure}) tend to make smaller task and skill moves. Being full time relative to part time in their first quarter job (\textit{Full Time in Previous Job}) is associated with much lower task and skill moves in all specifications, and at a magnitude of approximately ten times that of the effect of recessions. This suggests that full time workers are much less flexible in changing the content of their jobs when moving employers than part time workers are. Similarly, being fired from a first quarter job (\textit{Involuntary Separation}) is associated with much smaller task and skill moves than quits.
+If an individuals' second quarter recorded occupation is temporary rather than permanent (\textit{Temporary in Current Job}), this is associated with much larger task and skill moves. Again this association is an order of magnitude greater than that of recessions. The same is true for having a public sector rather than private sector job in the second quarter (\textit{Public Sector in Current Job}), being self employed in either the first or second quarter of interview (\textit{Self Employed in Previous/Current Job}) and applying to jobs via Job Centres (\textit{Search Method: Job Centre}) and Advertisements (\textit{Search Method: Advertisements}) relative to not searching for a job.
+	\subsection{Real Wage Changes}
+	
+	
+	Table \ref{tab:RealWageChange} shows the average of the quarterly time series of the real wage changes for those that make employment transitions, broken down by period (recession/non-recession) and skill change type (upskill, downskill, unchanged). We focus on skills for this analysis, since if there is a skill change there has necessarily been a task change; furthermore, the skills data allows us to separate into upskilling and downskilling which will have contrasting consequences for wages. Since the LFS only reports wages in the first and fifth quarter of interview, we use the five quarter sample for this analysis. Necessarily the sample size is much smaller, which means we do not have enough observations to look at the conditional wage distribution in terms of the observable characteristics considered in section \ref{sec:TobitProbit}. However, we are able to include job transitions that feature up to three quarters of unemployment or inactivity which means we cover the majority of all new hires and should therefore be less subject to selection biases. 
+	
+	\vspace{2mm}
+	
+	We see that for the 25th percentile of the wage distribution, all job transitions result in a decrease in real wages whereas for the 75th all transitions result in an increase, a fact that is consistent with the literature on wage polarisation and sorting.\footnote{See for example, \cite{Autor2003}; \cite{Autor2008}; \cite{Goos2007}; \cite{Goos2009}; \cite{Cavaglia2017} for the polarisation literature and \cite{Groes2014} for sorting.} We observe that transitions resulting in upskilling have a higher real wage change significant at the 5\% level across the real wage distribution. For the median earner, this wage change is approximately 3 percentage points higher for upskilling than downskilling, or approximately 6 percentage points higher for upskilling versus unchanged skill. Note that interestingly, downskilling tends to command a higher wage than unchanged skills for the median worker, a statistic which is consistent with existing literature finding that an occupational change comes with a wage premium (e.g. \cite{Carrillo-Tudela2016}).
+	
+	\vspace{2mm}
+	
+	In the 2nd and 3rd panels of Table \ref{tab:RealWageChange}, we split the sample into recession and non-recession to highlight the observed differences in wages for those changing the level of their tasks during and outside of recessions. We run a set of t-tests for difference in means in table \ref{tab:wages_ttest} to test if the changes in wages are significantly different. We find that mean wage changes are not significantly different within and outside of recessions for those who upskill, downskill, or whose skills remain unchanged. This should not be a surprise: our estimated relationship between the business cycle and task changes is economically small when controlling for composition effects. 
+	%Furthermore, these are unconditional wage changes, not controlling for the kinds of composition changes noted in the difference in means analysis in table \ref{tab:diffMeans}. 
+	%We find that the unconditional relationship between the economic cycle and task and skill change was even smaller in table \ref{tab:tobit_simple}.
+	
+	\newpage
+	
+	
+	
+	
+	\begin{table}[h] 
+		\caption{Real Wage Change}
+		\begin{adjustbox}{max width=16cm, max height=11cm}
+			\begin{threeparttable}
+				%\resizebox{1\hsize}{!}{
+				%\begin{center}
+				\input{../Results/wages_upskill_downskill.tex}
+				%\end{center}
+				%}
+				\begin{tablenotes}
+					\item Averages of the quarterly time series of percentiles of real percentage wage change compared to previous job over the time periods listed. Using 5Q LFS survey, `Total' defined as employment to employment transitions with a period of 1-3 quarters of inactivity (EIE), unemployment (EUE) or direct job-to-job (EE). Different transition types not detailed separately due to sample size limitations. Deflated using the UK consumer price index, whole sample 2000q1- \input{../Results/max_date.txt}\hspace{-1mm}. Recession periods defined using UK ECRI indicator.
+				\end{tablenotes}
+			\end{threeparttable}
+		\end{adjustbox}
+		\label{tab:RealWageChange}
+	\end{table}
+
+	
+	\begin{table}[H] 
+		\caption{Real Wage Change Significance Tests}
+		\begin{adjustbox}{max width=16cm, max height=11cm}
+			\begin{threeparttable}
+				%\resizebox{1\hsize}{!}{
+				%\begin{center}
+				\input{../Results/wages_ttest.tex}
+				%\end{center}
+				%}
+				
+				\begin{tablenotes}
+					\item Significance test of difference in means of real wage change. First statistic in brackets is t-test,second is two-tailed p-value. $H_0$: Two samples have identical expected values.
+				\end{tablenotes}
+			\end{threeparttable}
+		\end{adjustbox}
+		\label{tab:wages_ttest}	
+	\end{table}
+	%\end{landscape}
+	%\end{samepage}
+	%\newpage
+	%\restoregeometry
+	
+	%\newpage
+	%\thispagestyle{empty}
+	%\newgeometry{top=0.1cm,bottom=0.1cm, left=0.5cm} 
+	
+	%\restoregeometry
+	
+	%\newpage
+	
+		\newpage
+	\section{Discussion}
+	\label{sec:Conclusion}
+	
+	In this paper we study the extent to which the change in task composition of job transitions is sensitive to cyclical fluctuations. We find little evidence for an economically significant relationship. Unlike previous research, we focus on observed changes in the task content and skill level of job transitions, not only on changes in occupational category.  We also find that wage increases resulting from job transitions are more strongly predicted by one's starting point on the wage distribution and eventual upskill or downskilling transition, and not by economic conditions. In the context of designing policies to improve job search, it is useful to know that factors related to the individual characteristics and job conditions are stronger predictors of reallocation than economic shocks. The consequences of bad matches are costly for workers as well as for firms as shown in \cite{Fredriksson2018} and \cite{Guvenen2015}, yet research focusing on the change in task content of new matches and factors that may affect it remains scarce. 
+	
+	\vspace{2mm}
+	
+	We show that factors related to the individual and the conditions of the job, such as contract type and reason for separation, are much stronger predictors of skill reallocation in job-to-job transitions than the business cycle. This suggests that, if recessions do have a cleansing effect on the quality of job matches, it is not through skill reallocation.
+	In future research it will important to study how the initial match between the worker and firm can be improved, and whether this information is useful for job seekers. 
+	
+	\vspace{2mm}
+	
+	%Understanding what factors impact labour market frictions and how to reduce them continues to be an important research agenda in economics that merits the attention of continued study.  
+	
+	%We use data from the UK Labour Force Survey to study employment-to-employment transitions and we map occupations to their task content using the US O*NET dataset, which contains detailed task information for all occupations. Using a measure of distance from the literature we study whether increases in the unemployment rate affect the task content of new hires that come from employment. We also study the extent to which individuals will tend to change the difficulty level of their task portfolio when changing employers. 
+	
+	\vspace{2mm}
+	
+	%We find that in worse economic times, individuals move to occupations that are more similar to what they did before, relative to better economic times when they make larger occupation content jumps. In other words, keeping constant the reasons for which individuals may want to switch employers, individuals are more likely to `stay put' in terms of their specialisation during times of higher unemployment. By measuring the change in the difficulty level when moving employers we find that overall, skill levels are less likely to change during recessions, conditional on changing employers. More specifically, we observe that individuals are less likely to downskill during a recession and equally likely to upskill. We find that the magnitude of the relationship between job content changes and recessions is very small, especially when compared with the relationship with observable characteristics. However, looking at the extent of change is important: by decomposing our model, we see that looking at not only the extensive margin (whether individuals change occupations) but also the intensive margin (the extent to which tasks and skills change in an occupational move) is important to understanding the whole story. Studies which neglect the intensive margin will underestimate the effect of recessions by up to \input{../Results/fracMeanPos_angSep_CASCOT.txt}\hspace{-1mm}\%. As for wages, we find no difference in the wage changes of new hires in recessions - neither the wages consistent with upskilling, downskilling or unchanged skill transitions show a significant difference between recession and non-recessionary times. This is likely because the cyclicality of task and skill changes is quantitatively small, and they are partially offset by composition changes.
+	
+	
+	
+	
+	
+	\newpage
+	\bibliographystyle{apalike}
+	\bibliography{taskSkillsCycle}
+	
+	
+	\newpage
+	\begin{appendices}
+		
+		\section{ Marginal Effects  and Decomposition of the Tobit Model}
+		\setcounter{equation}{0}
+		\label{app:TobitDecomp}
+		
+	   \subsection{ Marginal Effects}
+		The Tobit model can be expressed as:
+		
+		\begin{equation*}
+		y_i= 
+		\begin{cases}
+		X_i \beta  + u_i ,& \text{if } \quad X_i \beta  + u_i >0\\
+		0,              & \text{otherwise}
+		\end{cases}
+		\end{equation*}
+		
+		where $i=1,2,...,N$ with $N$ the number of observations, $y_i$ is the dependent variable. $X$ is a vector of independent variables, $\beta$ is a vector of coefficients and $u \sim N(0,\sigma^2)$ is the error term. 
+		
+			Unlike in an OLS regression, the marginal effect in equation \ref{eqn:tobit} of the main text has to be separately calculated. While in an OLS regression the marginal effect is simply $\frac{\partial E(y|X)}{\partial X_{j}}=\beta_j$, in Tobit the marginal effect can be written as follows:
+		
+		\begin{equation}
+		\label{eqn:tobit_marginal}
+		\frac{\partial E(y| X)}{\partial X_j} = P(y>0|X) \beta_j
+		\end{equation}
+		
+		
+		\noindent To get an estimate of the marginal effect, we assume a standard normal distribution of the data and we maximise the log-likelihood function of the tobit model w.r.t $\beta$ and $\sigma^2$. This will yield maximum likelihood estimates and, assuming that we have specified the model correctly, it will give us consistent and asymptotically efficient estimators for both $\beta$ and $\sigma^2$. We can then use $\hat{\beta}$ and $\hat{\sigma}$ to estimate the function $P(y>0|X)$. Using the appropriate expression for the standard normal distribution, we obtain $\hat{P}(y>0|X)=\frac{1}{N} \sum_{i=1}^N F(X_i \hat{\boldsymbol{\beta}}/ \hat{\sigma})$, where $F(.)$ is the CDF of a standard normal and N are the number of observations. Thus the marginal effect at the average is estimated as:
+		\[
+		\frac{\partial \widehat{E(y|X)}}{\partial X_j} = \underbrace{\frac{1}{N} \sum_{i=1}^N F(X_{i} \hat{\beta}/ \hat{\sigma})}_\text{APE scale factor} \hat \beta_j
+		\]
+		
+		\noindent 
+		Thus, for the purpose of interpretation of marginal effects, all coefficients that appear in the regression tables have to be multiplied by the APE scale factor to obtain the estimated marginal effect. 
+		\vspace{3mm}
+		
+		\subsection{Decomposition of the Tobit Model}
+		
+		\noindent \cite{Tobin1958} shows that for the Tobit model the expected value of y is:
+		\begin{eqnarray}
+		E(y| X) = X \beta F(z) + \sigma f(z)
+		\label{eqn:Ey}
+		\end{eqnarray}
+		
+		
+		where $z=X \beta/ \sigma$, $f(z)$ is the unit normal density and $F(z)$ is the corresponding CDF.
+		
+		\vspace{3mm}
+		
+		\noindent Furthermore, the expected value of y for observations above the limit, $y>0$, is $X \beta$ plus the expected value of the truncated normal error term (see \cite{Amemiya1973}):
+		
+		
+		\begin{eqnarray}
+		E(y|X, y>0)&=& E(y| X,u>-X \beta)\nonumber \\
+		&=& X\beta + \sigma \frac{f(z)}{F(z)} \label{eqn:Ey*}
+		\end{eqnarray}
+		
+		
+		From \ref{eqn:Ey} and \ref{eqn:Ey*}, the relationship between $E(y|X)$ and $E(y|X,y>0)$ is simply:
+		\begin{equation}
+		E(y|X) = F(z)E(y|X, y>0)
+		\label{eqn:eyey*rel}
+		\end{equation}
+		
+		
+		From \ref{eqn:Ey*}, taking the partial derivative with respect to the $jth$ independent variable  $X_j$ and noting that $F'(z) =  f(z)$ and $f'(z) = -zf(z)$ gives: 
+		
+		\begin{equation}
+		\frac{\partial E(y|X,y>0)}{\partial X_j} = (1-zf(z)/F(z) - f(z)^2/F(z)^2)*\beta_j
+		\label{eqn:EystarbyXi}
+		\end{equation}
+		
+		
+		\noindent From which $(1-zf(z)/F(z) - f(z)^2/F(z)^2)$ gives the fraction of the mean total response is due to the response above the limit, equation \ref{eqn:fracMeanResponse} in the main text.
+		Taking the partial derivative of \ref{eqn:eyey*rel} with respect to $X_j$ gives: 
+		
+		\begin{equation}
+		\frac{\partial E(y|X)}{\partial X_j} = F(z)\frac{\partial E(y|X,y>0)}{\partial X_j} +  E(y|X, y>0)\frac{\partial F(z)}{\partial X_j} 
+		\label{eqn:MMdecomp}
+		\end{equation}
+		
+		which, using the fact that $F(z) = P(y>0|X)$ and $\partial{F(z)}/\partial{X_j} = (\beta_j/\sigma)F(z)$  we can re-write as equation \ref{eqn:tobit_marginal}.
+		Plugging \ref{eqn:EystarbyXi} into \ref{eqn:MMdecomp} gives the marginal effect for the Tobit:
+		\begin{equation}
+		\frac{\partial E(y|X)}{\partial X_j} = \frac{1}{N} \sum_{i=1}^N F(X\beta/ \sigma) \beta_j 
+		\label{eqn:marginalTobit}
+		\end{equation}
+		
+		
+		\noindent Following \cite{Mcdonald1980}, using the estimates of $\beta$ and $\sigma$ we can get estimates for all parts of the decomposition in equation \ref{eqn:MMdecomp} at the average by recovering the corresponding $z$:
+		
+		\begin{align*}
+		\label{eqn:decomposition}
+		& F(z)\hat{\beta}_j = \frac{\partial E(y|X)}{\partial X_j} = \frac{1}{N} \sum_{i=1}^N F(X_j \hat{\beta}/ \hat{\sigma})\hat \beta_j \\
+		& z = F^{-1}(X_j \hat{\beta}/ \hat{\sigma}) \\
+		\end{align*}
+		\begin{comment}
+		& E(y|X,y>0)  = X\beta + \sigma\frac{f(z)}{F(z)}  \\
+		& \frac{\partial E(y|X,y>0) }{\partial X_i} = \beta_i + \left(\frac{\sigma}{F(z)}\frac{\partial f(z)}{\partial Xi} - \frac{\sigma f(z)}{F(z)^2}\frac{\partial F(z)}{\partial Xi} \right) \\
+		& = \beta_i\left(1- \frac{f(z)^2}{F(z)^2} - \frac{zf(z)}{F(z)}\right)
+		& \\
+		&  \left(1- \frac{f(z)^2}{F(z)^2} - \frac{zf(z)}{F(z)}\right) = \input{../Results/fracMeanPos_angSep_CASCOT.txt}
+		\end{align*}
+		\end{comment}
+		
+		
+		
+		
+	\end{appendices}
+	
+	
+\end{document}
