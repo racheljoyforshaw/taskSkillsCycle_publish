@@ -54,10 +54,16 @@ drop stob*
 drop source
 
 * drop any non-2000s data
-keep if date>= yq(2000,1) & date<yq(2010,4)
+keep if date>= yq(2000,1) & date<=yq(2010,4)
 
 
 ****************** variables ***************************************************
+
+* make weights into integer
+scalar mult_factor = 10000000
+gen lgwt_int = lgwt*mult_factor
+
+
 * edulevel 
 gen edulevel1=. if (hiqual1==-9| hiqual1==-8 |hiqual1==41) & date>yq(1996,1) & date< yq(2004,2)
 label variable edulevel1 "Education level, 1=high, 2=med, 3=low"
@@ -121,7 +127,7 @@ drop ftptwk*
 }	 
 	
 gen status = q1_status + q2_status + q3_status + q4_status + q5_status
-
+label variable status "Labour market status per quarter, E=employed,U=unemployed,I=inactive"
 
 * get rid of missing transitions
 
@@ -143,8 +149,24 @@ replace EIE = 1 if status=="EEEIE" | status=="EEIEE" | status=="EEIIE" | status=
 gen EUIE = 0
 replace EUIE =1 if EUE ==1 | EIE==1
 
-gen EEE_stayers = 0
-replace EEE_stayers = 1 if status=="EEEEE" & empmon5>12
+**UE transition 
+ label variable EUE "Dummy of Transition via Unemployment"
+ label define EUE 0 "Not via EUE" 1 "Transition via Unemployment" 
+ label values EUE EUE
+**IE transition
+ label variable EIE "Dummy of Transition via Inactive"
+ label define EIE 0 "Not via EIE" 1 "Transition via Inactive" 
+ label values EIE EIE
+ 
+  **UE or IE transition
+ label variable EUIE "Dummy of Transition via Unemployment or Inactive transition"
+ label define EUIE 0 "Not via EUIE" 1 "Transition via Unemployment or Inactive" 
+ label values EUIE EUIE
+
+ **Job to Job transition
+ label variable EEE "Dummy of Transition via Job to Job transition"
+ label define EEE 0 "Not via EEE" 1 "Transition via Job to Job transition" 
+ label values EEE EEE
 
 
 * public/private sector
@@ -159,6 +181,9 @@ label variable public5 "Public job, 1=Yes, 0=No"
 replace public5=0 if publicr5==1 /* private */
 replace public5=1 if publicr5==2 /* public */
 drop publicr*
+
+
+
 
 
 save Data/LFS_5q.dta, replace

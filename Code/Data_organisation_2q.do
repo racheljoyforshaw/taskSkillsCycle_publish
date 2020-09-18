@@ -18,7 +18,7 @@ keep lgwt ///
  sex* ///
  ftptwk* /* -> fpt_job */ ///
  jobtyp* /* -> temporary */ ///
- publicr* ///
+ publicr* /* -> public */ ///
  inecacr* /* -> selfe */ ///
  incac05* /* -> selfe */ ///
  hiqua* /* -> edulevel */ ///
@@ -56,7 +56,7 @@ drop stob*
 drop source
 
 * drop any non-2000s data
-keep if date>= yq(2000,1) & date<yq(2010,4)
+keep if date>= yq(2000,1) & date<=yq(2010,4)
 
 
 ****************** variables ***************************************************

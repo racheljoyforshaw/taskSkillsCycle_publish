@@ -24,7 +24,7 @@ global my_python_path = "/usr/bin/python" /* path to where Python stored */
 * OUTPUTS: LFS_2q.dta
 *          LFS_5q.dta
 do Code/Data_organisation_2q.do
-*do Code/Data_organisation_5q.do
+do Code/Data_organisation_5q.do
 *erase Data/LFS_all_raw_2q.dta
 *erase Data/LFS_all_raw_5q.dta
 
@@ -67,6 +67,6 @@ do Code/Regressions.do
 *** Real Wage change calculations 
 * INPUTS: all_variables_5q.dta
 * OUTPUTS: modOfMod_wage_distribution_by_channels_skills.xml 
-do DoFiles/wagesUpskillDownskill.do
+do Code/wagesUpskillDownskill.do
 
 

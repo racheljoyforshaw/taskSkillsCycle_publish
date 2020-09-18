@@ -51,13 +51,16 @@ with open(cwd + "/Figures/wages_all_25_unchanged.txt", "w") as text_file:
 # total
 with open(cwd + "/Figures/wages_all_50_up.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_upskill, errors=coerce))*100,2)))
-Total_up = np.round(np.mean(pd.to_numeric(df_all.p50_upskill, errors=coerce))*100,2)     
+Total_up = np.round(np.mean(pd.to_numeric(df_all.p50_upskill, errors=coerce))*100,2)
+Total_up_sd = np.round(np.std(pd.to_numeric(df_all.p50_upskill, errors=coerce))*100,2)
 with open(cwd + "/Figures/wages_all_50_down.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_downskill, errors=coerce))*100,2)))
-Total_down = np.round(np.mean(pd.to_numeric(df_all.p50_downskill, errors=coerce))*100,2)   
+Total_down = np.round(np.mean(pd.to_numeric(df_all.p50_downskill, errors=coerce))*100,2)
+Total_down_sd = np.round(np.std(pd.to_numeric(df_all.p50_downskill, errors=coerce))*100,2)
 with open(cwd + "/Figures/wages_all_50_unchanged.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_unchanged, errors=coerce))*100,2)))
-Total_unchanged = np.round(np.mean(pd.to_numeric(df_all.p50_unchanged, errors=coerce))*100,2)  
+Total_unchanged = np.round(np.mean(pd.to_numeric(df_all.p50_unchanged, errors=coerce))*100,2)
+Total_unchanged_sd = np.round(np.std(pd.to_numeric(df_all.p50_unchanged, errors=coerce))*100,2)
 ## 75th
 # total
 with open(cwd + "/Figures/wages_all_75_up.txt", "w") as text_file:
@@ -89,13 +92,16 @@ with open(cwd + "/Figures/wages_all_25_unchanged_r.txt", "w") as text_file:
 # total
 with open(cwd + "/Figures/wages_all_50_up_r.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2)))
-Total_up_r = np.round(np.mean(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2) 
+Total_up_r = np.round(np.mean(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2)
+Total_up_r_sd = np.round(np.std(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2)
 with open(cwd + "/Figures/wages_all_50_down_r.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2)))
-Total_down_r = np.round(np.mean(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2) 
+Total_down_r = np.round(np.mean(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2)
+Total_down_r_sd = np.round(np.std(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2)
 with open(cwd + "/Figures/wages_all_50_unchanged_r.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2)))
-Total_unchanged_r = np.round(np.mean(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2) 
+Total_unchanged_r = np.round(np.mean(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2)
+Total_unchanged_r_sd = np.round(np.std(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2)
 ## 75th
 # total
 with open(cwd + "/Figures/wages_all_75_up_r.txt", "w") as text_file:
@@ -119,13 +125,16 @@ with open(cwd + "/Figures/wages_all_25_unchanged_nr.txt", "w") as text_file:
 # total
 with open(cwd + "/Figures/wages_all_50_up_nr.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2)))
-Total_up_nr = np.round(np.mean(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2) 
+Total_up_nr = np.round(np.mean(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2)
+Total_up_nr_sd = np.round(np.std(pd.to_numeric(df_all.p50_upskill[mask], errors=coerce))*100,2)
 with open(cwd + "/Figures/wages_all_50_down_nr.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2)))
-Total_down_nr = np.round(np.mean(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2) 
+Total_down_nr = np.round(np.mean(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2)
+Total_down_nr_sd = np.round(np.std(pd.to_numeric(df_all.p50_downskill[mask], errors=coerce))*100,2)
 with open(cwd + "/Figures/wages_all_50_unchanged_nr.txt", "w") as text_file:
     text_file.write(str(np.round(np.mean(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2)))
-Total_unchanged_nr = np.round(np.mean(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2) 
+Total_unchanged_nr = np.round(np.mean(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2)
+Total_unchanged_nr_sd = np.round(np.std(pd.to_numeric(df_all.p50_unchanged[mask], errors=coerce))*100,2)
 ## 75th
 # total
 with open(cwd + "/Figures/wages_all_75_up_nr.txt", "w") as text_file:
@@ -239,38 +248,39 @@ with open(cwd + "/Figures/unchangeRes_unchangeNoRes_total_75.txt", "w") as text_
 
 # plot median 	
 labels = ['Upskill', 'Downskill', 'Unchanged']
-#upskill = [EE_up, EE_up_r, EE_up_nr]
-#downskill = [EE_down, EE_down_r, EE_down_nr]
-#unchanged = [EE_unchanged, EE_unchanged_r, EE_unchanged_nr]
 
 Whole = [Total_up, Total_down, Total_unchanged]
+Whole_err = [Total_up_sd, Total_down_sd, Total_unchanged_sd]
 Recession = [Total_up_r, Total_down_r, Total_unchanged_r]
+Recession_err = [Total_up_r_sd, Total_down_r_sd, Total_unchanged_r_sd]
 NoRecession = [Total_up_nr, Total_down_nr, Total_unchanged_nr]
+NoRecession_err = [Total_up_nr_sd, Total_down_nr_sd, Total_unchanged_nr_sd]
+
 
 x = np.arange(len(labels))  # the label locations
 width = 0.30  # the width of the bars
 
 fig, ax = plt.subplots()
-rects1 = ax.bar(x - width, Whole, width, label='Whole Sample',color="gray")
-rects2 = ax.bar(x, Recession, width, label='Recession',color="black")
-rects3 = ax.bar(x + width, NoRecession, width, label='No Recession',color="white")
+rects1 = ax.bar(x - width, Whole, width, label='Whole Sample',color="gray",yerr=Whole_err,capsize=7)
+rects2 = ax.bar(x, Recession, width, label='Recession',color="darkgray",yerr=Recession_err,capsize=7)
+rects3 = ax.bar(x + width, NoRecession, width, label='No Recession',color="lightgray",yerr=NoRecession_err,capsize=7)
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('% Real Wage Change')
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
-ax.set_ylim(0,10) #np.max([np.max(Whole),np.max(Recession),np.max(NoRecession)])+5)
+ax.set_ylim(-6,6) #np.max([np.max(Whole),np.max(Recession),np.max(NoRecession)])+5)
 ax.legend()
 
 
-
+'''
 def autolabel(rects):
     """Attach a text label above each bar in *rects*, displaying its height."""
     for rect in rects:
         height = rect.get_height()
         ax.annotate('{}'.format(height),
                     xy=(rect.get_x() + rect.get_width()/ 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset
+                    xytext=(0, 50),  # vertical offset
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -278,8 +288,8 @@ def autolabel(rects):
 autolabel(rects1)
 autolabel(rects2)
 autolabel(rects3)
+'''
 
-#fig.tight_layout()
-
+plt.tight_layout()
 plt.savefig(cwd + '/Figures/TotalMedianWages.pdf')
 	

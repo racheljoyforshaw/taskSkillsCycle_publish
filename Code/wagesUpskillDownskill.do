@@ -9,31 +9,6 @@ use Data/all_variables_5q.dta, clear
 
 capture erase Results/modOfMod_wage_distribution_by_channels_skills.xml
 
-scalar mult_factor = 10000000
-* sort out weights
-gen lgwt_int = lgwt*mult_factor
-
-
-
-*** Dummies for the channels of transition
-**UE transition 
- label variable EUE "Dummy of Transition via Unemployment"
- label define EUE 0 "Not via EUE" 1 "Transition via Unemployment" 
- label values EUE EUE
-**IE transition
- label variable EIE "Dummy of Transition via Inactive"
- label define EIE 0 "Not via EIE" 1 "Transition via Inactive" 
- label values EIE EIE
- 
-  **UE or IE transition
- label variable EUIE "Dummy of Transition via Unemployment or Inactive transition"
- label define EUIE 0 "Not via EUIE" 1 "Transition via Unemployment or Inactive" 
- label values EUIE EUIE
-
- **Job to Job transition
- label variable EEE "Dummy of Transition via Job to Job transition"
- label define EEE 0 "Not via EEE" 1 "Transition via Job to Job transition" 
- label values EEE EEE
 
  
 ** Since Labour force survey uses negative value, -8 or-9, to denote "missing" and "is not applied", we change them into "." to avoid potential mistake. 
@@ -77,13 +52,7 @@ merge m:1 date using Inputs/CPI_uk_base_2015.dta , keepusing(cpi)
  drop _merge
  
 
-**Generate the data of real wage
-* earn less than min wage (262.5 = £7.5 * 35 hours, full time)
-*drop if grsswk1<262.5 & ftptwk1==1
-*drop if grsswk5<262.5 & ftptwk5==1
-
 * condition on non-missing
-*drop if angSep_CASCOT==. | modOfMod_CASCOT==.
 drop if sex==.
 drop if age1==.
 
@@ -122,17 +91,6 @@ replace durats5=8 if ilodefr1==1 & empmon1>=60
 drop if durats5==.
 
 
-/*
-* variable part/full-time
-gen fpt_job1=1 if ftptwk1==1 /*fulltime*/
-replace fpt_job1=0 if ftptwk1==2 /* parttime*/
-replace fpt_job1=. if ftptwk1==-9 |ftptwk1==-8 /* missing */
-
-gen fpt_job5=1 if ftptwk5==1 /*fulltime*/
-replace fpt_job5=0 if ftptwk5==2 /* parttime*/
-replace fpt_job5=. if ftptwk5==-9 |ftptwk5==-8 /* missing */
-*/
-
 drop if fpt_job1==. | fpt_job5==.
 
 drop if jobtyp1==. | jobtyp5==.
@@ -149,20 +107,6 @@ replace selfe5=0 if inecacr5==1| inecacr5==3 | incac055==1 | incac055==3
 replace selfe5=1 if inecacr5==2 | incac055==2
 
 drop if selfe1==. | selfe5==.
-
-*drop if edulevel
-* i.f_v_retire2
-
-
-
-* full-time in both only
-*drop if ftptwk1!=1 & ftptwk5!=1
-
-* permanent in both only
-*drop if jobtyp1!=1 & jobtyp5!=1
-
-* private in both only
-*drop if publicr1 & publicr5!=1
 
 
  gen rl_grsswk_start=grsswk1/CPI_start
@@ -188,7 +132,7 @@ local majvars rl_gw_grwwwk
 
 cd Results	 
 
-local begin_q=yq(2001,1)
+local begin_q=yq(2000,1)
 local begin_q1=`begin_q'+1
 local end_q=yq(2009,4)
 
