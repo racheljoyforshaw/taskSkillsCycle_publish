@@ -4,7 +4,7 @@ cwd = os.getcwd()
 with open(cwd + '/Results/tobit_temp_2000s.tex', 'r') as file:
 	data = file.readlines()
 data[0] =''
-data[4] = ' &\multicolumn{2}{c}{(1) Tobit at 4-digit}  &\multicolumn{2}{c}{(2)Tobit at 1-digit}  &\multicolumn{4}{c}{Double Hurdle at 4-digit}\\\\\n'
+data[4] = ' &\multicolumn{2}{c}{(1) Tobit at 4-digit}  &\multicolumn{2}{c}{(2)Tobit at 1-digit}  &\multicolumn{4}{c}{Double Hurdle at 4-digit} \\\\ \cmidrule(l{2pt}r{2pt}){2-3} \cmidrule(l{2pt}r{2pt}){4-5} \cmidrule(l{2pt}r{2pt}){6-9}\n'
 data[5] = ' &\multicolumn{1}{c}{$\Delta$Tasks}&\multicolumn{1}{c}{$\Delta$Skills}&\multicolumn{1}{c}{$\Delta$Tasks}  &\multicolumn{1}{c}{$\Delta$Skills}&\multicolumn{1}{c}{$\Delta$Tasks}  &\multicolumn{1}{c}{EE}&\multicolumn{1}{c}{$\Delta$Skills}&\multicolumn{1}{c}{EE}\\\\\n'
 #temp = data[57:71]
 #data[57] = ''
