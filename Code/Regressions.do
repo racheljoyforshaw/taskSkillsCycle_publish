@@ -135,7 +135,7 @@ tab modOfMod_CASCOT_stdz_dh if modOfMod_CASCOT_stdz_dh<=`modOfMod_leftLimit_dh' 
 
 * Heckman instrument
 local heckman_instrument "available"
-local instrument_name "Available to start job"
+
 
 *********************************************************************************************************************************************************
 
@@ -495,9 +495,9 @@ eststo modOfMod_CASCOT_dh
 		
 		esttab angSep_tobit_CASCOT_t modOfMod_tobit_CASCOT_t angSep_tobit_CASCOT_AGG modOfMod_tobit_CASCOT_AGG angSep_CASCOT_dh modOfMod_CASCOT_dh using Results/tobit_temp_2000s.tex, replace  star(* 0.10 ** 0.05 *** 0.01) se mtitles nogaps pr2 r2 margin  ///
 		b(a2) ///
-		addnotes("")  unstack compress keep(Aggre_Ur_pct _mill sex age1 age1_sq mar_cohab durats1 fpt_job1 fpt_job2 temporary1 temporary2 public1 public2 selfe1 selfe2 _Iedul* _Iseek_meth_*  _If_v_retir_* start)     ///
-		scalars ("ll Log llik.") order(Aggre_Ur_pct sex age1 age1_sq mar_cohab _Iedulevel1_1 _Iedulevel1_2 durats1 fpt_job1 fpt_job2 temporary1 temporary2 public1 public2 selfe1 selfe2 _If_v_retir_1 _If_v_retir_3 _Iseek_meth_1 _Iseek_meth_2 _Iseek_meth_3 _Iseek_meth_4 _Iseek_meth_5 start _mill )  /// 
-		indicate("Quarters=_Iquarter*"  "Regions=_Iuresmc1* " "Industries=_Iindustry* ") varwidth(15) modelwidth(8) coeflabels( Aggre_Ur_pct "Unemployment Rate" sex "Female" age1 "Age" age1_sq "Age squared" mar_cohab "Married" _Iedulevel1_1 "High Education" _Iedulevel1_2 "Medium Education" _If_v_retir_1 "Involuntary Separation" _If_v_retir_3 "Other Separation" durats1 "Tenure" fpt_job1 "Full Time in Previous Job" fpt_job2 "Full Time in Current Job" temporary1 "Temporary in Previous Job" temporary2 "Temporary in Current Job" public1 "Public Sector in Previous Job" public2 "Public Sector in Current Job" selfe1 "Self Employed in Previous Job" selfe2 "Self Employed in Current Job" _Iseek_meth_1 "Search Method: Job Centre" _Iseek_meth_2 "Search Method: Advertisements" _Iseek_meth_3 "Search Method: Direct Application" _Iseek_meth_4 "Search Method: Family/Friend" _Iseek_meth_5 "Search Method: Other" start "Available" _mill "$\lambda$") nonumbers //
+		addnotes("")  unstack compress keep(Aggre_Ur_pct _mill sex age1 age1_sq mar_cohab durats1 fpt_job1 fpt_job2 temporary1 temporary2 public1 public2 selfe1 selfe2 _Iedul* _Iseek_meth_*  _If_v_retir_* `heckman_instrument')     ///
+		scalars ("ll Log llik.") order(Aggre_Ur_pct sex age1 age1_sq mar_cohab _Iedulevel1_1 _Iedulevel1_2 durats1 fpt_job1 fpt_job2 temporary1 temporary2 public1 public2 selfe1 selfe2 _If_v_retir_1 _If_v_retir_3 _Iseek_meth_1 _Iseek_meth_2 _Iseek_meth_3 _Iseek_meth_4 _Iseek_meth_5 `heckman_instrument' _mill )  /// 
+		indicate("Quarters=_Iquarter*"  "Regions=_Iuresmc1* " "Industries=_Iindustry* ") varwidth(15) modelwidth(8) coeflabels( Aggre_Ur_pct "Unemployment Rate" sex "Female" age1 "Age" age1_sq "Age squared" mar_cohab "Married" _Iedulevel1_1 "High Education" _Iedulevel1_2 "Medium Education" _If_v_retir_1 "Involuntary Separation" _If_v_retir_3 "Other Separation" durats1 "Tenure" fpt_job1 "Full Time in Previous Job" fpt_job2 "Full Time in Current Job" temporary1 "Temporary in Previous Job" temporary2 "Temporary in Current Job" public1 "Public Sector in Previous Job" public2 "Public Sector in Current Job" selfe1 "Self Employed in Previous Job" selfe2 "Self Employed in Current Job" _Iseek_meth_1 "Search Method: Job Centre" _Iseek_meth_2 "Search Method: Advertisements" _Iseek_meth_3 "Search Method: Direct Application" _Iseek_meth_4 "Search Method: Family/Friend" _Iseek_meth_5 "Search Method: Other" `heckman_instrument' "Available" _mill "$\lambda$") nonumbers //
 
 
 estimates clear
