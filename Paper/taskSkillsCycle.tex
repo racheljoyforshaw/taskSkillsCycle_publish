@@ -50,7 +50,7 @@
 
 		
 	\author{Aspasia Bizopoulou\footnote{Senior Researcher, VATT Institute for Economic Research, 7 Arkadiankatu, 00101 Helsinki, Finland\\ email: aspasia.bizopoulou@vatt.fi} $\quad$ Rachel J. Forshaw\footnote{Assistant Professor, Heriot-Watt University, Edinburgh, EH14 4AS UK; email: r.forshaw@hw.ac.uk}} 
-	\title{\textbf{The Task \& Skill Content of Occupational Transitions over the Business Cycle: Evidence for the UK\footnotetext{\llap{\textsuperscript{}}We would like to thank Liang Bai, Mike Elsby, Maia G\"{u}ell, Cristina Lafuente, Eva Pocher, Jean-Marc Robin, Mark Schaffer, Tuomas Pekkarinen, Anna Salomons and Ludo Visschers for their helpful comments as well as participants from the RES, SMYE, ESPE, EEA-ESEM, SaM, EALE, SGPE, Economics at Panmure House conferences; from seminars at VATT, ETLA, Aalto University, Edinburgh, the Scottish Government and from the IAB Nuremberg. Any remaining errors are our own.}}}
+	\title{\textbf{The Task \& Skill Content of Occupational Transitions over the Business Cycle: Evidence for the UK\footnotetext{\llap{\textsuperscript{}}We would like to thank Liang Bai, Mike Elsby,Julian Fennema, Maia G\"{u}ell, Cristina Lafuente, Eva Pocher, Jean-Marc Robin, Mark Schaffer, Tuomas Pekkarinen, Anna Salomons and Ludo Visschers for their helpful comments as well as participants from the RES, SMYE, ESPE, EEA-ESEM, SaM, EALE, SGPE, Economics at Panmure House conferences; from seminars at VATT, ETLA, Aalto University, Edinburgh, the Scottish Government and from the IAB Nuremberg. Any remaining errors are our own.}}}
 
 	%\date{\textbf{Preliminary Draft- please do not distribute}}
 	
@@ -80,7 +80,7 @@
 	\label{sec:Introduction}
 	
 	Periods of increased unemployment entail changes to the reallocation processes of the labour market. In particular,  \cite{Carrillo-Tudela2016},  \cite{MurphyTopel1987}, \cite{Moscarini2007} and \cite{Kambourov2008} document a pro-cyclical relationship in the number of job-to-job transitions both in the UK and the US. Yet, while there many studies documenting how the number of transitions decreases in recessions, comparatively less is known about what happens to the content of those transitions in terms of the tasks and skills undertaken as part of occupations. Previous literature, including \cite{MurphyTopel1987}, \cite{Moscarini2007}, \cite{Kambourov2008}, \cite{Carrillo-Tudela2014}, \cite{Carrillo-Tudela2016}, have used occupational titles as a proxy for the content of occupations, finding occupational transitions to be strongly pro-cyclical. 	
-	In this paper, we break down occupational titles to actual job tasks and specific skill levels, and show that this strong pro-cyclical relationship is no longer evident: the cycle has little impact on individuals' propensity to change their occupational content. 
+	In this paper, we break down occupational titles to actual job tasks and specific skill levels, and show that this strong pro-cyclical relationship is no longer evident: recessions negatively impact job transitions but have very little impact on individuals' propensity to change their occupational content. 
 	
 		\vspace{2mm}
 	
@@ -126,10 +126,11 @@
 	
 	\section{Data}
 	\label{sec:Data}
-	
+	We first describe the data on job transitions in section \ref{sec:LFS}, then the data on task and skill content of occupations in section \ref{sec:ONET}. Section \ref{sec:matchLFSONET} describes how we match the two datasets.
 	\subsection{UK Labour Force Survey (LFS)}
+	\label{sec:LFS}
 	
-	We use the UK Quarterly Labour Force Surve (LFS) for the years \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}. We focus on this time period as our data contains a consistent classification of occupations, Standard Occupational Classification (SOC2010) codes throughout the sample, and it spans the 2008-9 recession.\footnote{While occupational classifications are available for the 1990s and 2010s, occupations are classified according to a very different set of criteria. As such, when compared over time it is unclear what is true variation in occupations and what is simply reclassification.}  In the LFS respondents are followed over a maximum of five quarters, and in each quarter a fifth of the sample is replaced by an incoming group. For the majority of our analysis, we focus on individuals over two quarters only, with the exception of the wage analysis, where we use the 5 quarter longitudinal sample. The advantage of using the 2 over the 5 quarter is that we have a much larger number of observations, on average 30,000 individuals per quarter.\footnote{Over time, the LFS has decreased the number of interviewed individuals. In the early years of our sample, each sample has close to 60,000 individuals, while in the later years it drops to about 20,000 per quarter. All estimations and graphs include population weights so that the decreasing number of respondents doesn't bias the results.} We are able to study job-to-job transitions that do not involve a quarter or more of unemployment or inactivity between employment spells.\footnote{The individual may still experience a small period of unemployment, given the nature of a quarterly survey.} 
+	We use the UK Quarterly Labour Force Surve (LFS) for the years \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}. We focus on this time period as our data contains a consistent classification of occupations, Standard Occupational Classification (SOC2010) codes throughout the sample, and it spans the 2008-9 recession.\footnote{While occupational classifications are available for the 1990s and 2010s, occupations are classified according to a very different set of criteria. As such, when compared over time it is unclear what is true variation in occupations and what is simply reclassification.}  In the LFS respondents are followed over a maximum of five quarters, and in each quarter a fifth of the sample is replaced by an incoming group. For the majority of our analysis, we focus on individuals over two quarters only.\footnote{With the exception of a robustness check in which we estimate the relationship between skill level and wages in section \ref{sec:wagesSkills}, in we use the 5 quarter longitudinal sample.} The advantage of using the 2 over the 5 quarter sample is that we have a much larger number of observations, on average 30,000 individuals per quarter.\footnote{Over time, the LFS has decreased the number of interviewed individuals. In the early years of our sample, each sample has close to 60,000 individuals, while in the later years it drops to about 20,000 per quarter. All estimations and graphs include population weights so that the decreasing number of respondents doesn't bias the results.} We are able to study job-to-job transitions that do not involve a quarter or more of unemployment or inactivity between employment spells.\footnote{The individual may still experience a small period of unemployment, given the nature of a quarterly survey.} 
 	%The survey contains information on individuals' employment status, their employment SOC code, employer tenure, sex, education, reasons for leaving their last job, methods of searching for new jobs, type of work contract (permanent or temporary) and type of employment (employed or self-employed). The series are weighted using census population weights provided by the Office for National Statistics (ONS).
 	%\newpage
 	
@@ -166,92 +167,20 @@
 	
 	Alongside task data, the O*NET allows us to recover information on the required skill level at which each task is used in each occupation. We refer to this as `skill level', since the O*NET gives us information about both the type of task in the occupation and the level at which it is performed. To illustrate, figure \ref{fig:ONETQn} shows the question asked for the job task `mathematical reasoning'. The skill level score ranges from 1 to 7. In this particular example, a skill level of 1 corresponds to ``Determine how much 10 oranges will cost when they are priced at 2 for 20 cents'', and a score of 6 corresponds to ``Determine the mathematics required to simulate a spacecraft landing on the moon'', the latter being clearly higher skilled. In section \ref{sec:taskDistance}, below, we show the measures used to ascertain the difference between two occupations and to separate out task and skill information. 
 	
-	\vspace{2mm}
-	
-	The O*NET contains task profiles for 974 occupations, which we map onto the 374 SOC2010 occupations of the UK LFS using CASCOT software, discussed below. Since the number of separate occupation categories in the US are almost 3 times as many as the number of occupational categories in the UK Standard Occupational Classification that is used in the LFS, the mapping is not one-to-one, but one-to-many. In order to get a single task vector for each UK SOC code, we follow two steps: first we use a confidence-weighted average over all matching O*NET occupations, where the confidence weights for the mapping of O*NET codes to UK SOC codes are provided by the CASCOT software.\footnote{We use a confidence threshold of 70\%, dropping any matches that fall below this confidence level. A visual inspection of the mapping confirms that the matches are sensible.} We obtain a mapping similar to the one shown in Figure \ref{fig:SOC2ONET}, where SOC code 2425 (left panel) is mapped with 6 different O*NET codes (right panel). Each O*NET occupation has scores for each of the 147 tasks in terms of the level of skill needed to perform a job. In this example, we look at the task `oral comprehension'. In figure \ref{fig:SOC2ONET} SOC code 2425 that covers occupation `Economist' is mapped with several possible occupations from the O*NET, including `Actuary' and `Statistician'. Taking an average over all of the oral comprehension scores for the different O*NET matches gives a single score for this task in the SOC2010 code, which we then repeat for all possible tasks in all possible matches. Figure \ref{fig:ONETScoreRange} provides an illustration of the average score for every task that is part of an Economist's portfolio, as calculated in Figure \ref{fig:SOC2ONET}.
-	
-	
 	\subsection{Matching the O*NET task data to the UK LFS}
-	\label{sec:SOCdifferences}
+\label{sec:matchLFSONET}
+
 	
-	A crucial element in this study is the ability to match UK SOC codes from the LFS with task information from the O*NET. To do this we utilise CASCOT (Computer-Assisted Structured Coding Tool), a software tool developed by the Warwick Institute For Employment Research.\footnote{More information available at https://warwick.ac.uk/fac/soc/ier/software/cascot/} CASCOT is a computer program designed to make a semantic match between occupational titles and standard occupational codes. This mapping is created by comparing text descriptions of UK SOC2010 occupations to text descriptions of O*NET occupations.
+A crucial element in this study is the ability to match UK SOC codes from the LFS with task information from the O*NET. To do this we utilise CASCOT (Computer-Assisted Structured Coding Tool), a software tool developed by the Warwick Institute For Employment Research.\footnote{More information available at https://warwick.ac.uk/fac/soc/ier/software/cascot/} CASCOT is a computer program designed to make a semantic match between occupational titles and standard occupational codes. This mapping is created by comparing text descriptions of UK SOC2010 occupations to text descriptions of O*NET occupations.
 	
-	\begin{comment}
-	\begin{figure}[h!]
-		\begin{center}
-			\includegraphics[scale=0.60]{../Figures/SOCcodeReclassification}
-			\caption{Mapping between all SOC90, SOC2000 and SOC2010 codes\label{fig:SOCcodeReclassification}}
-		\end{center}
-	\end{figure}
-	
-	While the task mappings are consistent within each decade of the SOC codes after using CASCOT, we need to control for the differences in occupations across the decades that are due to definitional changes rather than genuine variation. Over the period of study, the LFS modified its occupational categories twice. One set of occupational definitions runs from 2000q2-2000q4, the second from 2001q2-2010q4, and the third from 2011q1-\input{../Results/max_date.txt}\hspace{-1mm}. The codes were updated periodically to account for changing requirements within SOC occupation classifications. Since the SOC classifications are integral in the mapping to task data from the O*NET, the change in the definitions could lead to spurious results. Figure \ref{fig:SOCcodeReclassification} shows a mapping of the SOC1990 to SOC2000 and the SOC2000 to SOC2010, which highlights the changing SOC classifications over time. In the 90s, the codes only had up to 3-digit numbers and a much smaller range, while in the 2000s and 2010s the digits increased to four. The change from the 1990s to the 2000s involved splitting up occupations that were previously under the same code into a greater number of classifications, while the move to the 2010s involved a major re-organisation of occupations within the codes. In the latter recoding, several codes split into finer occupations in the 2010s, while other codes disappeared, highlighting the redundancy of certain occupations over time. 
-	
-	\vspace{2mm}
-	
-	Measures of central tendency in the theoretical distributions of possible task moves are highly similar across decades. Nevertheless, a pairwise t-test of the difference in means of the distribution of possible task moves in the 1990s, 2000s and 2010 cannot be rejected as different from zero at the 10\% level. In our analysis, we control for this difference in means by adding a set of dummies corresponding to the decades of the SOC codes to our regressions.
-	
-	\vspace{2mm}
-	
-	In addition to using CASCOT, we explored a number of different approaches for joining the data across time. Previous literature uses the minimum common denominator of occupational codes and applies it to the entirety of the series. The main idea of the approach is as follows: if a SOC2000 code split into two SOC2010 codes, code the two separate SOC2010 codes as one single occupation for the whole series. One such approach has been used by \cite{Dorn2009} for the US Current Population Survey. We are not able to apply this harmonising technique, due to the fact that the mapping between SOC code crosswalks is many-to-many. As a futher robustness check we used a simple averaging process which converted SOC1990 and SOC2000 codes into their matching SOC2010 codes. This works as follows: if a SOC2000 code split into two SOC2010 codes according to the definitions provided by the SOC, take a simple unweighted average of the task vectors associated with the two SOC2010 codes. Results are qualitatively unchanged by using this different measure. 
-	\end{comment}
-	
-	\begin{comment}
-	\subsection{Occupational transitions over time: the years post-2010 in the LFS}
-	\label{sec:datablip}
-	Looking at the series from 2010q1- \input{../Results/max_date.txt}\hspace{-1mm}, we observe an unusual drop in the number of transitions in the early 2010s. This drop covers 6 quarters from 2011q1 - 2012q2. We illustrate this drop by graphing the probability of occupation change, as defined in \cite{CarrilloTudela2016}, in which the probability of career change at the k-digit (k=1,2,3,4) is estimated as:
-	
-	\begin{equation*}
-	\text{Prob Career Change$^{k}$ = } \frac{E2E^{k}_m}{E2E^{k}_s + E2E^{k}_m}
-	\end{equation*}
-	
-	\noindent where $E2E^{k}_m$ is the number of individuals that changed employers and moved k-digit occupation; and $E2E^{k}_s$ is the number of individuals that changed employers and did not move their k-digit occupation. For example, an Economist is in SOC 2 at the one-digit level. If she changed occupations to become a Florist (SOC 5 at the one-digit level), this would be classed in the numerator as an E2E move. If, however, she became a management consultant (SOC 2), this would be classed in the denominator as a one-digit stay. 
-	
-	\vspace{2mm}
-	
-	Figure \ref{fig:probCareerChange} plots the estimated probability of career change at the 1-, 2-, 3-, or 4- digit level. We can see that the drop in the series occurs at all occupation classification levels from least (1) to most (4) granular. At the time of writing, previous papers using the UK LFS to study occupational transitions stop the analysis in 2010, the year when the SOC code change was introduced. We look at the probabilities of career change at the 1-digit, 2-digit, 3-digit and 4-digit level. Up until 2010, the 1-digit data follows a similar pattern to \cite{CarrilloTudela2016}. Extending the series beyond the 2010s, using 2010-denominated SOC codes, we see that the sharp drop in the probability of changing careers is present in all different digit denominations. 
-	
-	\vspace{2mm}
-	
-	It seems clear that this is not a real phenomenon, but a data anomaly.\footnote{Our suspicions were raised by the provision of a probabilistic matching of SOC2000 and SOC2010 codes by the LFS, which is only available from 2012q2 onwards, while the official switch from SOC2000 and SOC2010 happened in 2011q1. A series of emails with the UK Data Service confirmed the existence of a mistake in the coding of transitions over these six quarters which, at the time of writing, has not yet been fixed.} For this reason, we choose to exclude these six quarters from our analysis. A further note of interest is that the LFS does not provide SOC codes for quarter 2000q1, i.e. the year of the move between SOC1990 and SOC2000. We also exclude that quarter for our analysis since we cannot obtain any task information. 
+	The O*NET contains task profiles for 974 occupations, which we map onto the 374 SOC2010 occupations of the UK LFS using the CASCOT software. Since the number of separate occupation categories in the US are almost 3 times as many as the number of occupational categories in the UK Standard Occupational Classification that is used in the LFS, the mapping is not one-to-one, but one-to-many. In order to get a single task vector for each UK SOC code, we follow two steps: first we use a confidence-weighted average over all matching O*NET occupations, where the confidence weights for the mapping of O*NET codes to UK SOC codes are provided by the CASCOT software.\footnote{We use a confidence threshold of 70\%, dropping any matches that fall below this confidence level. A visual inspection of the mapping confirms that the matches are sensible.} We obtain a mapping similar to the one shown in Figure \ref{fig:SOC2ONET}, where SOC code 2425 (left panel) is mapped with 6 different O*NET codes (right panel). Each O*NET occupation has scores for each of the 147 tasks in terms of the level of skill needed to perform a job. In this example, we look at the task `oral comprehension'. In figure \ref{fig:SOC2ONET} SOC code 2425 that covers occupation `Economist' is mapped with several possible occupations from the O*NET, including `Actuary' and `Statistician'. Taking an average over all of the oral comprehension scores for the different O*NET matches gives a single score for this task in the SOC2010 code, which we then repeat for all possible tasks in all possible matches. Figure \ref{fig:ONETScoreRange} provides an illustration of the average score for every task that is part of an Economist's portfolio, as calculated in Figure \ref{fig:SOC2ONET}.
 	
 	
-	
-	\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\linewidth]{../Figures/prob_career_change}
-	\caption{Probability of Career Change at 1-,2-,3- and 4-digit}
-	\caption*{\small{Probability of career change as estimated as the ratio of E2E movers that changed a) 1-digit, b) 2-digit, c) 3-digit, d) 4-digit occupation to those E2E that stayed within the respective occupational digit.}}
-	\label{fig:probCareerChange}
-	\end{figure}
-	
-	
-	
-	
-	\end{comment}
-	
-	\begin{comment}
-	
-	\section{Measuring occupational distance}
-	\label{sec:MismatchMeasure}
-	
-	A number of papers have undertaken the measurement of the distance of two occupations in terms of their task content.
-	\cite{Poletaev2008} group the tasks of each occupation into four major categories and subsequently rank them by the intensity that they are used in each occupation. The distance between two occupations is defined by looking at the extent to which the new occupation employs the previous occupation's ‘main skill’ with much lower or much higher intensity. In a follow-up paper, \cite{robinson2018} uses the Euclidean distance to quantify the difference in task content between occupations, to find that the mean distance in between occupations following displacement declined in the 1980s and 1990s in the US. \cite{Gathmann2010} construct a measure of occupational distance based on tasks, which we use in this paper and which we augment to include not only occupational distance in terms of tasks, but also the direction of the move in terms of the overall skill level. The measure by \cite{Gathmann2010} is also used by \cite{Cortes2017} though in a different context. Instead of taking the change in task composition at face value, they interpret it as the cost of occupational mobility, the main idea being that the larger the change in task composition between two occupations, they greater the cost of moving from one to the other occupation. This measure of the cost of mobility is then inputted into a gravity model instead of using the more traditional geographical distance. %Our own paper differs from the previous two in that we focus on the change of tasks over the entire population, rather than displaced workers, and we explicitly study the effect of the business cycle on the distance and direction of moves.
-	
-	
-	\vspace{2mm}
-	
-	% Using German administrative data, they find that individuals tend to switch to occupations with similar task requirements, and change in task composition of occupational moves tends to decrease over time. Our own paper differs from in three ways: first, rather than studying the stylised facts of longitudinal occupational moves, we focus on cohorts and study how the change in task composition as well as the direction of skill of moves changes when a cohort is hit by a recession. Second, rather than using US or German data, we generate a working dataset incorporating a mapping between O*NET tasks and UK occupations within the UK Labour Force Survey \footnote{The mapping of O*NET tasks and UK occupational codes (SOC codes) is available from the CASCOT software developed by the University of Warwick}. Using UK data allows us to dive into the effects of the recession, since unemployment did significantly rise for the UK during the 2008 financial crisis, while it did not in Germany. Finally, 
-	
-	\vspace{2mm}
-	
-	
-	Contemporaneously, \cite{Cortes2017} also use the concept of change in task composition which we use here, but within a different context. Instead of taking the change in task composition at face value, they interpret it as the cost of occupational mobility. The main idea is that the larger the change in task composition between two occupations, they greater the cost of moving from one to the other occupation and, as such, the smaller the ratio of movers to stayers. They borrow a gravity model from the trade literature, where job-to-job flows are aggregated at the 2-digit level and are assumed to behave similar to bilateral trade. The traditional geographical distance is replaced with the change in task composition, while destination and origin country fixed effects are now destination and origin 2-digit occupational fixed effects. Thus, their analysis is aggregated at the occupational level, and they find that the ratio of movers to stayers is negatively affected by greater change in task composition. Our approach is different in that we want to understand the effect of business cycles on the distance of occupational moves at the individual level. 
-	content...
-	\end{comment}
+
 	
 	\section{Capturing content changes across occupations}
 	\label{sec:measures}
-	
+	We first detail our measure of tasks in section \ref{sec:taskDistance}, then our measure of skills in section \ref{sec:changeSkillLevel}. Section \ref{sec:twoTaskEx} shows a simplified example of the two measures and section \ref{sec:wagesSkills} establishes that higher skill level is associated with higher wages in the data. Finally, section \ref{sec:advantageTasks} discusses why it is important to incorporate these measures of tasks and skills when considering occupational changes.
 	\subsection{Measuring the Change in Tasks}
 	\label{sec:taskDistance}
 	To measure the change in task composition between two occupations we use the measure of angular separation from \cite{Gathmann2010}, which has also been used in the innovation literature (\cite{Jaffe1986}). The measure of the change in task composition between two occupations is as follows:
@@ -299,14 +228,37 @@
 	\end{equation}
 	
 	
-	\noindent Equation \ref{eq:skillScore} calculates the difference in length of two occupation task vectors and has range $[-1,1]$; -1 means that moving occupations results in complete downskilling in every task, 0 means two occupations are equally skilled in every task, 1 complete upskilling in every task.\footnote{Theoretically, a value of 0 could mean that the two vectors do not have the exact same scores for each task but the differences happen to offset each other perfectly. However, we do not observe this in the data - i.e., no two pairs of different SOC codes return a value of 0. } The measure is therefore symmetric, i.e. $\Delta\text{Skills}_{{A}{B}}  = -1* \Delta\text{Skills}_{{B}{A}}$.
+	\noindent Equation \ref{eq:skillScore} calculates the difference in length of two occupation task vectors and has range $[-1,1]$; -1 means that moving occupations results in complete downskilling in every task, 0 means two occupations are equally skilled in every task, 1 complete upskilling in every task.\footnote{Theoretically, a value of 0 could mean that the two vectors do not have the exact same scores for each task but the differences happen to offset each other perfectly. However, we do not observe this in the data - i.e., no two pairs of different SOC codes return a value of exactly 0. } The measure is therefore symmetric, i.e. $\Delta\text{Skills}_{{A}{B}}  = -1* \Delta\text{Skills}_{{B}{A}}$.
 	
-	\subsubsection{The Relationship between Skill Level and Wages}
+		\subsection{Two-Task Example of the Task and Skill Change Measures}
+	\label{sec:twoTaskEx}
+	
+	Figure \ref{fig:AngSep} provides an illustration of how the $\Delta$Task and $\Delta$Skills measures can provide us with information about the content of occupational moves. We construct a basic example in which there are a total of four different occupations ($A$, $B$, $C$, $D$) which comprise two tasks: task 1 and task 2. Moving from occupation $A$, which is highly skilled in task 1 and task 2, to $B$, which is lowly skilled in both tasks gives a change in task composition of 0, since the tasks are still used in the same proportion. The $\Delta$Skills$_{o,o'}$ of $\input{../Figures/AB_skillScore.txt}$ reflects the fact that occupation $B$ is much lower skilled than $A$. Moving from occupation $C$ to $A$ represents both a change in tasks and upskilling, whereas the change in tasks from $A$ to $D$ constitutes downskilling. Finally, moving from and to the same occupation $A$ results in zeros for both measures.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.60]{../Figures/AngularSeparation_example}
+		\qquad
+		\begin{tabular}{lcc}
+			Occupation move & $\Delta$Tasks$ _{o,o'}$& $\Delta$Skills$_{o,o'}$\\
+			\hline
+			\hline
+			A $\rightarrow$ B & 0 & \input{../Figures/AB_skillScore.txt}  \\
+			C $\rightarrow$ A &  \input{../Figures/CA_angSep.txt} & \input{../Figures/CA_skillScore.txt}  \\
+			A $\rightarrow$ D &  \input{../Figures/AD_angSep.txt} & \input{../Figures/AD_skillScore.txt}  \\
+			A $\rightarrow$ A & 0 & 0 \\
+		\end{tabular}
+		\caption{An example of $\Delta$Tasks and $\Delta$Skills with 2 tasks and 5 occupations}
+		\label{fig:AngSep}
+	\end{figure}
+	
+	\subsection{The Relationship between Skill Level and Wages}
+	\label{sec:wagesSkills}
 	In using the $\Delta$Skills measure, equation \ref{eq:skillScore}, we are assuming that vector length of occupations is a good proxy for skill level of the tasks completed in an occupation. If the measure is capturing skill level we should expect it to be positively correlated with wages. To test this assumption we calculate the skill level for each occupation in the LFS: \\
 	
 	 Skill Level$_{o}$ = $\left[\sum_{t=1}^{T}(q_{t,o}^{2})\right]^{\frac{1}{2}} $ \\
 	 
-	\noindent  i.e. it is a measure of the vector length of an occupation in the task space. We use this measure in a standard Mincerian wage estimation: 
+	\noindent  i.e. it is a measure of the vector length of an occupation in the task space, or the left hand side of the term in brackets of equation \ref{eq:skillScore}. We use this measure in a standard Mincerian wage estimation: 
 	\begin{equation}
 	\label{eq:skill_returns}
 	\ln w_{it}= \alpha + \beta_{1}\text{ Skill Level}_{o}+  \sum_{k} \beta_{k}X_{k,it} + e_{it}, 
@@ -331,30 +283,10 @@
 	
 	
 	
-	\subsection{Two-Task Example of the Task and Skill Change Measures}
-	\label{sec:twoTaskEx}
-	
-	Figure \ref{fig:AngSep} provides an illustration of how the $\Delta$Task and $\Delta$Skills measures can provide us with information about the content of occupational moves. We construct a basic example in which there are a total of four different occupations ($A$, $B$, $C$, $D$) which comprise two tasks: task 1 and task 2. Moving from occupation $A$, which is highly skilled in task 1 and task 2, to $B$, which is lowly skilled in both tasks gives a change in task composition of 0, since the tasks are still used in the same proportion. The $\Delta$Skills$_{o,o'}$ of $\input{../Figures/AB_skillScore.txt}$ reflects the fact that occupation $B$ is much lower skilled than $A$. Moving from occupation $C$ to $A$ represents both a change in tasks and upskilling, whereas the change in tasks from $A$ to $D$ constitutes downskilling. Finally, moving from and to the same occupation $A$ results in zeros for both measures.
-	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[scale=0.60]{../Figures/AngularSeparation_example}
-		\qquad
-		\begin{tabular}{lcc}
-			Occupation move & $\Delta$Tasks$ _{o,o'}$& $\Delta$Skills$_{o,o'}$\\
-			\hline
-			\hline
-			A $\rightarrow$ B & 0 & \input{../Figures/AB_skillScore.txt}  \\
-			C $\rightarrow$ A &  \input{../Figures/CA_angSep.txt} & \input{../Figures/CA_skillScore.txt}  \\
-			A $\rightarrow$ D &  \input{../Figures/AD_angSep.txt} & \input{../Figures/AD_skillScore.txt}  \\
-			A $\rightarrow$ A & 0 & 0 \\
-		\end{tabular}
-		\caption{An example of $\Delta$Tasks and $\Delta$Skills with 2 tasks and 5 occupations}
-		\label{fig:AngSep}
-	\end{figure}
+
 	
 	\subsection{The Advantage of Using Task Data}
-	
+	\label{sec:advantageTasks}
 	Before proceeding to apply the above measure in our analysis, we take a moment to highlight the advantage of using task data to characterise how the content of two occupations might be different. In mobility studies, authors usually use highly aggregated occupational codes, as in \cite{Carrillo-Tudela2016} who use 1-digit SOC codes, \cite{kambourov2009occupational} who use 1- and 2- digit occupational codes in the PSID. We argue that such aggregated measures seem to capture very little of the content difference between two occupations. This can be seen anecdotally by looking at the occupation titles across different 1-digit occupations which can be more similar than transitions within the same 1-digit occupation. For example, moving from being a `Manager, food and beverage' employee (5436) to working in `Textiles, garments and related trades' (5419) would not be recorded as a change according to the 1-digit SOC definition of content change whereas the move to `Manager, public house' (1224) would. 
 	
 	\vspace{2mm}
@@ -439,11 +371,11 @@ Our first specification is outlined below in Equation \ref{eqn:tobit}. We use a 
 y_{it,2} =\max(0,\beta_0 + \beta_{1}u_{t} + \sum_{j} \beta_{j}X_{j,it,12} + \sum_{k} \alpha_{k} \text{Q}_{k,1} + \sum_{l} \gamma_{l} \text{R}_{l,1} + \sum_{m} \delta_{m} \text{I}_{m,1}+ e_{it})
 \end{equation}
 
-\noindent Here, $i$ represents individuals; $t$ is time; $j$ are separate individual-level and job-level controls, $k$ are the number of quarters Q, $l$ are the number of regions $R$, $m$ are the number of industries $I$; $e_{it}$ is the error term. $y_{i}$ is the dependent variable, which is either $\Delta\text{\textit{Tasks}}_{i}$ when estimating the relationship between the cycle and the change in task composition of moves or $|\Delta\text{\textit{Skills}}_{i}|$ when estimating the relationship between the cycle and the absolute change in skill level. We take the absolute value of the change in skill level since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). A subscript of $,\hspace{-0.5mm}1$ or $,\hspace{-0.5mm}2$ designates whether the data is taken from the first quarter that a respondent is interviewed, second quarter, and $,\hspace{-0.5mm}12$ denotes both.
+\noindent Here, $i$ represents individuals; $t$ is time; $j$ are  individual-level and job-level controls, $k$ are quarters, $l$ are regions, $m$ are industries; $e_{it}$ is the error term. $y_{it}$ is the dependent variable, which is either $\Delta\text{\textit{Tasks}}_{it}$ when estimating the relationship between the cycle and the change in task composition of moves or $|\Delta\text{\textit{Skills}}_{it}|$ when estimating the relationship between the cycle and the absolute change in skill level. We take the absolute value of the change in skill level since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). A subscript of $,\hspace{-0.5mm}1$ or $,\hspace{-0.5mm}2$ designates whether the data is taken from the first quarter that a respondent is interviewed, second quarter, and $,\hspace{-0.5mm}12$ denotes both.
 
 \vspace{2mm}
 
-Our independent variable of interest is $u_{t}$, i.e. the aggregate unemployment rate. We add a set of demographic characteristics, namely age and age squared, marital status, sex, level of education.\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications whatsoever; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. The rest of the controls are a set of dummies marking quarters to control for seasonality as well as a set of regional dummies to capture regional differences within the UK.
+Our independent variable of interest is $u_{t}$, i.e. the aggregate unemployment rate. We add a set of controls wch include demographic characteristics, namely age and age squared, marital status, sex, level of education.\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications whatsoever; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. The rest of the controls are a set of dummies marking quarters to control for seasonality as well as a set of regional dummies to capture regional differences within the UK.
 
 \subsubsection{1-digit Occupational Level}
 
@@ -520,7 +452,7 @@ While we control for these observable composition changes in our estimations, a 
 \end{subequations}
 
 
-Equation \ref{eqn:heckmanProbit} is the Probit selection model which has dependent variable $EE$ equal to one if an individual changes jobs between the first and second quarter of interview, and zero otherwise. Note that control variables $\hat{X}$ differ from those in the structural equation, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} is the Tobit structural model with dependent variables as in equation \ref{eqn:tobit}, either $\Delta\text{\textit{Tasks}}_{i}$ or $|\Delta\text{\textit{Skills}}_{i}|$. This specification is the same as \ref{eqn:tobit}, with the addition of the estimated inverse Mills ratio obtained from estimating equation \ref{eqn:heckmanProbit}, $\hat{\lambda}$, to control for selection. Equations \ref{eqn:heckmanTobit_start} through \ref{eqn:heckmanTobit_end} govern the relationship once the hurdle `changed jobs' has been passed.  The Double Hurdle model is similar to the Tobit model of \ref{eqn:tobit}, but allows the extensive and intensive margins to be governed by distinct stochastic processes. That is, unlike the Tobit model, allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. It is also related to the control function approach advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows a zero observations to arise. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated. As such, to avoid multicollinearity issues we also include the instrument \textit{Available}, whether the individual is available to start work in the next two weeks. The instrument for the selection equation is a dummy which captures whether an individual is available to start work in the next two weeks. This will be equal to one if the respondent is looking for a new job, is waiting to start a new job or would like a new job but has not yet started searching and would be able to start a job in the next two weeks. This instrument is highly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey. However, it should not have any bearing on the size of the task or skill change that an individual makes after changing jobs, the dependent variable in the two structural equations. 
+Equation \ref{eqn:heckmanProbit} is the Probit selection model which has dependent variable $EE$ equal to one if an individual changes jobs between the first and second quarter of interview, and zero otherwise. Note that control variables $\hat{X}$ differ from those in the structural equation, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} is the Tobit structural model with dependent variables as in equation \ref{eqn:tobit}, either $\Delta\text{\textit{Tasks}}_{i}$ or $|\Delta\text{\textit{Skills}}_{i}|$. This specification is the same as \ref{eqn:tobit}, with the addition of the estimated inverse Mills ratio obtained from estimating equation \ref{eqn:heckmanProbit}, $\hat{\lambda}$, to control for selection. Equations \ref{eqn:heckmanTobit_start} through \ref{eqn:heckmanTobit_end} govern the relationship once the hurdle `changed jobs' has been passed.  The Double Hurdle model is similar to the Tobit model of \ref{eqn:tobit}, but allows the extensive and intensive margins to be governed by distinct stochastic processes. That is, unlike the Tobit model, allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero.This is important for our purposes, since there is no reason to expect that the relationship between the unemployment rate and the decision to switch jobs and the relationship between the unemployment rate and the decision to change tasks or skills is the same. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows a zero observations to arise. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated. As such, to avoid multicollinearity issues we also include the instrument \textit{Available}, whether the individual is available to start work in the next two weeks. The instrument for the selection equation is a dummy which captures whether an individual is available to start work in the next two weeks. This will be equal to one if the respondent is looking for a new job, is waiting to start a new job or would like a new job but has not yet started searching and would be able to start a job in the next two weeks. This instrument is highly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey. However, it should not have any bearing on the size of the task or skill change that an individual makes after changing jobs, the dependent variable in the two structural equations. 
 	
 \section{Results}
 \label{sec:results}
