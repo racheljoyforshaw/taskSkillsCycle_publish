@@ -320,64 +320,37 @@ A crucial element in this study is the ability to match UK SOC codes from the LF
 	
 	
 	
-	\begin{comment}
 
 
-	
-	\subsection{Change in Tasks and Change in Skills over Time}
-	\label{sec:EmpiricalSeries}
-	
-	Figures \ref{fig:angSepEmpirical} and \ref{fig:modOfModEmpirical} show the evolution of Change in Tasks and of the Change in the Skills averaged within quarters over \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm} for those experiencing an employer change. %The solid lines in each of the figures are the unadjusted series, which display 3 structural breaks created by the different definitions of SOC codes between the 1990s, 2000s and 2010s as discussed in section \ref{sec:SOCdifferences}. The dashed series show the adjustment as achieved by using a dummy to shift the mean of the series in line with the reference decade of the 2000s.  It also shows there are a number of quarters that we have to drop due to missing or erroneous SOC-code data.	
-	The series in Figures \ref{fig:angSepEmpirical} and \ref{fig:modOfModEmpirical} tend to be above zero for the most part, suggesting that when individuals switch, it is usually to go to a job that has a different composition of tasks and is at a slightly higher skill level than what they did before, which is in line with previous work (e.g. \cite{Carrillo-Tudela2016} and \cite{robinson2018}). % It also shows some cyclicality in the series: both series are falling in the lead up to the recession, although $\Delta$Skill Level recovers within the recession time period.
-	
-	\begin{figure}[h!]
-		\centering
-		%\begin{minipage}{.6\textwidth}
-		%  \centering
-		\includegraphics[width=1\linewidth]{../Figures/seriesAdjustment_angSep}
-		\caption{$\Delta$Tasks averaged within quarters}
-		\caption*{\footnotesize 5Q centered moving average of the within-quarter mean of $\Delta$Tasks. Source: author's calculations.}
-		\label{fig:angSepEmpirical}
-	\end{figure}
-	\begin{figure}[h!]
-		%\centering
-		%\begin{minipage}{.6\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{../Figures/seriesAdjustment_modOfMod}
-		\caption{$\Delta$Skills averaged within quarters}
-		\caption*{\footnotesize 5Q centered moving average of the within-quarter mean of $\Delta$Skills. Source: author's calculations.}
-		\label{fig:modOfModEmpirical}
-	\end{figure}
-	
-	\vspace{1mm}
-	
 
-	
-	\end{comment}	
-	
- \section{Econometric Specifications}
+
+ \section{Methodology}
 \label{sec:Model}
 
-We use three different specifications to estimate the relationship between the economic cycle and i) the size of the change in tasks of occupational moves and ii) the absolute level of change in the skills.
+We use three different specifications to estimate the relationship between the economic cycle and tasks and skills. The first, in section \ref{sec:4digit},  is closest to existing literature. However, whereas this literature models the intensive decision of whether to there is an occupational change, our econometric specification also capture the extensive decision of whether there is a task change by using a Tobit specification on 4-digit occupational code data.
 
-\subsection{Models Without Controls for Selection}
-\label{sec:Tobits}
+Our use of task data necessitates a more granular measure of occupational change: we use 4-digit occupational codes rather than the 1-digit codes commonly employed in the literature. As such, in section \ref{sec:1digit}  checks the robustness of our results by aggregating the 4-digit codes to 1-digit categories.
 
-\subsubsection{4-digit Occupational Level}
-Our first specification is outlined below in Equation \ref{eqn:tobit}. We use a Tobit model since our measures of change in task composition and change in skill level are continuous on $[0,1)$, but with a large portion of the sample (approximately 40\%) censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and an OLS estimation would be inconsistent. Below we summarise the model:
+Finally, in section \ref{sec:selection} we address the concern of selection effects, given that the types of people that change jobs in a recession are likely different to the types of people that change jobs outside of a recession. 
+
+
+\subsection{4-digit Occupational Level}
+\label{sec:4digit}
+Our first specification is outlined below in Equation \ref{eqn:tobit}. This regression specification is similar to that of \cite{Carrillo-Tudela2016}, however where they estimate a Probit, we use a Tobit model. We do this because our measures of change in task composition and change in skill level are not binary, but continuous on $[0,1)$. A large portion of the sample (approximately 40\%) is censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and so a Tobit is the appropriate specification. Below we summarise the model:
 
 \begin{equation}
 \label{eqn:tobit}
 y_{it,2} =\max(0,\beta_0 + \beta_{1}u_{t} + \sum_{j} \beta_{j}X_{j,it,12} + \sum_{k} \alpha_{k} \text{Q}_{k,1} + \sum_{l} \gamma_{l} \text{R}_{l,1} + \sum_{m} \delta_{m} \text{I}_{m,1}+ e_{it})
 \end{equation}
 
-\noindent Here, $i$ represents individuals; $t$ is time; $j$ are  individual-level and job-level controls, $k$ are quarters, $l$ are regions, $m$ are industries; $e_{it}$ is the error term. $y_{it}$ is the dependent variable, which is either $\Delta\text{\textit{Tasks}}_{it}$ when estimating the relationship between the cycle and the change in task composition of moves or $|\Delta\text{\textit{Skills}}_{it}|$ when estimating the relationship between the cycle and the absolute change in skill level. We take the absolute value of the change in skill level since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). A subscript of $,\hspace{-0.5mm}1$ or $,\hspace{-0.5mm}2$ designates whether the data is taken from the first quarter that a respondent is interviewed, second quarter, and $,\hspace{-0.5mm}12$ denotes both.
+\noindent Here, $i$ represents individuals; $t$ is time; $j$ are individual-level and job-level controls, $Q$ are quarters, $R$ regions, $I$ industries; $e_{it}$ is the error term. $y_{it}$ is the dependent variable, which is either $\Delta\text{\textit{Tasks}}_{it}$ when estimating the relationship between the cycle and the change in task composition of moves or $|\Delta\text{\textit{Skills}}_{it}|$ when estimating the relationship between the cycle and the absolute change in skill level. We take the absolute value of the change in skill level since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). A subscript of $,\hspace{-0.5mm}1$ or $,\hspace{-0.5mm}2$ designates whether the data is taken from the first quarter that a respondent is interviewed, second quarter, and $,\hspace{-0.5mm}12$ denotes both.
 
 \vspace{2mm}
 
-Our independent variable of interest is $u_{t}$, i.e. the aggregate unemployment rate. We add a set of controls wch include demographic characteristics, namely age and age squared, marital status, sex, level of education.\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications whatsoever; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. The rest of the controls are a set of dummies marking quarters to control for seasonality as well as a set of regional dummies to capture regional differences within the UK.
+Our independent variable of interest is $u_{t}$, i.e. the aggregate unemployment rate. We add a set of controls wch include demographic characteristics, namely age and age squared, marital status, sex, level of education.\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. The rest of the controls are a set of dummies marking quarters to control for seasonality as well as a set of regional dummies to capture regional differences within the UK.
 
 \subsubsection{1-digit Occupational Level}
+\label{sec:1digit}
 
 Our second specification addresses the concern that our use of 4-digit occupation codes may obscure the phenomenon that we are investigating. Previous literature has used much more aggregated 1- or 2-digit occupational codes to look at this question, which make occupational change in general less likely, and large occupational changes more likely. To illustrate this point, we graph the probability of occupation change, as defined in \cite{Carrillo-Tudela2016}, in which the probability of career change at the k-digit (k=1,2,3,4) is estimated as:
 
@@ -398,7 +371,8 @@ Our second specification addresses the concern that our use of 4-digit occupatio
 
 To make our analysis as comparable to previous results as possible, we also estimate equation \ref{eqn:tobit} with dependent variables  $\Delta\text{\textit{Tasks}}_{i}$ and $|\Delta\text{\textit{Skills}}_{i}|$ aggregated to the 1-digit occupational code level. To do so, we calculate the average potential task or skill move from all 4-digit occupational codes with first digit $j$ to all 4-digit occupational codes with first digit $k$ to be the task or skill change for any moves between $j\hspace{-1mm}\star\hspace{-1mm}\star\star$ and $k\hspace{-1mm}\star\hspace{-1mm}\star\star$. Moves from 4-digit code $j\hspace{-1mm}\star\hspace{-1mm}\star\star$ to the same first digit $j\hspace{-1mm}\star\hspace{-1mm}\star\star$ will have task and skill distance zero. For example, a move from 1121 to 2462 has the same task distance, 0.07 (the average task change of all possible moves from occupations with first digit 1 to first digit 2), as a move from 1221 to 2444.
 
-\subsection{Selection Controls}
+\subsection{Selection Concerns and Double Hurdle Estimation}
+\label{sec:selection}
 
 One issue that arises in the estimation of equation \ref{eqn:tobit}  is the possibility of selection bias. Our population of interest consists of individuals undertaking a job-to-job transition. Since the volume of job transitions decreases in recessions, the composition of those who make a job-to-job transition in a recession is likely different to those who do so in normal economic conditions. Table \ref{tab:diffMeans} confirms there are significant differences in observable characteristics between the recession and and non-recession samples. Those that make a job-to-job transition in a recession are older, more likely to be married and have longer tenure. Fewer are in temporary roles for their previous or current job, and a larger fraction are self employed or work for the public sector in either their previous or current job. More are high-educated and a lower fraction are medium- or low- educated. Fewer have quit (made a voluntary separation) from their previous employer, and a larger fraction have been fired (made an involuntary separation).  
 
@@ -438,7 +412,7 @@ One issue that arises in the estimation of equation \ref{eqn:tobit}  is the poss
 \end{figure}
 
 
-While we control for these observable composition changes in our estimations, a question remains about whether this selected sample will bias estimates if there is remaining unobserved heterogeneity. To explore this, we adopt a third regression specification using a Double Hurdle model proposed by \cite{cragg1971}, and applied in a labour market setting by \cite{BlundellMeghir} and \cite{Blundell1989}. This bivariate model captures the intensive and extensive effects of recessions on job transitions, illustrated in figure \ref{fig:flowE2E}. The first hurdle, is a Probit model, capturing whether an individual decides to change jobs or not. If they do not change jobs, their $\Delta$ Tasks and $\Delta$ Skills will be always be zero. In the second hurdle, if the individual has changed jobs, they must decide whether to change occupations. If they change occupations, $\Delta$ Tasks and $\Delta$ Skills will be non-zero. If they do not change occupations, their $\Delta$ Tasks and $\Delta$ Skills will appear as zero in the data. Note though, there is the same censoring issue as discussed in section \ref{sec:Tobits} - they may change tasks and skills but not occupation codes -  so for this second step a Tobit model is also the correct specification. Concretely, the equations of the Double Hurdle model are:
+While we control for these observable composition changes in our estimations, a question remains about whether this selected sample will bias estimates if there is remaining unobserved heterogeneity. To explore this, we adopt a third regression specification using a Double Hurdle model proposed by \cite{cragg1971}, and applied in a labour market setting by \cite{BlundellMeghir} and \cite{Blundell1989}. This bivariate model captures the intensive and extensive effects of recessions on job transitions, illustrated in figure \ref{fig:flowE2E}. The first hurdle, is a Probit model, capturing whether an individual decides to change jobs or not. If they do not change jobs, their $\Delta$ Tasks and $\Delta$ Skills will be always be zero. In the second hurdle, if the individual has changed jobs, they must decide whether to change occupations. If they change occupations, $\Delta$ Tasks and $\Delta$ Skills will be non-zero. If they do not change occupations, their $\Delta$ Tasks and $\Delta$ Skills will appear as zero in the data. Note though, there is the same censoring issue as discussed in section \ref{sec:4digit} - they may change tasks and skills but not occupation codes -  so for this second step a Tobit model is also the correct specification. Concretely, the equations of the Double Hurdle model are:
 
 
 \begin{subequations}
@@ -452,29 +426,11 @@ While we control for these observable composition changes in our estimations, a 
 \end{subequations}
 
 
-Equation \ref{eqn:heckmanProbit} is the Probit selection model which has dependent variable $EE$ equal to one if an individual changes jobs between the first and second quarter of interview, and zero otherwise. Note that control variables $\hat{X}$ differ from those in the structural equation, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} is the Tobit structural model with dependent variables as in equation \ref{eqn:tobit}, either $\Delta\text{\textit{Tasks}}_{i}$ or $|\Delta\text{\textit{Skills}}_{i}|$. This specification is the same as \ref{eqn:tobit}, with the addition of the estimated inverse Mills ratio obtained from estimating equation \ref{eqn:heckmanProbit}, $\hat{\lambda}$, to control for selection. Equations \ref{eqn:heckmanTobit_start} through \ref{eqn:heckmanTobit_end} govern the relationship once the hurdle `changed jobs' has been passed.  The Double Hurdle model is similar to the Tobit model of \ref{eqn:tobit}, but allows the extensive and intensive margins to be governed by distinct stochastic processes. That is, unlike the Tobit model, allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero.This is important for our purposes, since there is no reason to expect that the relationship between the unemployment rate and the decision to switch jobs and the relationship between the unemployment rate and the decision to change tasks or skills is the same. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows a zero observations to arise. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated. As such, to avoid multicollinearity issues we also include the instrument \textit{Available}, whether the individual is available to start work in the next two weeks. The instrument for the selection equation is a dummy which captures whether an individual is available to start work in the next two weeks. This will be equal to one if the respondent is looking for a new job, is waiting to start a new job or would like a new job but has not yet started searching and would be able to start a job in the next two weeks. This instrument is highly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey. However, it should not have any bearing on the size of the task or skill change that an individual makes after changing jobs, the dependent variable in the two structural equations. 
+Equation \ref{eqn:heckmanProbit} is the Probit selection model which has dependent variable $EE$ equal to one if an individual changes jobs between the first and second quarter of interview, and zero otherwise. Note that control variables $\hat{X}$ differ from those in the structural equation, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} is the Tobit structural model with dependent variables as in equation \ref{eqn:tobit}, either $\Delta\text{\textit{Tasks}}_{i}$ or $|\Delta\text{\textit{Skills}}_{i}|$. This specification is the same as \ref{eqn:tobit}, with the addition of the estimated inverse Mills ratio obtained from estimating equation \ref{eqn:heckmanProbit}, $\hat{\lambda}$, to control for selection. Equations \ref{eqn:heckmanTobit_start} through \ref{eqn:heckmanTobit_end} govern the relationship once the hurdle `changed jobs' has been passed.  The Double Hurdle model is similar to the Tobit model of \ref{eqn:tobit}, but allows the extensive and intensive margins to be governed by distinct stochastic processes. That is, unlike the Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the decision to switch jobs, and the relationship between the unemployment rate and the decision to change tasks or skills, is the same. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated. As such, to avoid multicollinearity issues we also include the instrument \textit{Available}, whether the individual is available to start work in the next two weeks. The instrument for the selection equation is a dummy which captures whether an individual is available to start work in the next two weeks. This will be equal to one if the respondent is looking for a new job, is waiting to start a new job or would like a new job but has not yet started searching and would be able to start a job in the next two weeks. This instrument is highly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey. However, it should not have any bearing on the size of the task or skill change that an individual makes after changing jobs, the dependent variable in the two structural equations. 
 	
 \section{Results}
 \label{sec:results}
-\begin{comment}
-\subsection{Unconditional Changes in Tasks  and Skills during Recessions}
-\label{sec:TobitProbit}
 
-Table \ref{tab:tobit_simple} details the estimates of the unconditional regression. It is the model specification of equation \ref{eqn:tobit} where $y_i=\Delta\text{Tasks}_i$ in the first column and $|\Delta\text{Skills}_i|$ in the second, with all controls omitted except those correcting for the SOC code breaks. Both dependent variables are standardised by subtracting the mean and dividing by the standard deviation of each.
-\begin{table}[H]
-\caption{Tobit without Covariates}\label{tab:tobit_simple}
-\centering
-\begin{threeparttable}
-\input{../Results/tobit_simple_2000s.tex}
-\begin{tablenotes}
-\item \footnotesize{Tobit model with dependent variables $\Delta$Tasks (first column) and the absolute value of $\Delta$Skills (second column). Dependent variables standardised by subtracting the mean and dividing by the standard deviation. LFS 2Q sample, E2E transitions. Source: author's calculations. Marginal effects, standard errors in parentheses, \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-The estimates for both $\Delta$Tasks and $|\Delta\text{Skills}|$ are both negative and significantly different from zero. This suggests the overall relationship between job content and business cycles, without controlling for composition effects, is negative: individuals tend to make smaller task composition and skill level moves in recessions. However the magnitude of change is small: a one percentage point increase in the unemployment rate is associated with a \input{../Results/agg_urate_angSep_ape_simple.txt}\hspace{-1mm} standard deviation fall in both the change in task composition and the absolute value of the change in skill level.\footnote{$\Delta$Tasks: the point estimate \input{../Results/agg_urate_angSep_simple.txt}\hspace{-1mm} times the APE factor, \input{../Results/angSep_simple_APE.txt}.} In the following section, we add controls for compositional changes of the types of people who make E2E moves in the recession.
-
-\end{comment}
 
 \subsection{Changes in Tasks and  Skills over the Cycle}
 \label{sec:TobitProbit}
@@ -519,7 +475,7 @@ With the addition of task data to occupations, we are able to look not just at t
 \begin{equation}
 \resizebox{\columnwidth}{!}{$\displaystyle
 	\label{eqn:tobit_decomp}
-	\underbrace{\frac{\partial E(y| X)}{\partial Xu}}_{\text{Total marginal effect}} = \underbrace{P(y>0|X)}_{\substack{\text{Probability of changing} \\ \text{ occupations}\\=\input{../Results/APEfactor_angSep_CASCOT_t.txt}}}\underbrace{\frac{\partial E(y|X, y>0)}{\partial Xu}}_{\substack{\text{Change in expected task move} \\ \text{given occupation move} \\ \text{following a change in} \\ \text{the unemployment rate} \\ =\input{../Results/dEystarbydXi_angSep_CASCOT.txt}}} + \underbrace{ E(y|X, y>0)}_{\substack{\text{Expected task move} \\ \text{given occupation move}\\=\input{../Results/Eystar_angSep_CASCOT.txt}}} \underbrace{\frac{\partial P(y>0|X)}{\partial Xu}}_{\substack{\text{Change in probability of} \\ \text{occupation move}  \\ \text{following a change in} \\ \text{the unemployment rate}\\=\input{../Results/dFzbydXi_angSep_CASCOT.txt}}}
+	\underbrace{\frac{\partial E(y| X)}{\partial Xu}}_{\text{Total marginal effect}} = \underbrace{P(y>0|X)}_{\substack{\text{Probability of changing} \\ \text{ occupations}\\=\input{../Results/APEfactor_angSep_CASCOT_t.txt}}}\times\underbrace{\frac{\partial E(y|X, y>0)}{\partial Xu}}_{\substack{\text{Change in expected task move} \\ \text{given occupation move} \\ \text{following a change in} \\ \text{the unemployment rate} \\ =\input{../Results/dEystarbydXi_angSep_CASCOT.txt}}} + \underbrace{ E(y|X, y>0)}_{\substack{\text{Expected task move} \\ \text{given occupation move}\\=\input{../Results/Eystar_angSep_CASCOT.txt}}}\times \underbrace{\frac{\partial P(y>0|X)}{\partial Xu}}_{\substack{\text{Change in probability of} \\ \text{occupation move}  \\ \text{following a change in} \\ \text{the unemployment rate}\\=\input{../Results/dFzbydXi_angSep_CASCOT.txt}}}
 	$}
 \end{equation}
 
@@ -550,7 +506,7 @@ This is a substantial fraction attributed to the intensive margin of those who s
 
 \vspace{2mm}
 
-Regression specification (2) in table \ref{tab:TobitResults} shows further that our results are not driven by our use of more granular occupational codes. Model (2) shows the same Tobit model as (1) but with task and skill moves aggregated to 1-digit occupational categories. While, as expected, the coefficient on the unemployment rate is larger in magnitude it remains economically insignificant.
+Regression specification (2) in table \ref{tab:TobitResults} shows further that our results are not driven by our use of more granular occupational codes. Model (2) shows the same Tobit model as (1) but with task and skill moves aggregated to 1-digit occupational categories. As expected the coefficient on the unemployment rate is larger in magnitude, however it remains economically insignificant.
 
 \vspace{2mm}
 
