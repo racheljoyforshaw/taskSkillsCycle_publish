@@ -122,3 +122,5 @@ Add_tasks_skills.do - adds task and skill distance measures to LFS data
 6719    Labour Force Survey Five-Quarter Longitudinal Dataset, October 2009 - December 2010
 
 ************ OUTPUTS ************
+
+All results ouputed to Results/ folder
