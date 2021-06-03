@@ -92,8 +92,8 @@
   \author{Aspasia Bizopoulou \fnref{label4}}
  \ead{aspasia.bizopoulou@vatt.fi}
  \ead[url]{https://sites.google.com/site/aspasiabizopoulou}
- \fntext[label4]{Senior Researcher, VATT Institute for Economic Researc}h
- \address{VATT Institute for Economic Researc
+ \fntext[label4]{Senior Researcher, VATT Institute for Economic Research}
+ \address{VATT Institute for Economic Research
  	
  	Economicum
  	
@@ -314,7 +314,7 @@ In our dataset, since the length of the task vector for each occupation is deter
 		A $\rightarrow$ D &  \input{../Figures/AD_angSep.txt} & \input{../Figures/AD_skillScore.txt}  \\
 		A $\rightarrow$ A & 0 & 0 \\
 	\end{tabular}
-	\caption{An example of $\Delta$Tasks and $\Delta$Skills with 2 tasks and 5 occupations}
+	\caption{An example of $\Delta$Tasks and $\Delta$Skills with 2 tasks and 4 occupations}
 	\label{fig:AngSep}
 \end{figure}
 
@@ -487,7 +487,7 @@ While we control for these observable composition changes in our estimations, a 
 Equation \ref{eqn:heckmanProbit} is the Probit selection model which has dependent variable $EE$ equal to one if an individual changes jobs between the first and second quarter of interview, and zero otherwise. Note that control variables $\hat{X}$ differ from those in the structural equation, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} and  \ref{eqn:heckmanTobit_end} are the Tobit structural model with dependent variables as in equation \ref{eqn:tobit}, either $\Delta\text{\textit{Tasks}}_{i}$ or $|\Delta\text{\textit{Skills}}_{i}|$. This specification is the same as \ref{eqn:tobit}, with the addition of the estimated inverse Mills ratio obtained from estimating equation \ref{eqn:heckmanProbit}, $\hat{\lambda}$, to control for selection. Equation \ref{eqn:dh} governs the relationship once the hurdle `changed jobs' has been passed.  The Double Hurdle model is similar to the Tobit model of \ref{eqn:tobit}, but allows the extensive and intensive margins to be governed by distinct stochastic processes. That is, unlike the Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the decision to switch jobs, and the relationship between the unemployment rate and the decision to change tasks or skills, is the same. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated. As such, to avoid multicollinearity issues we also include the instrument \textit{Available}, whether the individual is available to start work in the next two weeks. The instrument for the selection equation is a dummy which captures whether an individual is available to start work in the next two weeks. This will be equal to one if the respondent is looking for a new job, is waiting to start a new job or would like a new job but has not yet started searching and would be able to start a job in the next two weeks. This instrument is highly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey. However, it should not have any bearing on the size of the task or skill change that an individual makes after changing jobs, the dependent variable in the two structural equations. 
 
 \newpage
-
+\thispagestyle{empty}
 \begin{table}[H]
 	\centering
 	\caption{Difference in Means of E2E Sample In and Outside Recession}\label{tab:diffMeans}
