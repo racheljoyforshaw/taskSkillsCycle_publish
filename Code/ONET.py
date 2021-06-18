@@ -316,7 +316,7 @@ class SOCdict:
                     self.dict[mapping][socCode][parameter] = {}
                     # add the weight
                     if isWeighted:
-                        self.dict[mapping][socCode]['weights'][parameter] = self.mapping[mapping][:,2][temp_onet].astype(float)
+                        self.dict[mapping][socCode]['weights'][parameter] = \ self.mapping[mapping][:,2][temp_onet].astype(float)
                     else:
                         self.dict[mapping][socCode]['weights'][parameter] = np.ones(len(temp_onet))
                     # tasks
