@@ -1,114 +1,111 @@
 ********************************************************************************
-*********************** DATA CLEANING  *****************************************
+*********************** DATA ORGANISATION 5Q  *****************************************
 ********************************************************************************
 
 use Data/LFS_all_raw_5q.dta, clear
 
 ******************  keep only these variables needed ***************************
  
-keep lgwt ///
- ilodefr* ///
+keep lgwt* ///
  source* /* -> date */ ///
- grsswk* /* -> wages */ ///
- hiqual* /* -> edulevel */ ///
- soc2km* /* -> socCode */ ///
- age* ///
- sex ///
- publicr* ///
- ftptwk* /* fpt_job1 */ ///
- jobtyp* ///
- lkwfwm* ///
- marsta* ///
- marstt1* ///
- inecacr* ///
- incac05* ///
- empmon* /* months employed */
- 
-
-		
+ ilodefr* ///
+ empmon* ///
+ inds* /* -> industry */ ///
+ start* ///
+ age* /* -> age_sq */ ///
+ marsta* /* -> mar_cohab */ ///
+ marstt* /* -> mar_cohab */ ///
+ sex* ///
+ ftptwk* /* -> fpt_job */ ///
+ jobtyp* /* -> temporary */ ///
+ publicr* /* -> public */ ///
+ inecacr* /* -> selfe */ ///
+ incac05* /* -> selfe */ ///
+ hiqua* /* -> edulevel */ ///
+ uresmc* ///
+ redyl* /* -> f_v_retire */  ///
+ lkwfwm* /* -> seek_method */ ///
+ soc2km* ///
+ soc10m* ///
+ wait* ///
+ persid ///
+ grsswk* ///
+ hdpch* ///
+ wneft*
 ****************** define time *************************************************
 
-split source, p("Extracted_5q/") gen(stub)
-split stub2, p("_") gen(stib)
-split stib1, p("/") gen(stob)
+* create a date variable for first quarter we see you in
+
+split source, p("_") gen(stub)
+split stub2, p("/") gen(stib) 
+
 
 *** quarter ***
-gen quarter = substr(stob3,1,2)
+gen quarter = "."
+replace quarter = substr(stib2,1,2)
+replace quarter = "q1" if substr(stub4,1,2)=="jm" 
+replace quarter = "q2" if substr(stub4,1,2)=="aj" 
+replace quarter = "q3" if substr(stub4,1,2)=="js" 
+replace quarter = "q4" if substr(stub4,1,2)=="od"  
+
+split stub5, p("-") gen(stob) 
+replace quarter = "q1" if substr(stob1,1,2)=="jm" 
+replace quarter = "q2" if substr(stob1,1,2)=="aj" 
+replace quarter = "q3" if substr(stob1,1,2)=="js" 
+replace quarter = "q4" if substr(stob1,1,2)=="od"  
 
 *** year ***
-gen year = substr(stob3,3,2)
-replace year = stib2 if year==""
-* format the year
-replace year = "20" + year
+gen year = "."
+replace year = substr(stub3,-2,2)
+replace year = substr(stub4,-2,2) if substr(stub3,-2,2)=="5q"
+
+split stub4, p("-") gen(steb) 
+replace year = substr(steb1,-2,2) if substr(stub3,-2,2)=="al"
+
+replace year = substr(stub4,-2,2) if stub3=="q"
+split stub5, p("-") gen(stab) 
+replace year = substr(stab1,-2,2) if substr(stub4,-2,2)=="al"
+replace year = substr(stub4,3,2) if stub5=="eul.dta"
+
+replace year =  "20" + year
+
 
 
 * all together
 gen date= year+quarter
-gen qtime= quarterly(date, "YQ")
-format qtime %tq
+gen qtime1= quarterly(date, "YQ")
+gen qtime2=qtime1+1
+gen qtime3=qtime1+2
+gen qtime4=qtime1+3
+gen qtime5=qtime1+4
+format qtime1 %tq
+format qtime2 %tq
+format qtime3 %tq
+format qtime4 %tq
+format qtime5 %tq
 drop date
-rename qtime date
+drop quarter
+rename qtime1 date1
+rename qtime2 date2
+rename qtime3 date3
+rename qtime4 date4
+rename qtime5 date5
 drop stib*
 drop stub*
 drop stob*
-drop source
-
-* drop any non-2000s data
-keep if date>= yq(2000,1) & date<yq(2010,4)
+drop year
 
 
-****************** variables ***************************************************
-* edulevel 
-gen edulevel1=. if (hiqual1==-9| hiqual1==-8 |hiqual1==41) & date>yq(1996,1) & date< yq(2004,2)
-label variable edulevel1 "Education level, 1=high, 2=med, 3=low"
-replace edulevel1=1 if hiqual1>0 & hiqual1<=4 & date>yq(1996,1) & date< yq(2004,2)
-replace edulevel1=2 if hiqual1>4 & hiqual1<=39 & date>yq(1996,1) & date< yq(2004,2)
-replace edulevel1=3 if hiqual1==40 & date>yq(1996,1) & date< yq(2004,2)
 
-replace edulevel1=. if (hiqual41==-9| hiqual41==-8 |hiqual41==46) & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=1 if hiqual41>0 & hiqual41<=4 & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=2 if hiqual41>4 & hiqual41<=44 & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=3 if hiqual41==45 & date>yq(2004,1) & date< yq(2005,2)
-
-replace edulevel1=. if (hiqual51==-9| hiqual51==-8 |hiqual51==49) & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=1 if hiqual51>0 & hiqual51<=4 & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=2 if hiqual51>4 & hiqual51<48 & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=3 if hiqual51==48 & date>yq(2005,1) & date< yq(2008,1)
-
-replace edulevel1=. if (hiqual81==-9 & hiqual81==-8 | hiqual81==50) & date>yq(2007,4) & date <yq(2011,1)
-replace edulevel1=1 if hiqual81>0 & hiqual81<=4 & date>yq(2007,4) & date< yq(2011,1)
-replace edulevel1=2 if hiqual81>4 & hiqual81<=48 & date>yq(2007,4) & date< yq(2011,1)
-replace edulevel1=3 if hiqual81==49 & date>yq(2007,4) & date< yq(2011,1)
-drop hiqual*
-char edulevel1[omit] 3
-
-* age - drop u-16s o-64s
-drop if age1>64 | age1>64
-drop if age1<16 | age1<16
-
-* create age squared
-gen age1_sq= age1*age1
-label variable age1_sq "Age squared"
-
-* empmon (months employed)
-replace empmon1=. if empmon1==-9 | empmon1==-8
-
-* part/full-time work
-gen fpt_job1=1 if ftptwk1==1 /*fulltime*/
-label variable fpt_job1 "Full-time, 1=yes, 0=no"
-replace fpt_job1=0 if ftptwk1==2 /* parttime*/
-gen fpt_job5=1 if ftptwk5==1 /*fulltime*/
-label variable fpt_job5 "Full-time, 1=yes, 0=no"
-replace fpt_job5=0 if ftptwk5==2 /* parttime*/
-drop ftptwk*
+******************************************************************************************************
 
 
 * create strings for types of flows 
-	 
+* q`quarter'_dummy is 1 for E, 0 otherwise	 
 	 forvalues i=1/5{
 	 
 	 gen q`i'_status ="." 
-	 gen q`i'_dummy = .
+	 gen q`i'_dummy = 0
 	 gen oneminus_q`i'_dummy = .
 	 replace q`i'_status ="E" if ilodefr`i'==1
 	 replace q`i'_dummy = 1 if ilodefr`i'==1
@@ -119,253 +116,193 @@ drop ftptwk*
 	 replace q`i'_status = "I" if ilodefr`i'==3
 	
 }	 
-	
+* status string	
 gen status = q1_status + q2_status + q3_status + q4_status + q5_status
 
+* generate marker of Es
+gen num_E = q1_dummy + q2_dummy + q3_dummy+ q4_dummy + q5_dummy
 
-* get rid of missing transitions
+* get rid of observations with only one quarter
 
-drop if strpos(status, ".")!=0
+drop if num_E<2
 
 
-* create transition dummies
+gen copyTrans = .
+gen firstQTrans = .
+gen lastQTrans = .
+levelsof status /*if status=="...EE"*/
+* loop through unique statuses
+foreach lev in `r(levels)' {
+	di "`lev'"
+	* get number of employed spells for this transition type
+	quietly summarize num_E if status=="`lev'"
+	* loop through transitions (which is number of Es minus 1)
+	local numTrans = r(max)-1
+	forvalues i=1/`numTrans' {
+		* duplicate the transitions
+		local j=`i'-1 /* previous transition counter */
+		* does copyTrans1 already exist?
+		capture confirm var copyTrans1
+		if `i' == 1 { // no, so first loop
+			*di "duplicating observations"
+			expand 2 if status=="`lev'" , gen(copyTrans1) /* this duplicates the observations and creates a marker = 1 for dup */
+			}
+		* yes, so create the next variable
+		else {
+		*di "duplicating observations for the 2+ time"
+		expand 2 if status=="`lev'" & copyTrans`j'==1, gen(copyTrans`i') /* this duplicates the observations and creates a marker = 1 for dup */
+		}
+		}
+* create one copyTrans variable and a marker variable for first quarter and last quarter for each transition of interest
+	local j=1 /* quarter position */
+	* loop through each transition
+	forvalues i=1/`numTrans' { /* transition position */
+		* make 4 variables into one variable marker with possible values 1-4 of copied transitions
+		replace copyTrans = `i' if copyTrans`i'==1
+		drop copyTrans`i'
+	
+		* first & last quarter
+		local found1=0
+		local found2=0
+		* loop through each quarter to find first Q of transition (find the first E)
+		while `j'<=5 & `found1'==0{
+			*di "`j'"
+			quietly summarize q`j'_dummy if status=="`lev'" & copyTrans==`i'
+			local q_dummy = r(mean)
+			* is this quarter an E?
+			if `q_dummy'==1 {
+				*di "creating first Q marker"
+				*yes - create a marker for first Q of transition
+				replace firstQTrans = `j' if status=="`lev'" & copyTrans==`i'
+				local found1 = 1
+				local k= `j'+ 1 /* first possible position for last Q is the quarter after first Q */
+				* now loop through each subsequent quarter to find last Q of transition (find the next E)
+				while `k'<=5 & `found2'==0 {
+					quietly summarize q`k'_dummy if status=="`lev'" & copyTrans==`i'
+					local q_dummy = r(mean)
+					* is this quarter an E?
+					if `q_dummy'==1{
+						* yes - create a marker for last Q of transition
+						*di "`k'"
+						*di " creating last Q marker"	
+						replace lastQTrans = `k' if status=="`lev'" & copyTrans==`i'
+						local found2 = 1
+						}
+					* no - look at next quarter for last Q of transition
+					else {
+					*di " last Q not here"
+					local k = `k' + 1 
+					}
+					}
+				* set j = k because end of previous transition can be start of next
+				local j = `k' 
+				}
+			* no - look at the next quarter for first Q of transition
+			else {
+			*di "first Q not here"
+			local j = `j' + 1	
+			}
+			}
+		}
+		drop if copyTrans==. & status=="`lev'" // this drops the original data, so only copied transitions left
+	}
 
-forvalues i=1/5{
-replace empmon`i' = . if empmon`i'==-8 | empmon`i'==-9
+
+* variable to count how many quarters unemployed/inactive before finding job 
+* U or I spell length (from quarters observed)
+gen UorIspell = .
+replace UorIspell = 0 if (firstQTrans ==1 & lastQTrans ==2 & q1_dummy==1 & q2_dummy==1) | (firstQTrans ==2 & lastQTrans ==3 & q2_dummy==1 & q3_dummy==1) | (firstQTrans==3 & lastQTrans ==4 & q3_dummy==1 & q4_dummy==1)| (firstQTrans ==4 & lastQTrans ==5 & q4_dummy==1 & q5_dummy==1)
+replace UorIspell = 1 if (firstQTrans ==1 & lastQTrans ==3 & q1_dummy==1 & q2_dummy==0 & q3_dummy==1) | (firstQTrans ==2 & lastQTrans ==4 & q2_dummy==1 & q3_dummy==0 & q4_dummy==1) | (firstQTrans ==3  & lastQTrans ==5 & q3_dummy==1 & q4_dummy==0 & q5_dummy==1)
+replace UorIspell = 2 if (firstQTrans ==1 & lastQTrans ==4 & q1_dummy==1 & q2_dummy==0 & q3_dummy==0 & q4_dummy==1) | (firstQTrans ==2 & lastQTrans ==5 & q2_dummy==1 & q3_dummy==0 & q4_dummy==0 & q5_dummy==1 )
+replace UorIspell = 3 if (firstQTrans ==1 & lastQTrans ==5 & q1_dummy==1 & q2_dummy==0 & q3_dummy==0 & q4_dummy==0 & q5_dummy==1) 
+
+
+**** move control variables to 2q format by moving to spaces 1 and 2 ***
+
+
+*vars that are not specific to the previous job
+local vars age marsta marstt hiqual hiqual4 hiqual5 hiqual8 uresmc redylft lkwfwm wait grsswk hdpch19 wneft11 ilodefr empmon
+foreach variable of local vars {
+*last period of trans
+replace `variable'1 = `variable'2 if lastQTrans==3
+replace `variable'2 = `variable'3 if lastQTrans==3
+
+replace `variable'1 = `variable'3 if lastQTrans==4
+replace `variable'2 = `variable'4 if lastQTrans==4
+
+replace `variable'1 = `variable'4 if lastQTrans==5
+replace `variable'2 = `variable'5 if lastQTrans==5
+
 }
 
-gen EEE = 0
-replace EEE = 1 if status=="EEEEE" & empmon5<=12
-gen EUE = 0 
-replace EUE = 1 if status=="EEEUE" | status=="EEUEE" | status=="EEUUE" | status=="EUEEE"| status=="EUUEE" | status=="EUUUE" & empmon5<=12
-gen EIE = 0 
-replace EIE = 1 if status=="EEEIE" | status=="EEIEE" | status=="EEIIE" | status=="EIEEE"| status=="EIIEE" | status=="EIIIE" & empmon5<=12
-gen EUIE = 0
-replace EUIE =1 if EUE ==1 | EIE==1
-
-gen EEE_stayers = 0
-replace EEE_stayers = 1 if status=="EEEEE" & empmon5>12
 
 
-* public/private sector
+* replace vars that need to be taken from the previous job spell
+* note that 1st period vars are taken from firstQTrans
+local vars1 ftptwk jobtyp publicr inecacr incac05 inds92m inds07m soc10m soc2km
+foreach variable of local vars1 {
+*2nd transition of interest
+replace `variable'1 = `variable'2 if firstQTrans==2
+replace `variable'2 = `variable'3 if lastQTrans==3
+*3rd transition of interest
+replace `variable'1 = `variable'3 if firstQTrans==3
+replace `variable'2 = `variable'4 if lastQTrans==4
+*4th transition of interest
+replace `variable'1 = `variable'4 if firstQTrans==4
+replace `variable'2 = `variable'5 if lastQTrans==5
+}
 
 
-gen public1 =0
-label variable public1 "Public job, 1=Yes, 0=No"
-replace public1=0 if publicr1==1 /* private */
-replace public1=1 if publicr1==2 /* public */
-gen public5 = . if publicr5==-9 | publicr5==-8 /*missing*/
-label variable public5 "Public job, 1=Yes, 0=No"
-replace public5=0 if publicr5==1 /* private */
-replace public5=1 if publicr5==2 /* public */
-drop publicr*
 
 
-save Data/LFS_5q.dta, replace
 
-/*
-****************** variables ***************************************************
-
-* empmon (months employed)
-replace empmon1=. if empmon1==-9 | empmon1==-8
-replace empmon2=. if empmon2==-9 | empmon2==-8
-
-* industry
-gen industry_temp=inds92m1 if date<=yq(2008,4) & inds92m1!=.
-
-replace industry_temp= inds07m1 if date>yq(2008,4) & inds07m1!=.
-replace industry_temp=. if industry==-8| industry==-9
-*keep if industry<20 
-gen industry = .
-replace industry = 1 if industry_temp>=1 & industry_temp<=2 /* primary */
-replace industry = 2 if industry_temp>=3 & industry_temp<=6 /* secondary */
-replace industry = 3 if industry_temp>=7  /* tertiary */
-label variable industry "Industry category, 1=primary 2=secondary 3=tertiary"
-
-drop inds*
-char industry[omit] 1
-
-* available to start work dummy
-gen available = 0
-label variable available "Available to start work, 1=yes, 0=no/na"
-replace available = 1 if start1== 1
-drop start*
-
-* age - drop u-16s o-64s
-drop if age1>64 | age2>64
-drop if age1<16 | age2<16
-
-* create age squared
-gen age1_sq= age1*age1
-label variable age1_sq "Age squared"
-
-* mar_cohab (marriage status)
-gen mar_cohab=. 
-label variable mar_cohab "Maried/cohabitating, 1=yes, 0=no"
-replace mar_cohab=1 if (marsta1==2 & marstt1==. ) | ( marsta1==6 & marstt1==.)| (marstt1==2 & marsta1==.) /*married/cohabitating*/
-replace mar_cohab=0 if (marsta1==1 | marsta1==3 | marsta1==4 | marsta1==5 | marsta1==7 | marsta1==8 | marsta1==9 ) & marstt1==. /*not married/cohabitating*/
-replace mar_cohab=0 if (marstt1==1 | marstt1==3 | marstt1==4 | marstt1==5 ) & marsta1==. /*not married/cohabitating*/
-drop marsta* marstt*
+* quarter
+gen quarter=.
+replace quarter = quarter(dofm(date1)) if lastQTrans==2
+replace quarter = quarter(dofm(date2)) if lastQTrans==3
+replace quarter = quarter(dofm(date3)) if lastQTrans==4
+replace quarter = quarter(dofm(date4)) if lastQTrans==5
 
 
-* part/full-time work
-gen fpt_job1=1 if ftptwk1==1 /*fulltime*/
-*label variable fpt_job1 "Full-time/part-time job, 1=FT, 0=PT, .=dk/na"
-label variable fpt_job1 "Full-time, 1=yes, 0=no"
-replace fpt_job1=0 if ftptwk1==2 /* parttime*/
-*replace fpt_job1=. if ftptwk1==-9 |ftptwk1==-8 /* missing */
-gen fpt_job2=1 if ftptwk2==1 /*fulltime*/
-label variable fpt_job2 "Full-time, 1=yes, 0=no"
-replace fpt_job2=0 if ftptwk2==2 /* parttime*/
-*replace fpt_job2=. if ftptwk2==-9 |ftptwk2==-8 /* missing */
-drop ftptwk*
+* date variables - date is quarter prior to last E
+gen date = .
+replace date = date1 if lastQTrans==2
+replace date = date2 if lastQTrans==3
+replace date = date3 if lastQTrans==4
+replace date = date4 if lastQTrans==5
+format date %tq
+*tostring quarter, replace
+drop date1 date2 date3 date4
 
+* status variable
+* generate 5 different status variables
+gen status1 = substr(status,1,1)
+gen status2 = substr(status,2,1)
+gen status3 = substr(status,3,1)
+gen status4 = substr(status,4,1)
+gen status5 = substr(status,5,1)
+drop status
+gen status = "."
+replace status = status1 + status2 if lastQTrans==2
+replace status = status2 + status3 if lastQTrans==3
+replace status = status3 + status4 if lastQTrans==4
+replace status = status4 + status5 if lastQTrans==5
 
-* temporary 
-*gen temporary1= 1 if jobtyp1==2 /* temporary */
-gen temporary1=0
-label variable temporary1 "Temporary job, 1=yes 0=no"
-replace temporary1= 1 if jobtyp1==2 /* temporary */
-*replace temporary1= 0 if jobtyp1==1 /* permanent */
-*replace temporary1=. if jobtyp1==-9 | jobtyp1==-8 /* missing */
-*gen temporary2= 1 if jobtyp2==2 /* temporary */
-gen temporary2=0
-label variable temporary2 "Temporary job, 1=yes 0=no"
-replace temporary2= 1 if jobtyp2==2 /* temporary */
-*replace temporary2= 0 if jobtyp2==1 /* permanent */
-*replace temporary2=. if jobtyp2==-9 | jobtyp2==-8 /* missing */
-drop jobtyp*
+* replace wneft with UorIspell 
+replace wneft112 = 0 
+replace wneft112 = 1 if UorIspell==1
+replace wneft112 = 2 if UorIspell==2
+replace wneft112 = 3 if UorIspell==3
 
+* get rid of 3, 4,5 quarters
+drop *3 
+drop *4
+drop *5
+drop copyTrans num_E *_status *_dummy lastQTrans firstQTrans
 
-* public/private sector
+* lgwt 
+replace lgwt = lgwt17 if date>yq(2011,2)
+replace lgwt = lgwt18 if date>yq(2018,2)
 
-*gen public1 = . if publicr1==-9 | publicr1==-8 /*missing*/
-gen public1 =0
-*label variable public1 "Public/private job, 1=Pub, 0=Pri, .=dk/na"
-label variable public1 "Public job, 1=Yes, 0=No"
-replace public1=0 if publicr1==1 /* private */
-replace public1=1 if publicr1==2 /* public */
-gen public2 = . if publicr2==-9 | publicr2==-8 /*missing*/
-*label variable public2 "Public/private job, 1=Pub, 0=Pri, .=dk/na"
-label variable public2 "Public job, 1=Yes, 0=No"
-replace public2=0 if publicr2==1 /* private */
-replace public2=1 if publicr2==2 /* public */
-drop publicr*
+save Data/LFS_5q_dates.dta, replace
 
-
-* self-employed or not
-*gen selfe1=. /*missing*/
-gen selfe1=0
-*label variable selfe1 "Self-employed, 1=Yes, 0=No, .=dk/na"
-label variable selfe1 "Self-employed, 1=Yes, 0=No"
-*replace selfe1=0 if inecacr1==1| inecacr1==3 | incac051==1 | incac051==3 /*not self-employed*/
-replace selfe1=1 if inecacr1==2 | incac051==2 /*self-employed*/
-*gen selfe2 =.
-gen selfe2=0
-*label variable selfe2 "Self-employed, 1=Yes, 0=No, .=dk/na"
-label variable selfe2 "Self-employed, 1=Yes, 0=No"
-*replace selfe2=0 if inecacr2==1| inecacr2==3 | incac052==1 | incac052==3 /*not self-employed*/
-replace selfe2=1 if inecacr2==2 | incac052==2 /*self-employed*/
-drop inecacr* incac05*
-
-
-* edulevel 
-gen edulevel1=. if (hiqual1==-9| hiqual1==-8 |hiqual1==41) & date>yq(1996,1) & date< yq(2004,2)
-label variable edulevel1 "Education level, 1=high, 2=med, 3=low"
-replace edulevel1=1 if hiqual1>0 & hiqual1<=4 & date>yq(1996,1) & date< yq(2004,2)
-replace edulevel1=2 if hiqual1>4 & hiqual1<=39 & date>yq(1996,1) & date< yq(2004,2)
-replace edulevel1=3 if hiqual1==40 & date>yq(1996,1) & date< yq(2004,2)
-
-replace edulevel1=. if (hiqual41==-9| hiqual41==-8 |hiqual41==46) & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=1 if hiqual41>0 & hiqual41<=4 & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=2 if hiqual41>4 & hiqual41<=44 & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=3 if hiqual41==45 & date>yq(2004,1) & date< yq(2005,2)
-
-replace edulevel1=. if (hiqual51==-9| hiqual51==-8 |hiqual51==49) & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=1 if hiqual51>0 & hiqual51<=4 & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=2 if hiqual51>4 & hiqual51<48 & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=3 if hiqual51==48 & date>yq(2005,1) & date< yq(2008,1)
-
-replace edulevel1=. if (hiqual81==-9 & hiqual81==-8 | hiqual81==50) & date>yq(2007,4) & date <yq(2011,1)
-replace edulevel1=1 if hiqual81>0 & hiqual81<=4 & date>yq(2007,4) & date< yq(2011,1)
-replace edulevel1=2 if hiqual81>4 & hiqual81<=48 & date>yq(2007,4) & date< yq(2011,1)
-replace edulevel1=3 if hiqual81==49 & date>yq(2007,4) & date< yq(2011,1)
-drop hiqual*
-char edulevel1[omit] 3
-
-
-* why left last job
-gen f_v_retire2=. if (redylft2==-9 | redylft2==-8 ) 
-label variable edulevel1 "Why left last job, 1=involuntary, 2=voluntary, 3=other"
-replace f_v_retire2=1 if (redylft2==1| redylft2==2| redylft2==3 | redylft2==5) /*involuntary */
-replace f_v_retire2=2 if (redylft2==4 | redylft2==8) & date>=yq(1995,1) /*voluntary */
-replace f_v_retire2=3 if (redylft2==6 | redylft2==7 | redylft2==9) /*retired, health, other*/
-drop redylft*
-char f_v_retire2[omit] 2
-
-* methods of seeking job
-gen seek_method=.  /*missing*/
-label variable seek_method "Methods of seeking job, 1=Agency, 2=Ad, 3=Direct, 4=Friend, 5=Other"
-replace seek_method=1 if (lkwfwm2>0 & lkwfwm2<=4 & date>=137) | (lkwfwm2>0 & lkwfwm2<=3 & date<137) // Agency
-replace seek_method=2 if (lkwfwm2>4 & lkwfwm2<=7 & date>=137) | (lkwfwm2>3 & lkwfwm2<=6 & date<137) // Ad
-replace seek_method=3 if (lkwfwm2>7 & lkwfwm2<=8 & date>=137) | (lkwfwm2>6 & lkwfwm2<=7 & date<137) // Direct
-replace seek_method=4 if (lkwfwm2>8 & lkwfwm2<=9 & date>=137) | (lkwfwm2>7 & lkwfwm2<=8 & date<137) // Friend/rel
-replace seek_method=5 if (lkwfwm2>9 & lkwfwm2<=14 & date>=137) | (lkwfwm2>8 & lkwfwm2<=13 & date<137) //other
-replace seek_method=0 if (lkwfwm2==15 & date>=137) | (lkwfwm2==15 & date<137) //not looking
-char seek_method[omit] 0
-
-* employment duration with current employer- follows LFS definition
-* of EMPLEN up to 5 yrs
-gen durats1=. 
-label variable durats1 "Employment duration with current employer, 1-8 steps"
-replace durats1=empmon1 if ilodefr1==1 & empmon1>=0 // empmon is in terms of months 
-replace durats1=1 if ilodefr1==1 & empmon1>=0 & empmon1<=2 /* less than 3 months */
-replace durats1=2 if ilodefr1==1 & empmon1>=3 & empmon1<=5 /* 3- 6 months */
-replace durats1=3 if ilodefr1==1 & empmon1>=6 & empmon1<=11 /*6-12 months */
-replace durats1=4 if ilodefr1==1 & empmon1>=12 & empmon1<=23 /* 1-2 yrs */
-replace durats1=5 if ilodefr1==1 & empmon1>=24 & empmon1<=35 /* 2-3 yrs */
-replace durats1=6 if ilodefr1==1 & empmon1>=36 & empmon1<=47 /* 3-4 yrs */
-replace durats1=7 if ilodefr1==1 & empmon1>=48 & empmon1<=59 /* 4-5 yrs */
-replace durats1=8 if ilodefr1==1 & empmon1>=60 /* 5+ years */
-char durats1[omit] 8
-
-* whether looking for a job
-*gen lookfor1=.
-gen lookfor1=0
-label variable lookfor1 "Whether looking for a job, 1=yes 0=no"
-*replace lookfor1=0 if lkwfwm1== 15 /* not looking */
-replace lookfor1=1 if lkwfwm1>0 & lkwfwm1<15 /* looking */
-drop lkwfwm*
-
-
-* recession indicator
-
-preserve 
-insheet using Data/UKQRecessionIndicator.csv, clear 
-sort qtime1
-rename qtime1 time1
-rename qtime2 time2
-gen qtime1= quarterly(time1, "YQ")
-gen qtime2= quarterly(time2, "YQ")
-format qtime1 %tq
-format qtime2 %tq
-drop time*
-rename qtime1 date
-rename qtime2 date2
-save UKQRecessionIndicator_2000s, replace 
-clear
-restore
-
-sort date
-merge m:1 date using UKQRecessionIndicator_2000s.dta 
-drop if _merge==2
-drop _merge
-rename gbrrecdm1 recession1
-label variable recession1 "Recession during quarter, 1=yes 0=no "
-drop gbrrecdm2
-erase UKQRecessionIndicator_2000s.dta 
-
-save Data/LFS_2q.dta, replace
-
-
-		 

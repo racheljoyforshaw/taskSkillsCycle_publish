@@ -3,7 +3,7 @@
 ********************************************************************************
 
 * Calculate aggregate unemployment rate
-use Data/all_variables_2q.dta, clear
+use Data/LFS_2q.dta, clear
 
 
 compress
@@ -98,6 +98,13 @@ save "uresmc_date_Unemp_r.dta", replace
 
 
 restore
+
+local filenames _2q _5q
+
+foreach filename of local filenames {
+
+use Data/all_variables`filename'.dta , clear
+
 merge m:1 date uresmc1 using "uresmc_date_Unemp_r.dta", keepusing(`vars')
 
 drop _merge
@@ -107,10 +114,53 @@ rename Esker E_seek_rate
 rename Urat Urate
 gen Aggre_Ur=Urate-Devia_U_r // Aggregate unemployment rate
 
+* make percentage unemployment
+gen Aggre_Ur_pct = Aggre_Ur*100
+gen Devia_Ur_pct = Devia_U_r*100
 
+preserve
+	collapse (mean) Aggre_Ur_pct, by(date)
+	tsset date
+	quietly twoway (tsline Aggre_Ur_pct)
+	graph export Results/Aggre_Ur_pct`filename'.pdf, replace
+	export excel using Results/Aggre_Ur_pct`filename', replace
+restore 
+/*
+if `filename'==_5q{
+preserve
+	collapse (sum) IE, by(date)
+	tsset date
+	quietly twoway (tsline IE)
+	graph export Results/IE`filename'.pdf, replace
+restore 
+preserve
+	collapse (sum) UE, by(date)
+	tsset date
+	quietly twoway (tsline UE)
+	graph export Results/UE`filename'.pdf, replace
+restore 
+
+ }*/
+ 
+preserve
+	collapse (sum) EE [pw=lgwt], by(date)
+	tsset date
+	quietly twoway (tsline EE)
+	graph export Results/EE`filename'.pdf, replace
+	export excel using Results/EE`filename', replace
+restore 
 * save data
-save Data/regressionData_2q.dta, replace
+save Data/regressionData`filename'.dta, replace
 
+}
 
-erase gov_date_Unemp_r.dta 
-erase uresmc_date_Unemp_r.dta
+use Data/regressionData_5q.dta
+preserve
+	collapse (sum) IEorUE [pw=lgwt], by(date)
+	tsset date
+	quietly twoway (tsline IEorUE)
+	graph export Results/IEorUE_5q.pdf, replace
+	export excel using Results/IEorUE_5q, replace
+restore 
+*erase gov_date_Unemp_r.dta 
+*erase uresmc_date_Unemp_r.dta

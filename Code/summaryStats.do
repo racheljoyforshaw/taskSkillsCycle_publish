@@ -3,7 +3,7 @@
 ********************************************************************************
 
 
-use Data/regressionData_2q.dta, clear
+use Data/regressionData_2q_5q.dta, clear
 
 
 
