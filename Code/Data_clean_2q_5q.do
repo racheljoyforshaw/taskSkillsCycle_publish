@@ -187,15 +187,15 @@ char seek_method[omit] 0
 * lots missing!! (nearly 1 mil from full sample missing) 
 gen durats1=0
 label variable durats1 "Employment duration with current employer, 1-8 steps"
-replace durats1=empmon1 if ilodefr1==1 & empmon1>=0 // empmon is in terms of months 
-replace durats1=1 if ilodefr1==1 & empmon1>=0 & empmon1<=2 /* less than 3 months */
-replace durats1=2 if ilodefr1==1 & empmon1>=3 & empmon1<=5 /* 3- 6 months */
-replace durats1=3 if ilodefr1==1 & empmon1>=6 & empmon1<=11 /*6-12 months */
-replace durats1=4 if ilodefr1==1 & empmon1>=12 & empmon1<=23 /* 1-2 yrs */
-replace durats1=5 if ilodefr1==1 & empmon1>=24 & empmon1<=35 /* 2-3 yrs */
-replace durats1=6 if ilodefr1==1 & empmon1>=36 & empmon1<=47 /* 3-4 yrs */
-replace durats1=7 if ilodefr1==1 & empmon1>=48 & empmon1<=59 /* 4-5 yrs */
-replace durats1=8 if ilodefr1==1 & empmon1>=60 /* 5+ years */
+replace durats1=empmon1 if empmon1>=0 // empmon is in terms of months 
+replace durats1=1 if empmon1>=0 & empmon1<=2 /* less than 3 months */
+replace durats1=2 if empmon1>=3 & empmon1<=5 /* 3- 6 months */
+replace durats1=3 if empmon1>=6 & empmon1<=11 /*6-12 months */
+replace durats1=4 if empmon1>=12 & empmon1<=23 /* 1-2 yrs */
+replace durats1=5 if empmon1>=24 & empmon1<=35 /* 2-3 yrs */
+replace durats1=6 if empmon1>=36 & empmon1<=47 /* 3-4 yrs */
+replace durats1=7 if empmon1>=48 & empmon1<=59 /* 4-5 yrs */
+replace durats1=8 if empmon1>=60 /* 5+ years */
 char durats1[omit] 8
 
 * whether looking for a job

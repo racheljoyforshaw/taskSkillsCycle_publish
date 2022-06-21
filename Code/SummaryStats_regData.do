@@ -1,6 +1,6 @@
 
 *use Data/regressionData_2q_5q.dta, clear
-
+preserve
 keep if used_ALL
 
 label variable angSep_CASCOT "$\Delta$ Tasks"
@@ -178,3 +178,4 @@ eststo status_2q_jm
 *esttab status_synth status_2q status_synth_jm status_2q_jm using Results/status_bySample.tex, replace nonotes nogaps nonumbers title("Transition types by sample") keep(EE IE UE) mtitles("All transitions, synthetic" "All transitions, 2Q" "Job Movers, synthetic" "Job Movers, 2Q")
 esttab status_synth status_synth_jm using Results/status_bySample.tex, replace nonotes nogaps nonumbers title("Observations by Transition Type") keep(EE IE UE) mtitles("All transitions"  "Job Movers")
 
+restore

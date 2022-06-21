@@ -6,6 +6,7 @@
 use Data/LFS_2q.dta, clear
 
 
+
 compress
 
 ***Create Aggregate and Regional Unemployment rate from LFS dataset
@@ -105,6 +106,14 @@ foreach filename of local filenames {
 
 use Data/all_variables`filename'.dta , clear
 
+
+scalar mult_factor = 10000000
+file open mult_factor using "Results/mult_factor_`filename'.txt", write replace
+file write mult_factor (mult_factor)
+file close mult_factor
+* sort out weights
+gen lgwt_int = lgwt*mult_factor
+
 merge m:1 date uresmc1 using "uresmc_date_Unemp_r.dta", keepusing(`vars')
 
 drop _merge
@@ -143,7 +152,7 @@ restore
  }*/
  
 preserve
-	collapse (sum) EE [pw=lgwt], by(date)
+	collapse (sum) EE [fw=lgwt_int] if ilodefr1==1 & empmon2>=0 & empmon2<=3 , by(date)
 	tsset date
 	quietly twoway (tsline EE)
 	graph export Results/EE`filename'.pdf, replace
@@ -156,7 +165,7 @@ save Data/regressionData`filename'.dta, replace
 
 use Data/regressionData_5q.dta
 preserve
-	collapse (sum) IEorUE [pw=lgwt], by(date)
+	collapse (sum) IEorUE [fw=lgwt_int], by(date)
 	tsset date
 	quietly twoway (tsline IEorUE)
 	graph export Results/IEorUE_5q.pdf, replace

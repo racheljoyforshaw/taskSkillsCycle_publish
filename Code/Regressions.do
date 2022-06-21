@@ -2,7 +2,7 @@
 *********************** REGRESSIONS  *******************************************
 ********************************************************************************
 
-log using "Results/EstimationLog_17062022.txt", replace
+log using "Results/EstimationLog_18062022.txt", replace
 use Data/regressionData_2q_5q.dta, clear
 keep if angSep_CASCOT!=. & Aggre_Ur_pct!=. & Devia_Ur_pct!=. & sex!=. & age1!=. & age1_sq!=. & mar_cohab!=. & durats1!=. & fpt_job1!=. & temporary1!=. & public1!=. & selfe1!=. & edulevel!=. & uresmc1!=. & quarter!=. & f_v_retire2!=. & industry!=.  & Devia_Ur_pct!=. & n_child!=. & lookfor1!=. & jobMover!=. & seek_method!=.
 
@@ -20,7 +20,7 @@ local regression_condition_dh "angSep_CASCOT!=. & Aggre_Ur_pct!=.& Devia_Ur_pct!
 local controls_dh_1 = "Aggre_Ur_pct Devia_Ur_pct sex age1 age1_sq mar_cohab n_child durats1 fpt_job1 temporary1 public1 selfe1 lookfor1 i.edulevel i.uresmc1 i.quarter i.industry"
 local controls_dh_2 = "Aggre_Ur_pct Devia_Ur_pct sex age1 age1_sq mar_cohab n_child durats1 fpt_job1 fpt_job2 temporary1 temporary2 public1 public2 selfe1 selfe2 lookfor1 jobMover i.edulevel i.seek_method i.uresmc1 i.f_v_retire2 i.quarter i.industry"
 local rounding_a = 0 
-local rounding_m = 0.0000001
+local rounding_m = 0.000001
 }
 if "`trans'"== "EE" {
 local regression_condition_dh "status=="EE" & angSep_CASCOT!=. & Aggre_Ur_pct!=. & Devia_Ur_pct!=. & sex!=. & age1!=. & mar_cohab!=. & durats1!=. & fpt_job1!=. & temporary1!=. & public1!=. & selfe1!=. & edulevel!=. & uresmc1!=. & quarter!=. & f_v_retire2!=. & industry!=.  & n_child!=. & lookfor1!=."
@@ -31,8 +31,8 @@ local rounding_m = 0.0000001
 }
 if "`trans'"== "IUE" {
 local regression_condition_dh "(status=="IE" | status=="UE") & angSep_CASCOT!=. & Aggre_Ur_pct!=. & Devia_Ur_pct!=. & sex!=. & age1!=. & mar_cohab!=. & durats1!=. & fpt_job1!=. & temporary1!=. & public1!=. & selfe1!=. & edulevel!=. & uresmc1!=. & quarter!=. & f_v_retire2!=. & industry!=.  & n_child!=. & lookfor1!=."
-local controls_dh_1 = "Aggre_Ur_pct Devia_Ur_pct sex age1 age1_sq mar_cohab n_child fpt_job1 temporary1 public1 selfe1 lookfor1 i.edulevel i.uresmc1 i.quarter i.industry"
-local controls_dh_2 = "Aggre_Ur_pct Devia_Ur_pct sex age1 age1_sq mar_cohab n_child fpt_job1 fpt_job2 temporary1 temporary2 public1 public2 selfe1 selfe2 lookfor1 i.edulevel i.seek_method i.uresmc1 i.f_v_retire2 i.quarter i.industry"
+local controls_dh_1 = "Aggre_Ur_pct Devia_Ur_pct sex age1 age1_sq mar_cohab n_child durats1 fpt_job1 temporary1 public1 selfe1 lookfor1 i.edulevel i.uresmc1 i.quarter i.industry"
+local controls_dh_2 = "Aggre_Ur_pct Devia_Ur_pct sex age1 age1_sq mar_cohab n_child durats1 fpt_job1 fpt_job2 temporary1 temporary2 public1 public2 selfe1 selfe2 lookfor1 i.edulevel i.seek_method i.uresmc1 i.f_v_retire2 i.quarter i.industry"
 local rounding_a = 0
 local rounding_m = 0.000001
 }

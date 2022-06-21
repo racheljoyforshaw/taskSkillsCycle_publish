@@ -221,7 +221,7 @@ replace UorIspell = 3 if (firstQTrans ==1 & lastQTrans ==5 & q1_dummy==1 & q2_du
 
 
 *vars that are not specific to the previous job
-local vars age marsta marstt hiqual hiqual4 hiqual5 hiqual8 uresmc redylft lkwfwm wait grsswk hdpch19 wneft11 ilodefr empmon
+local vars age marsta marstt hiqual hiqual4 hiqual5 hiqual8 uresmc redylft lkwfwm wait grsswk hdpch19 wneft11 ilodefr
 foreach variable of local vars {
 *last period of trans
 replace `variable'1 = `variable'2 if lastQTrans==3
@@ -239,7 +239,7 @@ replace `variable'2 = `variable'5 if lastQTrans==5
 
 * replace vars that need to be taken from the previous job spell
 * note that 1st period vars are taken from firstQTrans
-local vars1 ftptwk jobtyp publicr inecacr incac05 inds92m inds07m soc10m soc2km
+local vars1 ftptwk jobtyp publicr inecacr incac05 inds92m inds07m soc10m soc2km empmon
 foreach variable of local vars1 {
 *2nd transition of interest
 replace `variable'1 = `variable'2 if firstQTrans==2
