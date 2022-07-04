@@ -1,6 +1,5 @@
 
-*use Data/regressionData_2q_5q.dta, clear
-preserve
+use Data/regressionData_2q_5q_post.dta, clear
 keep if used_ALL
 
 label variable angSep_CASCOT "$\Delta$ Tasks"
@@ -147,6 +146,11 @@ esttab using Results/regVars_statusJobMove.tex, replace cells("mean sd") mtitles
 
 * synthetic sample, all transitions
 eststo clear
+
+* create marker for transtions with less than a year between
+gen lessThanYear = 0
+replace lessThanYear =1 if wneft112<=3 | wneft112==.
+
 estpost tab status
 eststo status_synth
 
@@ -164,6 +168,8 @@ eststo status_synth_cm
 
 use Data/LFS_2q_dates.dta, clear
 keep if status=="EE" | status=="IE" | status=="UE"
+keep if ilodefr1<4
+keep if ilodefr2<4
 estpost tab status
 eststo status_2q
 gen jobMover = 0
@@ -176,6 +182,5 @@ eststo status_2q_jm
 
 
 *esttab status_synth status_2q status_synth_jm status_2q_jm using Results/status_bySample.tex, replace nonotes nogaps nonumbers title("Transition types by sample") keep(EE IE UE) mtitles("All transitions, synthetic" "All transitions, 2Q" "Job Movers, synthetic" "Job Movers, 2Q")
-esttab status_synth status_synth_jm using Results/status_bySample.tex, replace nonotes nogaps nonumbers title("Observations by Transition Type") keep(EE IE UE) mtitles("All transitions"  "Job Movers")
+esttab status_synth status_synth_jm using Results/status_bySample.tex, cells("count pct(fmt(2))")replace nonotes nogaps nonumbers title("Observations by Transition Type") keep(EE IE UE) mtitles("All transitions"  "Job Movers")
 
-restore

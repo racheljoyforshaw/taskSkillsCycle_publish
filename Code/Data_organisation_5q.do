@@ -122,7 +122,7 @@ gen status = q1_status + q2_status + q3_status + q4_status + q5_status
 * generate marker of Es
 gen num_E = q1_dummy + q2_dummy + q3_dummy+ q4_dummy + q5_dummy
 
-* get rid of observations with only one quarter
+* get rid of observations with only one quarter employment
 
 drop if num_E<2
 
@@ -215,6 +215,16 @@ replace UorIspell = 0 if (firstQTrans ==1 & lastQTrans ==2 & q1_dummy==1 & q2_du
 replace UorIspell = 1 if (firstQTrans ==1 & lastQTrans ==3 & q1_dummy==1 & q2_dummy==0 & q3_dummy==1) | (firstQTrans ==2 & lastQTrans ==4 & q2_dummy==1 & q3_dummy==0 & q4_dummy==1) | (firstQTrans ==3  & lastQTrans ==5 & q3_dummy==1 & q4_dummy==0 & q5_dummy==1)
 replace UorIspell = 2 if (firstQTrans ==1 & lastQTrans ==4 & q1_dummy==1 & q2_dummy==0 & q3_dummy==0 & q4_dummy==1) | (firstQTrans ==2 & lastQTrans ==5 & q2_dummy==1 & q3_dummy==0 & q4_dummy==0 & q5_dummy==1 )
 replace UorIspell = 3 if (firstQTrans ==1 & lastQTrans ==5 & q1_dummy==1 & q2_dummy==0 & q3_dummy==0 & q4_dummy==0 & q5_dummy==1) 
+
+* drop first & second quarter EEs (because we drop all 1st and 2nd quarter IEs and UEs since no previous E information)
+drop if q1_dummy==1 & q2_dummy==1 & firstQTrans==1 & lastQTrans==2
+drop if q2_dummy==1 & q3_dummy==1 & firstQTrans==2 & lastQTrans==3
+drop if q1_status=="." & q2_dummy==1 & q3_dummy==1 & firstQTrans==2 & lastQTrans==3
+drop if q1_status=="." & q3_dummy==1 & q4_dummy==1 & firstQTrans==3 & lastQTrans==4
+drop if q1_status=="." &  q2_status=="." & q3_dummy==1 & q4_dummy==1 & firstQTrans==3 & lastQTrans==4
+drop if q1_status=="." &  q2_status=="." & q4_dummy==1 & q5_dummy==1 & firstQTrans==4 & lastQTrans==5
+
+drop if q1_status=="." &  q2_status=="." &  q3_status=="." & q4_dummy==1 & q5_dummy==1 & firstQTrans==4 & lastQTrans==5
 
 
 **** move control variables to 2q format by moving to spaces 1 and 2 ***

@@ -88,33 +88,24 @@
 		%% \fntext[label3]{}
 		
 		
-		\title{The Task \& Skill Content of Occupational Transitions over the Business Cycle: Evidence for the UK}
+		\title{Cyclical Task Changes in Occupational Transitions: Evidence for the UK}
 		
 		
 		\author{Aspasia Bizopoulou \fnref{label4}}
 		\ead{aspasia.bizopoulou@vatt.fi}
 		\ead[url]{https://sites.google.com/site/aspasiabizopoulou}
 		\fntext[label4]{Senior Researcher, VATT Institute for Economic Research}
-		\address{VATT Institute for Economic Research
-			
-			Economicum
-			
-			Arkadiankatu 7
-			
-			PL 1279, 00101 Helsinki, Finland\fnref{label5}}
+		\address{VATT Institute for Economic Research, Economicum, Arkadiankatu 7, PL 1279, 00101 Helsinki, Finland\fnref{label5}}
 		%\fntext[label5]{Senior Researcher}
 		
-		\author{Rachel Forshaw\corref{cor1}\fnref{label2}}
+						\author{Rachel Forshaw\corref{cor1}\fnref{label2}}
 		\ead{r.forshaw@hw.ac.uk}
 		\ead[url]{https://sites.google.com/site/racheljoyforshaw}
 		\fntext[label2]{Assistant Professor, Heriot-Watt University}
 		\cortext[cor1]{Corresponding author}
-		\address{Heriot-Watt University, 
-			
-			Campus The Avenue,
-			
-			Edinburgh, EH14 4AS UK\fnref{label3}}
+		\address{Heriot-Watt University, Campus The Avenue, Edinburgh, EH14 4AS UK\fnref{label3}}
 		%\fntext[label3]{ho}
+
 		
 		
 		%% use optional labels to link authors explicitly to addresses:
@@ -130,7 +121,9 @@
 		
 		
 		\begin{abstract}
-We create a synthetic UK Labour Force Survey sample for the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm} which recovers the job histories of labour market transitions resulting in employment. This enables us to match measures of multidimensional tasks and skills from the O*NET. With a Double-Hurdle model, we capture both the intensive and extensive margins of task and skill changes, and control for selection effects in the types of individuals that transition in adverse labour market conditions. The aggregate effect - driven by fewer transitions - is a reduction in average task and skill moves as the unemployment rate rises. However, those who are able to transition when the unemployment rate is high are more likely to make task moves and to make larger such moves.
+%We create a synthetic UK Labour Force Survey sample for the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm} which recovers the job histories of labour market transitions resulting in employment. This enables us to match measures of multidimensional task content and complexity from the O*NET. With a Double-Hurdle model, 
+
+Using quarterly data for the UK period over the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1.5mm}, we measure the task content and task complexity changes during employment transitions. We examine both the extensive margins (the likelihood of moving) and  intensive margins (the amount), and control for selection effects in the types of individuals that transition in adverse labour market conditions. We find that, as the unemployment rate rises, the aggregate effect is a reduction in average task content and task complexity moves. However, our evidence suggests the importance of selection effects: we find that as the unemployment rate rises, individuals are more likely to make task moves and to make larger such moves.
 		\end{abstract}
 		
 		%%Graphical abstract
@@ -140,25 +133,21 @@ We create a synthetic UK Labour Force Survey sample for the period \input{../Res
 
 		%%Research highlights
 		\begin{highlights}
-			\item We study the change in tasks and skill content of job transitions using multidimensional task and skill measures.
-			\item We create a synthetic two-quarter labour force sample to analyse job-to-job transitions and those with a spell of inactivity or unemployment.
-			\item A Double-Hurdle model captures both the intensive and extensive margins of task and skill changes.
+			\item We study the change in task content and complexity of job transitions using multidimensional measures.
+			%\item We create a synthetic two-quarter labour force sample to capture labour market histories of transitions that result in employment.
+			\item A Double-Hurdle model captures both the intensive and extensive margins of task content and complexity changes.
 			\item We control for selection effects in the types of individuals that move employers in adverse labour market conditions.
 			\item Those who are able to transition when the unemployment rate is high are more likely to make task moves and to make larger such moves.
 		\end{highlights}
 
 		
 		\begin{keyword}
-			occupational mobility  \sep tasks  \sep skills  \sep business cycles \sep selection
+			occupational mobility  \sep tasks  \sep business cycles \sep selection \\
 			%% keywords here, in the form: keyword \sep keyword
-			
 			%% PACS codes here, in the form: \PACS code \sep code
-			
 			%% MSC codes here, in the form: \MSC code \sep code
 			%% or \MSC[2008] code \sep code (2000 is the default)
-			
 			\textit{JEL Codes}: J62 \sep E32
-			
 		\end{keyword}
 		
 		
@@ -168,140 +157,167 @@ We create a synthetic UK Labour Force Survey sample for the period \input{../Res
 	%% \linenumbers
 	
 	%% main text
+	\newpage 
 	\section{Introduction}
 	\label{sec:Introduction}
 	
-	Periods of increased unemployment entail changes to the reallocation processes of the labour market. It is well-documented that job-to-job transitions exhibit a  pro-cyclical relationship in both the UK and US  \cite{Carrillo-Tudela2016},  \cite{MurphyTopel1987}, \cite{Moscarini2007} and \cite{Kambourov2008}. Comparatively little is known about what happens to the content of those transitions in terms of the tasks and skills undertaken as part of occupations. \cite{Poletaev2008},  \cite{Gathmann2010} and \cite{Yamaguchi2010} detail how heterogenous occupational transitions can be in terms of differences in tasks. Previous literature, including \cite{MurphyTopel1987}, \cite{Moscarini2007}, \cite{Kambourov2008}, \cite{Carrillo-Tudela2014}, \cite{Carrillo-Tudela2016}, have used occupational titles as a proxy for the content of occupations, finding occupational transitions to be strongly pro-cyclical.	A much smaller literature, including \cite{CortesGallipoli}, \cite{Carrillo-Tudela2014}, \cite{Summerfield2016}, focuses on cyclical changes in reallocation of workers across tasks for individual workers. Until now, measurement of the multidimensional task and skill content of labour market transitions in the UK has not been possible. This is for two reasons. Firstly, the UK does not compile a standardised measure of tasks and skills that form the content of occupations. Secondly, the UK Labour Force Survey only publishes full Standardised Occupational Codes for current, not previous occupations held by individuals. 
+	Employment transitions are a key driver of macroeconomic outcomes. While a well-functioning labour market efficiently allocates workers to jobs that are a good match, periods of increased aggregate unemployment entail changes to these reallocation processes by introducing frictions. It is well-documented that the volume of job-to-job transitions exhibit a pro-cyclical relationship in both the UK and US  \cite{Carrillo-Tudela2016},  \cite{MurphyTopel1987}, \cite{Moscarini2007} and \cite{Kambourov2008}, and many labour market models explicitly account for such cyclical changes. Employment transitions also matter for career trajectories for the individual. Yet, comparatively little is known about what happens to the content of those transitions in terms of the task content and task complexity undertaken as part of occupational change. 
 	
-	The current paper seeks to provide evidence on the task and skill content of occupational transitions in the UK, and how this content changes with labour market conditions. To this end, this paper's first contribution is to develop an algorithm which recovers labour market histories from the UK Labour Force Survey for transitions that result in employment and that may experience up to 3 consecutive quarters of inactivity and/or unemployment. This means that we are able to capture all labour market transitions that result in employment, with the exception of the long-term unemployed or inactive. Secondly, we contribute to the existing evidence on US and European Labour Markets by creating multidimensional task and skill distance measures for the UK.  Using the recovered occupational codes for previous employment spells, we match to US O*NET data and measure the task and skill distances for each transition. Something that, to our knowledge, the literature has not yet directly accounted for is that the types of people that change tasks and skills during adverse labour market conditions may differ from those that do not, i.e. selection effects in the types of people who move. This may occur on the worker or firm side: for example, workers that decide to move during uncertain times may have different risk profiles; the larger available pool of candidates may induce firms be pickier in their hiring decisions than during normal economic times. As such, our third and final contribution is to directly account for these selection effects. Our results are in accordance with previous studies which find procyclical aggregate effects: in periods of high unemployment, average task and skill moves are smaller. However, we find that selection effects - the types of people that move - drive these aggregate results. 
+		\vspace{2mm}
+		
+	Characterising an occupation as a group of separate tasks is a well-established practice in the literature. Among applied papers, \cite{Poletaev2008} are one of the first to map occupational titles to tasks from the US Dictionary for Occupational Titles. \cite{Gathmann2010} and \cite{Yamaguchi2010} detail how heterogenous occupational transitions can be in terms of differences in tasks. \cite{Gathmann2010} construct a measure of occupational distance based on tasks, subsequently used by \cite{robinson2018}, and which we modify to use in this paper. Using German administrative data, they find that individuals tend to switch to occupations with similar task requirements, and the change in task composition of occupational moves tends to decrease over time.  Pioneered by \cite{ALM2003} and furthered by \cite{AcemogluAutor2011}, \cite{AutorDorn2013}  and \cite{GoosManningSalomons2014}, a large body of literature studies changes in the returns to skills and the evolution of earnings inequality. In particular, this literature categorises tasks as manual or cognitive and finds that labour demand is changing as a result of automation, leading to wage and employment gains for cognitive tasks relative to manual tasks and leading to job polarization. 
+		
+	\vspace{2mm}	  
+			  
+	A much smaller literature focuses on cyclical changes in reallocation of workers across tasks for individual workers. \cite{CortesGallipoli} focus on task-specific transition costs differences for the US; \cite{Summerfield2016} also focus on intensive and extensive margins of task change for Canada, finding that the cycle affects the task mobility of transitions differently depending on whether an individual experiences a spell of unemployment. \cite{Carrillo-Tudela2016} focuses on cyclical changes in the reallocation of workers across occupations for the UK and find occupational transitions to also be strongly pro-cyclical. However, to our knowledge there has so far been no measurement of the multidimensional task content and complexity of labour market transitions in the UK. This is for two reasons. Firstly, the UK does not compile a standardised measure of task content and complexity that form the content of occupations. Secondly, the UK Labour Force Survey only publishes full standardised occupational codes for current, not previous occupations held by individuals. 
+	
+		\vspace{2mm}	  
+	
+	The current paper seeks to provide evidence on the task content and task complexity content of occupational transitions in the UK, and how this content changes with cyclical labour market conditions. To this end, this paper recovers full labour market histories from the UK Labour Force Survey for transitions that result in employment and that may experience up to 12 months of inactivity and/or unemployment. This means that we are able to match detailed task data for most labour market transitions that result in employment, with the exception of the long-term ($>$12 months) unemployed or inactive. In doing so, we add evidence for the UK to the existing literature which provides evidence on US and European labour markets.  Using the recovered occupational codes for previous employment spells, we match to US O*NET data and measure the task content and task complexity distances for each transition. Something that, to our knowledge, the literature has not yet directly accounted for is that the types of people that change task content and task complexity during adverse labour market conditions may differ from those that do not, i.e. selection effects in the types of people who move. A contribution of this paper is that we explicitly account for these demand-side determinations of labour market reallocations. Our results are in accordance with previous studies which find pro-cyclical aggregate effects: in periods of high unemployment, average task content and task complexity moves are smaller. However, at the individual level, a higher aggregate unemployment rate is associated with an increase in both extensive and intensive task content and task complexity changes. Our results suggest that the aggregate effect is driven by differences in the types of people who move jobs in adverse labour markets.
 
-
 	
-	
-	In this paper, we break down occupational titles to actual job tasks and specific skill levels, and show that this strong pro-cyclical relationship is no longer evident: recessions negatively impact the number of job transitions but have very little impact on individuals' propensity to change their occupational content. 
-	
-	\vspace{2mm}
-	
-	Characterising an occupation as a group of separate tasks is a relatively recent but already well-established practice in the literature studying job transitions. Among applied papers, \cite{Poletaev2008} are one of the first to map occupational titles to tasks from the US Dictionary for Occupational Titles. %Using factor analysis, they group the tasks into four major categories and subsequently rank them by the intensity that they are used in each occupation. 
-	They study content difference in occupational switchers, defined as the situation when the new occupation employs the previous occupation's main skill with much lower or much higher intensity. They find that wage losses are closely associated with switching skill portfolio, in particular a decrease in skills. The key difference to our study is that their sample is of displaced workers, whereas we focus on all job-to-job transitions. %[add the \cite{Robinson2018 reference too}] 
-	In a similar vein, \cite{Gathmann2010} and subsequently \cite{robinson2018} construct a measure of occupational distance based on tasks, which we modify to use in this paper. Using German administrative data, they find that individuals tend to switch to occupations with similar task requirements, and the change in task composition of occupational moves tends to decrease over time.  Pioneered by \cite{ALM2003} and furthered by \cite{AcemogluAutor2011}, \cite{AutorDorn2013}  and \cite{GoosManningSalomons2014}, a large body of literature studies changes in the returns to skills and the evolution of earnings inequality. In particular, this literature categorises tasks as manual or cognitive and finds that labour demand is changing as a result of automation, leading to wage and employment gains for cognitive tasks relative to manual tasks and leading to job polarization. Our work differs from this literature in that it looks at the long-term trends of task change whereas our concern is the variation over the business cycle.
-	
-	\vspace{2mm}
-	
-	
-	
-	
-	
-	\vspace{2mm}
-	
-	
-	A separate literature studies job transitions over the business cycle. \cite{Carrillo-Tudela2016} look at the propensity for individuals to change careers over the cycle and find that the probability of a career change co-moves positively with the cycle. In addition, they find that career movers receive higher wages than those who do not change occupations. \cite{Devereux2000} offers an early study of the cyclicality of task assignment, focusing within the firm. He finds that firms tend to re-assign individuals to tasks of lower quality during recessions. \cite{Summerfield2016} shows that recessions lead to an increase in the share of tasks in the economy that are classified as manual. The contribution of the current paper to this literature is to address whether individuals overall tend to move to more or less similar jobs in terms of tasks during recessions, and whether the direction of these moves in terms of the required skill level is affected by economic conditions.
-	
-	
-	
-	
-	
-	\vspace{2mm}
-	
-	
-	\noindent The intuition for why our paper finds results that are contradictory to the literature is twofold.  Firstly, we are able to calculate the combined impact of recessions on both i) the probability of changing tasks at all as measured by an occupational transition (which we will call the \textit{extensive} margin) and ii) the extent of the task change for those undertaking an occupational change (which we will call the \textit{intensive} margin). Using the \cite{Mcdonald1980} decomposition we estimate that \input{../Results/fracMeanPos_angSep_CASCOT_r.txt}\hspace{-1mm}\% of the overall relationship that we estimate is the result of the latter intensive margin, i.e. the part attributable to a change in task or skill content. Previous studies captured only the extensive margin and as such tended to over-estimate the relationship between business cycles and occupational transitions. The second reason for why we find contradictory results is that there is selection in the types of individuals that change occupations in recessions. We use a Double Hurdle model to explicitly capture both the intensive and extensive margins, and allow for correlation in the errors of the two processes. When we control for selection this further reduces the magnitude of the total relationship between business cycles and occupational change.
-	
-	
-	
-	
-	\vspace{2mm}
-	
-	In our analysis we focus on the part of the working population that makes employment-to-employment (henceforth E2E) moves, which represents just over 50\% of new hires in the UK. This population of new hires is an important barometer of the labour market's relationship with  business cycles since, adjusting for productivity, the rate of job-to-job transitions is a sufficient statistic for the average real wage in the economy (\cite{MoscariniPostelVinay}). Our analysis requires a way to quantify task and skill changes, leading us to focus the first part of the paper on presenting a suitable measure of change in task composition from the literature which we modify to fit our specific purposes. We also propose a second measure to extract skill level information from the task data. We then detail the Double Hurdle model used to understand the relationship between tasks and skill content of occupational changes and the business cycle. Since the decision to change tasks consists of two parts, namely i) the decision to change tasks at all and ii) how big a task move to make, we decompose the estimates to obtain separate figures for each element. We find that the cyclical nature of task and skill changes is quantitatively small, and when we control for the composition effects of the types of people who get hired in a recession, it is statistically insignificant. 
+	%\vspace{2mm}
 	
 
+	 
+	 
+	  %\cite{Poletaev2008},  \cite{Gathmann2010} and \cite{Yamaguchi2010} detail how heterogenous occupational transitions can be in terms of differences in tasks. \cite{MurphyTopel1987}, \cite{Moscarini2007}, \cite{Kambourov2008}, \cite{Carrillo-Tudela2014}, \cite{Carrillo-Tudela2016} use occupational titles as a proxy for the content of occupations, finding occupational transitions to also be strongly pro-cyclical.	 Until now, measurement of the multidimensional task content and complexity of labour market transitions in the UK has not been possible. This is for two reasons. Firstly, the UK does not compile a standardised measure of task content and complexity that form the content of occupations. Secondly, the UK Labour Force Survey only publishes full Standardised Occupational Codes for current, not previous occupations held by individuals. 
+	 
+	
+%	The current paper seeks to provide evidence on the task content and task complexity content of occupational transitions in the UK, and how this content changes with cyclical labour market conditions. To this end, this paper's first contribution is to develop an algorithm which recovers full labour market histories from the UK Labour Force Survey for transitions that result in employment and that may experience up to 3 consecutive quarters of inactivity and/or unemployment. This means that we are able to match detailed task data for most labour market transitions that result in employment, with the exception of the very long-term unemployed or inactive. Secondly, we contribute to the existing evidence on US and European Labour Markets by adapting multidimensional task content and task complexity distance measures for the UK.  Using the recovered occupational codes for previous employment spells, we match to US O*NET data and measure the task content and task complexity distances for each transition. Something that, to our knowledge, the literature has not yet directly accounted for is that the types of people that change task content and task complexity during adverse labour market conditions may differ from those that do not, i.e. selection effects in the types of people who move. This may occur on the worker or firm side: for example, workers that decide to move during uncertain times may have different risk profiles; the larger available pool of candidates may induce firms be pickier in their hiring decisions than during normal economic times. As such, our third and final contribution is to directly account for these selection effects. Our results are in accordance with previous studies which find procyclical aggregate effects: in periods of high unemployment, average task content and task complexity moves are smaller. However, we find that selection effects - the types of people that move - drive these aggregate results. 
+
+	
+%	In this paper, we break down occupational titles to actual job task content and complexity levels, and show that this strong pro-cyclical relationship is no longer evident: recessions negatively affect the volume of job transitions but have a positive impact on individuals' propensity to change their occupational content. 
+	
+%	\vspace{2mm}
+	
+	%Characterising an occupation as a group of separate tasks is a relatively recent but already well-established practice in the literature studying job transitions. Among applied papers, \cite{Poletaev2008} are one of the first to map occupational titles to tasks from the US Dictionary for Occupational Titles. %Using factor analysis, they group the tasks into four major categories and subsequently rank them by the intensity that they are used in each occupation. 
+	%They study content difference in occupational switchers, defined as the situation when the new occupation employs the previous occupation's main tasks with much lower or much higher intensity. They find that wage losses are closely associated with switching task portfolio, in particular a decrease in task complexity. The key difference to our study is that their sample is of displaced workers, whereas we focus on all job-to-job transitions. %[add the \cite{Robinson2018 reference too}] 
+%	In a similar vein, \cite{Gathmann2010} and subsequently \cite{robinson2018} construct a measure of occupational distance based on tasks, which we modify to use in this paper. Using German administrative data, they find that individuals tend to switch to occupations with similar task requirements, and the change in task composition of occupational moves tends to decrease over time.  Pioneered by \cite{ALM2003} and furthered by \cite{AcemogluAutor2011}, \cite{AutorDorn2013}  and \cite{GoosManningSalomons2014}, a large body of literature studies changes in the returns to skills and the evolution of earnings inequality. In particular, this literature categorises tasks as manual or cognitive and finds that labour demand is changing as a result of automation, leading to wage and employment gains for cognitive tasks relative to manual tasks and leading to job polarization. Our work differs from this literature in that it looks at the long-term trends of task change whereas our concern is the variation over the business cycle.
+	
+
+		
+	
+	%\vspace{2mm}
+	
+	
+	%A separate literature studies job transitions over the business cycle. \cite{Carrillo-Tudela2016} look at the propensity for individuals to change careers over the cycle and find that the probability of a career change co-moves positively with the cycle. In addition, they find that career movers receive higher wages than those who do not change occupations. \cite{Devereux2000} offers an early study of the cyclicality of task assignment, focusing within the firm. He finds that firms tend to re-assign individuals to tasks of lower quality during recessions. \cite{Summerfield2016} shows that recessions lead to an increase in the share of tasks in the economy that are classified as manual. The contribution of the current paper to this literature is to address whether individuals overall tend to move to more or less similar jobs in terms of tasks during recessions, and whether the direction of these moves in terms of task complexity is affected by economic conditions.
+	
+	
+	
+	
+	
+	%\vspace{2mm}
+	
+	
+%	\noindent The intuition for why our paper finds results that are contradictory to the literature is twofold.  Firstly, we are able to calculate the combined impact of recessions on both i) the probability of changing tasks at all as measured by an occupational transition (which we will call the \textit{extensive} margin) and ii) the extent of the task change for those undertaking an occupational change (which we will call the \textit{intensive} margin). Using the \cite{Mcdonald1980} decomposition we estimate that \input{../Results/fracMeanPos_angSep_CASCOT_r.txt}\hspace{-1mm}\% of the overall relationship that we estimate is the result of the latter intensive margin, i.e. the part attributable to a change in task content or complexity. Previous studies captured only the extensive margin and as such tended to over-estimate the relationship between business cycles and occupational transitions. The second reason for why we find contradictory results is that there is selection in the types of individuals that change occupations in recessions. We use a Double Hurdle model to explicitly capture both the intensive and extensive margins, and allow for correlation in the errors of the two processes. When we control for selection this further reduces the magnitude of the total relationship between business cycles and occupational change.
+	
+	
+	
+	
+	%\vspace{2mm}
+	
+	%In our analysis we focus on the part of the working population that makes employment-to-employment (henceforth E2E) moves, which represents just over 50\% of new hires in the UK. This population of new hires is an important barometer of the labour market's relationship with  business cycles since, adjusting for productivity, the rate of job-to-job transitions is a sufficient statistic for the average real wage in the economy (\cite{MoscariniPostelVinay}). Our analysis requires a way to quantify task content and task complexity changes, leading us to focus the first part of the paper on presenting a suitable measure of change in task composition from the literature which we modify to fit our specific purposes. We also propose a second measure to extract task complexity information from the task data. We then detail the Double Hurdle model used to understand the relationship between task content and complexity of occupational changes and the business cycle. Since the decision to change tasks consists of two parts, namely i) the decision to change tasks at all and ii) how big a task move to make, we decompose the estimates to obtain separate figures for each element. We find that the cyclical nature of task content and task complexity changes is quantitatively small, and when we control for the composition effects of the types of people who get hired in a recession, it is statistically insignificant. 
+	
+
 	\vspace{2mm}
 	
 	
-	In section \ref{sec:Data} we describe the data that we use. Section \ref{sec:measures} presents the measures of task and skill difference between occupations. Section \ref{sec:Model} describes the econometric models used, and section \ref{sec:results} reports the results. Finally, section \ref{sec:Conclusion} concludes.
+	The rest of this paper is as follows: in section \ref{sec:Data} the algorithm which creates our synthetic two-quarter longitudinal sample for the UK Labour Force Survey (LFS), and how we match this labour market data to task data from the US O*NET. Section \ref{sec:measures} presents the measures of task content and task complexity differences between occupations. Section \ref{sec:Model} describes the econometric specification, and section \ref{sec:results} reports the results. Finally, section \ref{sec:Conclusion} concludes, and further details on the data and empirical analysis are outlined in the Appendices.
 	
 	\section{Data}
 	\label{sec:Data}
-	We first describe the data on job transitions in section \ref{sec:LFS}, then the data on task and skill content of occupations in section \ref{sec:ONET}. Section \ref{sec:matchLFSONET} describes how we match the two datasets.
+	
+	
+	%We first describe the data on job transitions in section \ref{sec:LFS}, then the data on task content and task complexity of occupations in section \ref{sec:ONET}. Section \ref{sec:matchLFSONET} describes how we match the two datasets.
+	
 	\subsection{UK Labour Force Survey (LFS)}
 	\label{sec:LFS}
-	We use the UK Quarterly Labour Force Survey (LFS) for the years \input{../Results/min_date.txt}\hspace{-1mm}-\hspace{1mm}\input{../Results/max_date.txt}\hspace{-1mm}. We focus on this time period as our data allows us to create a consistent classification of occupations, Standard Occupational Classification (SOC2010) codes throughout the sample.\footnote{While occupational classifications are available for the 1990s, occupations are classified according to a very different set of criteria. As such, when compared over time it is unclear what is true variation in occupations and what is simply reclassification.}  In the LFS survey respondents are followed over a maximum of five quarters, and in each quarter a fifth of the sample is replaced by an incoming group (see figure \ref{fig:LFS_2q_5q}). For our analysis, we focus on individuals over two quarters who have spell of employment in the second quarter. To do this, we combine two datasets, the two-quarter (2Q) longitudinal survey [DATASET] (\cite{LFS2Q}) and the five-quarter (5Q) longitudinal survey [DATASET] (\cite{LFS5Q}).  Using the 2Q dataset we are able to study job-to-job transitions that do not involve a quarter or more of unemployment or inactivity between employment spells. Henceforth, we call these `EE' transitions. 
-	%The survey contains information on individuals' employment status, their employment SOC code, employer tenure, sex, education, reasons for leaving their last job, methods of searching for new jobs, type of work contract (permanent or temporary) and type of employment (employed or self-employed). The series are weighted using census population weights provided by the Office for National Statistics (ONS).
-	%\newpage
-	\begin{figure}[t!]
+	
+	We use the UK Quarterly Labour Force Survey (LFS) published by the Office for National Statistics (ONS) for the years \input{../Results/min_date.txt}\hspace{-1mm}-\hspace{1mm}\input{../Results/max_date.txt}\hspace{-1.5mm}. For this time period we are able to construct consistent classification of occupations, Standard Occupational Classification (SOC) codes throughout the sample. We do this by using an ONS-provided cross-walk between the two occupational codes used over the period, SOC2000 for the years 2001-2010 and SOC2010 codes for the years 2011-2020.\footnote{While occupational classifications are available for the 1990s, they are classified according to a very different set of criteria and, when compared over time it is unclear what is genuine variation in occupations and what is simply reclassification.} 
+	In the LFS survey, respondents are followed over a maximum of five quarters, and in each quarter a fifth of the sample is replaced by an incoming group. In our analysis, we are interested in job transitions and so we focus on individuals over a period of two quarters who have a spell of employment in the second quarter. We are interested in observing three types of quarterly employment transitions: employment-to-employment (EE), inactivity to employment (IE) and unemployment-to-employment (UE). The ONS releases a two-quarter (2Q) dataset ([dataset] (\cite{LFS2Q}), which subsamples and stacks each two-quarter transition. However, it is not suitable for our purposes as it does not include information on previous employment spells for IE and UE transitions. In particular, we require the 4-digit occupational codes which allow us to match task data to the LFS, a process which we explain in greater detail in section \ref{sec:ONET}, below. Instead, we develop an algorithm which recovers employment information from the previous employment spell in the five-quarter (5Q) longitudinal survey ([dataset] \cite{LFS5Q}), and stacks these transitions into a 2Q dataset, which we call the synthetic 2Q.\footnote{The code to create this synthetic 2Q dataset is available at https://github.com/racheljoyforshaw/taskSkillsCycle\_publish/releases/tag/v1.0} As such, we are able to create multidimensional task content and task complexity measures of transitions that involve up to 12 months of inactivity or unemploymen, something that has not previously been possible in UK data.
+	
+		\vspace{2mm}
+	
+Figure \ref{fig:LFS_2q_5q} shows a visual explanation of the algorithm  which recovers employment information from the previous employment spell from the 5Q survey. In this example, we focus on a particular employment history in the 5Q in which individuals have a first quarter of employment, second quarter of unemployment, third and fourth quarter employment and fifth is a spell of inactivity, i.e. `EUEEI'. In total there are $4^5$ possible employment histories, given that `out of the labour force' is the fourth possible status in any quarter. For this set of transitions, there are two relevant two-quarter transitions, the UE transition in resulting in employment in Q3 and the EE transition which results in employment in Q4. In the original ONS 2Q dataset the EE transition has all of the data for each employment spell, but the UE transition does not. So that we can study the latter transition, our algorithm takes the full occupational data from the first quarter employment spell which includes the full occupational SOC code, but individual-specific data from the second quarter to create a synthetic 2Q UE transition.  In order to avoid over-selection of EE transitions, we exclude those EE transitions which occur in the first and second quarters for each rolling wave, since necessarily we exclude all IE and UE first and second quarter transitions owing to lack of data for the previous employment spell. Table \ref{tab:status_bySample} shows the number of observations by transition type for all transitions which end in employment (column 1) and for those who also move jobs (column 2). The distribution of transition types is very similar to the ONS 2Q distribution, but has a slightly greater mass of EE transitions, since we are excluding the long-term unemployed or inactive. As such, we report our results separately: for all transitions; and EE and IE/UE transitions, respectively. 
+	
+	
+	
+
+	\begin{figure}[H]
 		\centering
-		\includegraphics[width=.5\linewidth]{../Figures/LFS_2q_5q}
-		\caption{LFS Structure}
-		\caption*{\footnotesize{Panel Structure of the UK Quarterly LFS Survey}}
+		\includegraphics[width=.5\linewidth]{../Figures/LFS_2q_5q_ex.pdf}
+		\caption{Synthetic 2Q LFS Sample Example}
+		\caption*{\footnotesize{Notes: The LFS is surveyed in five quarter rolling panels. The example transition takes values `EUEEI' or employment, unemployment, employment, employment, inactive. To create the synthetic 2Q panel we take all transitions that end in employment (here, the UE ending in Q3 and the EE ending in Q4) and recover previous occupational data for all IE and UE transitions from the previous employment spell - in this case, data from the first quarter is used for the UE transition.}}
 		\label{fig:LFS_2q_5q}
 	\end{figure}
-We are also interested in transitions that involve spells of inactivity or unemployment, something that is not possible in the 2Q dataset. This is because, for `IE' and `UE' transitions, occupational SOC2010 codes and other employment-related data are not available for the previous spell of employment. To study this, we create a new dataset that utilises both 2Q and 5Q data. This involves creating an algorithm which, for each transition that results in employment, recovers data from the previous spell of employment. The standard 2Q LFS sample, plus the recovered job history for IE and UE we term the `synthetic' 2Q sample.\footnote{The code to create this synthetic 2Q dataset is available at https://github.com/racheljoyforshaw/taskSkillsCycle\_publish/releases/tag/v1.0} Figure \ref{fig:LFS_synthetic2q} shows a visual explanation of the algorithm.
-\begin{figure}[t!]
-	\centering
-	\includegraphics[width=.5\linewidth]{../Figures/LFS_synthetic2q}
-	\caption{Synthetic 2Q Sample}
-	\caption*{\footnotesize{Example of the Synthetic 2Q UK LFS Sample}}
-	\label{fig:LFS_synthetic2q}
-\end{figure}
-In red is the transition for which we need data. This is a transition  which results in employment in the fifth quarter of this individual's survey with an intervening quarter of unemployment in the fourth quarter. In the original 2Q data, this would appear as UE transition, but there would be very limited job history about the employment spell in the third quarter.\footnote{Specifically, there would only be the first digit of the occupational SOC code, hence why many studies use the a change in the first-digit of the SOC code as a proxy for occupational change.} We use the full occupational data from the third quarter that this individual is seen in,  which includes the full occupational SOC code and tenure, but individual-specific data from the fourth quarter to create a synthetic 2Q UE transition. As such, we are able to include in our data transitions that involve up to three quarters of inactivity or unemployment, and allows us to match a multidimensional task and skill measure of these transitions, something that has not previously been possible in UK data. Table \ref{tab:status_bySample} shows the number of observations by transition type for all transitions which end in employment (column 1) and for those who also move jobs (column 2).
+
+
+
 \input{../Results/status_bySample.tex} 
-Necessarily this synthetic 2Q dataset excludes those who are longer-term unemployed or inactive, and so our sample has a large proportion of EE transitions. As such, we report our results for the whole synthetic 2Q as well as separately for EE, and IE \& UE transitions, respectively. 
+
+
 
 	
 	
 	\subsection{US O*NET}
 	\label{sec:ONET}
 	
-	\begin{figure}[t!]
+	The US Department for Labor's O*NET ([dataset] \cite{ONET}) is a highly detailed survey which provides us with a picture of the tasks that are used in occupations. We use Standard Occupational Classification (SOC) codes available in the LFS to match occupations to the US O*NET. We choose to map the O*NET to UK occupational codes as, while some data about the task content of UK jobs exists in the UK Skills Survey, the O*NET is much more suitable for our purposes.\footnote{While The UK Skills Survey contains both labour market variables found in the LFS and task data found in the O*NET, however its sample size is too small for focusing only on job-to-job transitions to run our estimations. Furthermore, the questions are much more qualitative than the O*NET - variables include `Importance of looking the part' and `how often come home from work exhausted'; which, although interesting in their own right, do not readily map to tasks. It also doesn't cover all occupations because they are not sampled.} \cite{ONETreport} use the method employed in this paper to map the O*NET to UK SOC codes. They find the method to be robust, to create useful and reasonable data for occupations, and to accord with Skills Survey data in the variables that feature in both.
+	
+	\vspace{2mm}
+	
+	Alongside task data, the O*NET allows us to recover information on the required level at which each task is used in each occupation. We refer to this as `task complexity level', since the O*NET gives us information about both the type of task in the occupation and the level at which it is performed. To illustrate, figure \ref{fig:ONETQn} shows the question asked for the job task `mathematical reasoning'. The task complexity score ranges from 1 to 7. In this particular example, a task complexity level of 1 corresponds to ``Determine how much 10 oranges will cost when they are priced at 2 for 20 cents'', and a score of 6 corresponds to ``Determine the mathematics required to simulate a spacecraft landing on the moon'', the latter being clearly more complex. In the following section, we show the measures used to ascertain the difference between two occupations and to separate out task content and task complexity information. 
+	
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{../Figures/ONETQn}
 		\caption{O*NET Example Question}
-		\caption*{\footnotesize{Example question concerning mathematical reasoning from the O*NET, source: US O*NET Abilities Questionnaire}}
+		\caption*{\footnotesize{Notes: Example question concerning mathematical reasoning from the O*NET, source: US O*NET Abilities Questionnaire}}
 		\label{fig:ONETQn}
 	\end{figure}
 	
-	We combine the labour market data with the US Department for Labor's O*NET [DATASET] \cite{ONET}, a highly detailed survey which provides us with a picture of the tasks that are used in occupations. We standardise occupational classifications available in the LFS to match occupations to the US O*NET. Our aim is to obtain a detailed task content and difficulty profile for each occupation and to subsequently measure the distance between different occupations based on similarity of task content and level of skill. We choose to map the O*NET to UK occupational codes as, while some data about the task content of UK jobs exists in the UK Skills Survey, the O*NET is much more suitable for our purposes.While The UK Skills Survey contains both labour market variables found in the LFS and task data found in the O*NET, however its sample size is too small for focusing only on job-to-job transitions to run our estimations. For the task data, it would be theoretically possible to average over the observations to get job content for occupations. However, the questions are much more qualitative than the O*NET - variables include `Importance of looking the part' and `how often come home from work exhausted'; which, although interesting in their own right, do not readily map to tasks. It also doesn't cover all occupations because they are not sampled. \cite{ONETreport} use the method employed in this paper to map the O*NET to UK SOC codes. They find the method to be robust, to create useful and reasonable data for occupations, and to accord with Skills Survey data in the variables that feature in both.
-	
-	Alongside task data, the O*NET allows us to recover information on the required skill level at which each task is used in each occupation. We refer to this as `skill level', since the O*NET gives us information about both the type of task in the occupation and the level at which it is performed. To illustrate, figure \ref{fig:ONETQn} shows the question asked for the job task `mathematical reasoning'. The skill level score ranges from 1 to 7. In this particular example, a skill level of 1 corresponds to ``Determine how much 10 oranges will cost when they are priced at 2 for 20 cents'', and a score of 6 corresponds to ``Determine the mathematics required to simulate a spacecraft landing on the moon'', the latter being clearly higher-skilled. In section \ref{sec:taskDistance}, below, we show the measures used to ascertain the difference between two occupations and to separate out task and skill information. 
+
 	
 	
 	
 	
 	
 	
-	\subsection{Matching the O*NET task data to the UK LFS}
+	\subsection{Matching the US O*NET task data to the UK LFS}
 	\label{sec:matchLFSONET}
 	
 	\begin{figure}[t!]
 		\begin{center}
 			\includegraphics[scale=0.30]{../Figures/SOC2ONET2.png}
 			\caption{Example of mapping the SOC2010 to the O*NET }
-			\caption*{\footnotesize{The SOC2010 code that covers occupation `Economist' is 2425 and also covers a number of other occupations, including Actuary and Bioinformatician. Code 2425 maps to multiple O*NET occupations. Taking an average over all of the Oral Comprehension scores for the different O*NET occupations gives a score for the SOC2010 code. }}
+			\caption*{\footnotesize{Notes: The SOC2010 code that covers occupation `Economist' is 2425 and also covers a number of other occupations, including Actuary and Bioinformatician. Code 2425 maps to multiple O*NET occupations. Taking an average over all of the Oral Comprehension scores for the different O*NET occupations gives a score for the SOC2010 code. }}
 			\label{fig:SOC2ONET}
 		\end{center}
 	\end{figure}
 	
-	A crucial element in this study is the ability to match UK SOC codes from the LFS with task information from the O*NET. To do this we utilise CASCOT (Computer-Assisted Structured Coding Tool), a software tool developed by the Warwick Institute For Employment Research.\footnote{More information available at https://warwick.ac.uk/fac/soc/ier/software/cascot/} CASCOT is a computer program designed to make a semantic match between occupational titles and standard occupational codes. This mapping is created by comparing text descriptions of UK SOC2010 occupations to text descriptions of O*NET occupations, which takes into account the differences in vocabulary between the two countries (e.g. `President' in the US would be `CEO' in the UK).
+	A crucial element in this study is the ability to match UK SOC codes from the LFS with task information from the O*NET. To do this we utilise CASCOT (Computer-Assisted Structured Coding Tool), a software tool developed by the Warwick Institute For Employment Research.\footnote{More information available at https://warwick.ac.uk/fac/soc/ier/software/cascot/} CASCOT is a computer program designed to make a semantic match between occupational titles and standard occupational codes. This mapping is created by comparing text descriptions of UK SOC2010 occupations to text descriptions of O*NET occupations, which takes into account the differences in vocabulary between the two countries (e.g. `Company President' in the US would be `CEO' in the UK; `Janitor' in the US would be `Caretaker' in the UK.)
 	
-	The O*NET contains task profiles for 974 occupations, which we map onto the 374 SOC2010 occupations of the UK LFS using the CASCOT software. Since the number of separate occupation categories in the US are almost 3 times as many as the number of occupational categories in the UK Standard Occupational Classification that is used in the LFS, the mapping is not one-to-one, but one-to-many, with an average of 3 matches per SOC code. Summary statistics for the distribution of SOC-O*NET matches are provided in \ref{app:SummaryStats}. In order to get a single task vector for each UK SOC code, we follow two steps: first we use a confidence-weighted average over all matching O*NET occupations, where the confidence weights for the mapping of O*NET codes to UK SOC codes are provided by the CASCOT software.\footnote{We use a confidence threshold of 70\%, dropping any matches that fall below this confidence level. A visual inspection of the mapping confirms that the matches are sensible.} We obtain a mapping similar to the one shown in Figure \ref{fig:SOC2ONET}, where SOC code 2425 (left panel) is mapped with 6 different O*NET codes (right panel). Each O*NET occupation has scores for each of the 147 tasks in terms of the level of skill needed to perform a job. In this example, we look at the task `oral comprehension'. In figure \ref{fig:SOC2ONET} SOC code 2425 that covers occupation `Economist' is mapped with several possible occupations from the O*NET, including `Actuary' and `Statistician'. Taking an average over all of the oral comprehension scores for the different O*NET matches gives a single score for this task in the SOC2010 code, which we then repeat for all possible tasks in all possible matches. Figure \ref{fig:ONETScoreRange} provides an illustration of the average score for every task that is part of an Economist's portfolio, as calculated in Figure \ref{fig:SOC2ONET}.
+	\vspace{2mm}
+	
+	The O*NET contains task profiles for 974 occupations, which we map onto the 374 SOC2010 occupations of the UK LFS using the CASCOT software. Since the number of separate occupation categories in the US are almost 3 times as many as the number of occupational categories in the UK Standard Occupational Classification that is used in the LFS, the mapping is not one-to-one, but one-to-many, with an average of 3 matches per SOC code. Summary statistics for the distribution of SOC-O*NET matches are provided in \ref{app:SummaryStats}. In order to get a single task vector for each UK SOC code, we follow two steps: first we use a confidence-weighted average over all matching O*NET occupations, where the confidence weights for the mapping of O*NET codes to UK SOC codes are provided by the CASCOT software.\footnote{We use a confidence threshold of 70\%, dropping any matches that fall below this confidence level. A visual inspection of the mapping confirms that the matches are sensible.} We obtain a mapping similar to the one shown in Figure \ref{fig:SOC2ONET}, where SOC code 2425 (left panel) is mapped with 6 different O*NET codes (right panel). Each O*NET occupation has scores for each of the 147 tasks in terms of the level of task complexity. In this example, we look at the task `oral comprehension'. In figure \ref{fig:SOC2ONET} SOC code 2425 that covers occupation `Economist' is mapped with several possible occupations from the O*NET, including `Actuary' and `Statistician'. Taking an average over all of the oral comprehension scores for the different O*NET matches gives a single score for this task in the SOC2010 code, which we then repeat for all possible tasks in all possible matches. Figure \ref{fig:ONETScoreRange} provides an illustration of the average score for every task that is part of an Economist's portfolio, as calculated in Figure \ref{fig:SOC2ONET}.
 	
 	\begin{landscape}
 		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=1\linewidth]{../Figures/ScoreRange}
 			\caption{O*NET Task Vector Example - Economist}
-			\caption*{\footnotesize{Example task vector. The y axis lists all the tasks in occupation 2425 (Economist), the x axis is a normalised score of the skill level required for each task. Black dots are the O*NET exact matches for occupation 2425, red dots are the average values across the different possible matches and constitute the final scores that we use in our analysis for this occupation. Source: author's calculations using US O*NET and CASCOT.}}
+			\caption*{\footnotesize{Notes: Example task vector. The y axis lists all the tasks in occupation 2425 (Economist), the x axis is a normalised score of the complexity level required for each task. Black dots are the O*NET exact matches for occupation 2425, red dots are the average values across the different possible matches and constitute the final scores that we use in our analysis for this occupation. Source: author's calculations using US O*NET and CASCOT.}}
 			\label{fig:ONETScoreRange}
 		\end{figure}
 	\end{landscape}
 	
 	
 	
-	\section{Capturing content changes across occupations}
+	\section{Capturing task content and complexity changes across occupations}
 	\label{sec:measures}
-	We first detail our measure of tasks in section \ref{sec:taskDistance}, then our measure of skills in section \ref{sec:changeSkillLevel}. Section \ref{sec:twoTaskEx} shows a simplified example of the two measures and section \ref{sec:wagesSkills} establishes that higher skill level is associated with higher wages in the data. Finally, section \ref{sec:advantageTasks} discusses why it is important to incorporate these measures of tasks and skills when considering occupational changes.
-	\subsection{Measuring the Change in Tasks}
-	\label{sec:taskDistance}
-	To measure the change in task composition between two occupations we use the measure of angular separation from \cite{Gathmann2010}, which has also been used in the innovation literature (\cite{Jaffe1986}). The measure of the change in task composition between two occupations is as follows:
+	%We first detail our measure of tasks in section \ref{sec:taskDistance}, then our measure of task complexity in section \ref{sec:changeSkillLevel}. Section \ref{sec:twoTaskEx} shows a simplified example of the two measures and section \ref{sec:wagesSkills} establishes that higher task complexity is associated with higher wages in the data. Finally, section \ref{sec:advantageTasks} discusses why it is important to incorporate these measures of task content and complexity when considering occupational changes.
+\textit{Measuring the Change in Task Content}: To measure the change in task composition between two occupations we use the measure of angular separation from \cite{Gathmann2010}, which has also been used in the innovation literature (\cite{Jaffe1986}). The measure of the change in task composition between two occupations is as follows:
 	
 	
 	\begin{equation}
@@ -309,88 +325,45 @@ Necessarily this synthetic 2Q dataset excludes those who are longer-term unemplo
 	\Delta \text{Tasks}_{o,o'} = \left(1 - \frac{\sum_{t=1}^{T}(q_{t,o}\times q_{t,o'})}{\left[(\sum_{t=1}^{T}q_{t,o}^{2})\times(\sum_{t=1}^{T}q_{t,o'}^{2})\right]^{\frac{1}{2}}}\right)   \in [0,1]
 	\end{equation}
 	
-	\noindent where $o,o'$ is a pair of different occupations, $t$ is tasks, $q_{t,o}$ represents the skill level of a task $t$ within occupation $o$. Intuitively, the change in task composition between a set of occupations $o$ and $o'$ are compared by measuring the angle between their respective vectors. The scores in the vectors range between 0 (this task is not used in an occupation) and 7 (this task is used at the highest level), which we normalise within $[0,1]$, so that the entire measure is within $[0,1]$. Each occupation is represented by a vector of equal length dimension and each element of the vector gives a task score, i.e. the intensity with which the task is used in the given occupation. Some of the elements of the vector are zeros, since occupations do not use all available tasks. 
-	The way we apply equation \ref{eq:angSep} is different to the usage by \cite{Gathmann2010}, in which they use data on the fraction of employees using task $t$ in occupation $o$ to comprise $q_{t,o}$. Their data only carries information about the composition of tasks, rather than the skill level, whereas our task vectors include both. Therefore we develop another measure, detailed below in section \ref{sec:changeSkillLevel} which captures the difference in skill level between task vectors.
+	\noindent where $o,o'$ is a pair of different occupations, $t$ is tasks, $q_{t,o}$ represents the complexity level of a task $t$ within occupation $o$. The change in task composition between a set of occupations $o$ and $o'$ are compared by measuring the cosine angle between their respective vectors. The scores in the vectors range between 0 (this task is not used in an occupation) and 7 (this task is used at the highest level), which we normalise within $[0,1]$, so that the entire measure is within $[0,1]$. Each occupation is represented by a vector of equal length dimension and each element of the vector gives a task score, i.e. the intensity with which the task is used in the given occupation. Some of the elements of the vector are zeros, since occupations do not use all available tasks. 
+	The way we apply equation \ref{eq:angSep} is different to the usage by \cite{Gathmann2010}, in which they use data on the fraction of employees using task $t$ in occupation $o$ to comprise $q_{t,o}$. Their data carries information about the composition of tasks but not the task complexity, whereas our task vectors include both. Therefore we develop another measure, detailed below, which captures the difference in complexity between task vectors.
+	
+\vspace{2mm}	
 	
 	
-	
-	
-	\subsection{Measuring the Change in Skills}
-	\label{sec:changeSkillLevel}
-	In our dataset, since the length of the task vector for each occupation is determined by the difficulty - or skill level - at which the tasks is required, by measuring its length we can capture the degree of upskilling or downskilling between occupations. We propose the following measure, which takes into account the differences in magnitude between two vectors, to capture the change in skill level: 
+\textit{Measuring the Change in Task Complexity:} In our dataset, since the length of the task vector for each occupation is determined by the difficulty - or complexity level - at which the tasks is required, by measuring its length we can capture the differences between occupations. We propose the following measure, which takes into account the differences in magnitude between two vectors, to capture the change in task complexity: 
 	
 	\begin{equation}
 	\label{eq:skillScore}
-	\Delta\text{Skills}_{o,o'} = \left[\left[\sum_{t=1}^{T}(q_{t,o'}^{2})\right]^{\frac{1}{2}} - \left[\sum_{t=1}^{T}(q_{t,o}^{2})\right]^{\frac{1}{2}} \right]/\sqrt{T} \in[-1,1]
+	\Delta\text{Task Complexity}_{o,o'} = \left[\left[\sum_{t=1}^{T}(q_{t,o'}^{2})\right]^{\frac{1}{2}} - \left[\sum_{t=1}^{T}(q_{t,o}^{2})\right]^{\frac{1}{2}} \right]/\sqrt{T} \in[-1,1]
 	\end{equation}
 	
 	
-	\noindent Equation \ref{eq:skillScore} calculates the difference in length of two occupation task vectors and has range $[-1,1]$; -1 means that moving occupations results in complete downskilling in every task, 0 means two occupations are equally skilled in every task, 1 complete upskilling in every task.\footnote{Theoretically, a value of 0 could mean that the two vectors do not have the exact same scores for each task but the differences happen to offset each other perfectly. However, we do not observe this in the data - i.e., no two pairs of different SOC codes return a value of exactly 0. } The measure is therefore symmetric, i.e. $\Delta\text{Skills}_{{A}{B}}  = -1* \Delta\text{Skills}_{{B}{A}}$.
-	
-	\subsection{Two-Task Example of the Task and Skill Change Measures}
-	\label{sec:twoTaskEx}
-	
-	\begin{figure}[t]
-		\centering
-		\includegraphics[scale=0.60]{../Figures/AngularSeparation_example}
-		\qquad
-		\begin{tabular}{lcc}
-			& $\Delta$Task Content$ _{o,o'}$& $\Delta$Task Complexity$_{o,o'}$\\
-			\hline
-			\hline
-			A $\rightarrow$ B & 0 & \input{../Figures/AB_skillScore.txt}  \\
-			C $\rightarrow$ A &  \input{../Figures/CA_angSep.txt} & \input{../Figures/CA_skillScore.txt}  \\
-			A $\rightarrow$ D &  \input{../Figures/AD_angSep.txt} & \input{../Figures/AD_skillScore.txt}  \\
-			A $\rightarrow$ A & 0 & 0 \\
-		\end{tabular}
-		\caption{An example of $\Delta$Tasks and $\Delta$Skills with 2 tasks and 4 occupations}
-		\label{fig:AngSep}
-	\end{figure}
-	
-	Figure \ref{fig:AngSep} provides an illustration of how the $\Delta$Task and $\Delta$Skills measures can provide us with information about the content of occupational moves. We construct a basic example in which there are a total of four different occupations ($A$, $B$, $C$, $D$) which comprise two tasks: task 1 and task 2. Moving from occupation $A$, which is highly skilled in task 1 and task 2, to $B$, which is lowly skilled in both tasks gives a change in task composition of 0, since the tasks are still used in the same proportion. The $\Delta$Skills$_{o,o'}$ of $\input{../Figures/AB_skillScore.txt}$ reflects the fact that occupation $B$ is much lower skilled than $A$. Moving from occupation $C$ to $A$ represents both a change in tasks and upskilling, whereas the change in tasks from $A$ to $D$ constitutes downskilling. Finally, moving from and to the same occupation $A$ results in zeros for both measures.
-	
-	
-	
-	\subsection{The Relationship between Skill Level and Wages}
-	\label{sec:wagesSkills}
-	In using the $\Delta$Skills measure, equation \ref{eq:skillScore}, we are assuming that vector length of occupations is a good proxy for skill level of the tasks completed in an occupation. If the measure is capturing skill level we should expect it to be positively correlated with wages. To test this assumption we calculate the skill level for each occupation in the LFS: \\
-	
-	Skill Level$_{o}$ = $\left[\sum_{t=1}^{T}(q_{t,o}^{2})\right]^{\frac{1}{2}} $ \\
-	
-	\noindent  i.e. it is a measure of the vector length of an occupation in the task space, or the left hand side of the term in brackets of equation \ref{eq:skillScore}. We use this measure in a standard Mincerian wage estimation: 
-	\begin{equation}
-	\label{eq:skill_returns}
-	\ln w_{it}= \alpha + \beta_{1}\text{ Skill Level}_{o}+  \sum_{k} \beta_{k}X_{k,it} + e_{it}, 
-	\end{equation}
-	
-	where $\ln w_{it}$ are log real gross weekly wages for individual $i$ at time $t$. The vector $X_{it}$ includes controls for age, age squared, a dummy equal to 1 for female, years of tenure in the current job and dummies for high, medium and low eduction. Skill Level is standardised by subtracting its mean and dividing by its standard deviation to facilitate interpretation. We use the five quarter LFS and take the wage to be the one seen in the last quarter of interview. The sample includes all types of job histories ending with employment in the fifth quarter of interview.
+	\noindent Equation \ref{eq:skillScore} calculates the difference in length of two occupation task vectors and has range $[-1,1]$; -1 means that moving occupations results in lowered complexity in every task, 0 means two occupations are equally complex in every task, 1 an increase in complexity in every task.\footnote{Theoretically, a value of 0 could mean that the two vectors do not have the exact same scores for each task but the differences happen to offset each other perfectly. However, we do not observe this in the data - i.e., no two pairs of different SOC codes return a value of exactly 0. } The measure is therefore symmetric, i.e. $\Delta\text{Task Complexity}_{{A}{B}}  = -1* \Delta\text{Task Complexity}_{{B}{A}}$.
 	
 	\vspace{2mm}
 	
-	The estimation of Equation \ref{eq:skill_returns} can been seen in table \ref{skill_returns}. A one standard deviation increase in skill level is associated with an increase of \input{../Results/beta_SkillTotal.txt}\hspace{-1mm}\% in weekly gross real wages. This result suggests that our measure of the length of the vector as a skill difficulty proxy is reasonable since it is strongly positively correlated with wages. 
+\ref{sec:twoTaskEx} outlines a simple two-task example of both the task content and task complexity measures. In using the $\Delta$Task Complexity measure, equation \ref{eq:skillScore}, we are implicitly assuming that vector length of occupations is a good proxy for complexity or skill requirement of the tasks completed in an occupation. If the measure is capturing this we should expect it to be positively correlated with wages. To test this assumption, \ref{sec:wagesSkills} details the results of a Mincerian wage regression which confirms this positive association.
 	
+
 	
-	\begin{table}[t]
-		\centering
-		\begin{tabular}{l*{1}{c}}
-			\input{../Results/returns_skill_2000s}
-		\end{tabular}
-		\caption{Estimated Returns to Skills} 
-		\caption*{\footnotesize Notes: Dependent variable is log real gross weekly wages. Esimated on the LFS 5Q sample of full time workers using wages observed in the first interview quarter. Skill Level is proxied by linked O*NET data and standardised. The coeficient on Age$^2$ is multiplied by 1000. The reference category for education is Low Education (no qualifications). Standard errors in parentheses;	* \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\)}
-		\label{skill_returns}
-	\end{table}
+
 	
 	
 	
+	
+	
+	
+
 	
 	
 	\subsection{The Advantage of Using  Disaggregated Task Data}
 	\label{sec:advantageTasks}
-	Before proceeding to apply the above measure in our analysis, we take a moment to highlight the way in which we use task data to characterise how the content of two occupations might be different. We differ from the mobility literature, which usually use highly aggregated occupational codes, as in \cite{Carrillo-Tudela2016} who use 1-digit SOC codes, \cite{kambourov2009occupational} who use 1- and 2- digit occupational codes in the PSID. We argue that such aggregated measures are a very rough proxy for capturing content difference between two occupations. This can be seen anecdotally by looking at the occupation titles across different 1-digit occupations which can be more similar than transitions within the same 1-digit occupation. For example, moving from being a `Manager, food and beverage' employee (5436) to working in `Textiles, garments and related trades' (5419) would not be recorded as a change according to the 1-digit SOC definition of content change whereas the move to `Manager, public house' (1224) would. 
+	Before proceeding to apply the above measure in our analysis, we take a moment to highlight the way in which we use task data to characterise how the content of two occupations might be different. We differ from the mobility literature, which usually use highly aggregated occupational codes, as in \cite{Carrillo-Tudela2016} who use 1-digit SOC codes, \cite{kambourov2009occupational} who use 1- and 2- digit occupational codes in the PSID. We argue that such aggregated measures, while useful for capturing occupational change, may be only a rough proxy for capturing task content difference between two occupations. This can be seen anecdotally by looking at the occupation titles across different 1-digit occupations which can be more similar than transitions within the same 1-digit occupation. For example, moving from being a `Manager, food and beverage' employee (5436) to working in `Textiles, garments and related trades' (5419) would not be recorded as a change according to the 1-digit SOC definition of content change whereas the move to `Manager, public house' (1224) would. 
 	
 	\vspace{2mm}
 	
-	To formalise this anecdotal evidence, we calculate $\Delta$ Task Content (equation \ref{eq:angSep}) and $\Delta$ Task Complexity (equation \ref{eq:skillScore}) for all possible occupational transitions within- and across-1 digit SOC codes. An `across' 1-digit change is the type of occupational move usually recorded as a large difference between occupations or `career change' in the literature, while a `within' 1-digit change is recorded as no difference. Figure \ref{fig:angSepMod_diff} shows the resulting theoretical distributions.\footnote{Note that these plotted distributions exclude zeros (i.e., no change in task or skill complexity) which would represent \input{../Figures/angSep_same_zero_pct.txt}\% and  \input{../Figures/angSep_diff_zero_pct.txt}\% of the within and across potential moves, respectively, for both measures.We exclude these because in practice, if the content of tasks are the same between two jobs, then all complexity levels are also the same since both measures are only zero when comparing two identical SOC codes.}
+	To formalise this anecdotal evidence, we calculate $\Delta$ Task Content (equation \ref{eq:angSep}) and $\Delta$ Task Complexity (equation \ref{eq:skillScore}) for all possible occupational transitions within- and across-1 digit SOC codes. An `across' 1-digit change is the type of occupational move usually recorded as a large difference between occupations or `career change' in the literature, while a `within' 1-digit change is recorded as no difference. Figure \ref{fig:angSepMod_diff} shows the resulting theoretical distributions.\footnote{Note that these plotted distributions exclude zeros (i.e., no change in task content or complexity) which would represent \input{../Figures/angSep_same_zero_pct.txt}\% and  \input{../Figures/angSep_diff_zero_pct.txt}\% of the within and across potential moves, respectively, for both measures.We exclude these because in practice, if the content of tasks are the same between two jobs, then all complexity levels are also the same since both measures are only zero when comparing two identical SOC codes.}
 	\begin{figure}[h]
 		\centering
 		\begin{minipage}{.5\textwidth}
@@ -413,10 +386,11 @@ Necessarily this synthetic 2Q dataset excludes those who are longer-term unemplo
 			Intersection &\multicolumn{2}{c}{ \input{../Figures/angSep_intersection.txt}} & \multicolumn{2}{c}{\input{../Figures/modOfMod_intersection.txt}}\\
 			\hline
 		\end{tabular}
-		\caption{Figures $\Delta$Task Content (left) and $\Delta$ Task Complexity (right) show potential occupational moves across and within 1-digit SOC codes (excluding zeros). Table reports mean, standard deviation and histogram intersection for each measure.}
+	\caption{Example of Task Content and Task Complexity Measures}
+		\caption*{\footnotesize{Notes: Figures $\Delta$Task Content (left) and $\Delta$ Task Complexity (right) show potential occupational moves across and within 1-digit SOC codes (excluding zeros). Table reports mean, standard deviation and histogram intersection for each measure.}}
 		\label{fig:angSepMod_diff}
 	\end{figure}
-	In both figures, we see that this 1-digit SOC code proxy does capture some of the differences between occupations. In the left-hand of figure \ref{fig:angSepMod_diff}, the `across' distribution mean is to the right of the `within' distribution, and the standard deviation is greater. Similarly, the right-hand figure shows for changes in task complexity, `across' moves mean is greater in magnitude and negative than `within' moves, showing that it it more likely to capture `de-skilling' occupational moves.  On average, it is capturing larger magnitudes of task content and task complexity changes in occupational moves. However the differences between the distributions are strikingly modest. This is best demonstrated by the calculated histogram intersections, which show that  the $\Delta$ Task Content distributions overlap by 53\%, and the $\Delta$ Task Complexity distributions overlap by $37\%$. This motivates our use of disaggregated task data to understand how the content and complexity of occupations changes over the business cycle. 
+	In both figures, we see that this 1-digit SOC code proxy does capture some of the differences between occupations. In the left-hand of figure \ref{fig:angSepMod_diff}, the `across' distribution mean is to the right of the `within' distribution, and the standard deviation is greater. Similarly, the right-hand figure shows for changes in task complexity, `across' moves mean is greater in magnitude and negative than `within' moves, showing that it it more likely to capture occupational moves which entail a reduction in task complexity.  On average, it is capturing larger magnitudes of task content and task complexity changes in occupational moves. However the differences between the distributions are strikingly modest. This is best demonstrated by the calculated histogram intersections, which show that  the $\Delta$ Task Content distributions overlap by 53\%, and the $\Delta$ Task Complexity distributions overlap by $37\%$. This motivates our use of disaggregated task data to understand how the content and complexity of occupations changes over the business cycle. 
 	%Of course, the use of such disaggregated data leaves us open to the critique that we may be picking up too much `noise' in our measure. 
 	%As such, we repeat our main estimations by aggregating our task measures at the 1-digit SOC level, a robustness check that we discuss further in section \ref{sec:1digit}.
 	
@@ -509,82 +483,127 @@ Necessarily this synthetic 2Q dataset excludes those who are longer-term unemplo
 	
 			\end{comment}
 		
-		
-Table \ref{tab:diffMeans} suggests there are significant differences in observable characteristics between the recession and and non-recession samples. Those that transition in a recession are older, more likely to be married and have longer tenure. Fewer are in temporary roles for their previous job, and a larger fraction are self employed or work for the public sector in either their previous or current job. Fewer are medium-educated and a higher fraction are low- educated. More have quit (made a voluntary separation) from their previous employer, and a smaller fraction have been fired (made an involuntary separation).  
 	
-	
-	
-	
-	\begin{figure}[t]
-		\begin{center}
-			\begin{tikzpicture}[sibling distance=5cm,
+\begin{figure}[t]
+	\begin{center}
+		\begin{tikzpicture}[sibling distance=5cm,
 			every node/.style = {shape=rectangle, rounded corners,
 				draw, align=center,
 				top color=white}]]
 			\tikzset{level distance=72pt}
 			\node {Change jobs?}
-			child {node {Change occupations?} child {node[draw=none,fill=none]{EE, IE, UE movers\\$\Delta$Tasks$\neq$0, $\Delta$Skills$\neq$0} edge from parent node[left] {Yes}} child {node[draw=none,fill=none]{EE, IE, UE movers \\ $\Delta$Tasks=0, $\Delta$Skills=0} edge from parent node[right] {No}} edge from parent node[left] {Yes}}
-			child {node[draw=none,fill=none]{EE stayers \\ $\Delta$Tasks=0, $\Delta$Skills=0} edge from parent node[right] {No}};
-			\end{tikzpicture}
-			\begin{tikzpicture}
-			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (3.5,7.5) -- (3.5,4.65) node [black,midway,xshift=35pt,text width=1.5cm] {\footnotesize  Selection};
-			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (3.5,4.5) -- (3.5,1.65) node [black,midway,xshift=35pt] {\footnotesize Censoring};
-			\end{tikzpicture}
-		\end{center}
-		\caption{Illustration of Double Hurdle model} \label{fig:flowE2E}
-		\caption*{\footnotesize{First step: whether an individual changes jobs. Second step: whether an individual changes occupations (whether they have a task and skill change.)}}
-	\end{figure}
+			child {node {Change occupations?} child {node[draw=none,fill=none]{EE, IE, UE movers\\$\Delta$Task Content$\neq$0, \\ $\Delta$Task Complexity$\neq$0} edge from parent node[left] {Yes}} child {node[draw=none,fill=none]{EE, IE, UE movers \\ $\Delta$Task Content=0, \\ $\Delta$Task Complexity=0} edge from parent node[right] {No}} edge from parent node[left] {Yes}}
+			child {node[draw=none,fill=none]{EE stayers \\ $\Delta$Task Content=0, \\ $\Delta$Task Complexity=0} edge from parent node[right] {No}};
+		\end{tikzpicture}
+		\begin{tikzpicture}
+			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (3.5,7.5) -- (3.5,4.65) node [black,midway,xshift=35pt,text width=1.5cm] {\footnotesize  Participation};
+			\draw [decorate,decoration={brace,amplitude=10pt},xshift=-4pt,yshift=0pt] (3.5,4.5) -- (3.5,1.65) node [black,midway,xshift=35pt] {\footnotesize Amount};
+		\end{tikzpicture}
+	\end{center}
+	\caption{Illustration of Double Hurdle model} \label{fig:flowE2E}
+	\caption*{\footnotesize{Notes: In labour market transitions, either an an individual changes jobs or stays in their current position. If an individual changes jobs they may also change occupations and therefore have a task content or task complexity change}}
+\end{figure}
+		
+\noindent Our empirical specification must capture the two-step nature of the decision to change tasks, as illustrated in figure \ref{fig:flowE2E}. The first step participation decision is whether or not to change jobs between the first and second quarters of an individual transition. Importantly, this step typically incurs fixed costs. Therefore a Tobit specification - which would assume a single mechanism to drive both the participation and amount decision - is inappropriate. A familiar modelling approach in such two-step problems is the Heckit model advanced by \cite{Heckman}. However, this model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations. This is not appropriate in the current setting as a zero task content/complexity move is a valid choice, shown by those who change jobs but do not move occupations in figure \ref{fig:flowE2E}, and represents approximately 40\% of all job changers. This motivates our choice of a Double Hurdle specification, proposed by \cite{cragg1971}, and applied in a labour market setting by \cite{BlundellMeghir} and \cite{Blundell1989}. This model captures both the extensive (participation decision) and intensive (amount decision) of task content and task complexity change during employment transitions and allows them to be governed by distinct stochastic processes. It also allows the outcome variable to take the value of zero in the second stage.
+Concretely, the equations of the Double Hurdle model are:
+
+	\begin{subequations}
+	\label{eqn:heckman}
+	\begin{align}
+		& d^{*}_{it,2} = \tilde{\alpha}_0 + \tilde{\alpha}_{1}u_{t,2}  + \sum_{j} \tilde{\beta}_{j}\hat{X}_{j,it,1} + \sum_{k} \tilde{\gamma}_{k} \text{Q}_{k,2} + \sum_{l} \tilde{\delta}_{l} \text{R}_{l,1} + \sum_{m} \tilde{\zeta}_{m} \text{I}_{m,1} +  \tilde{\epsilon}_{it} \label{eqn:a}\\
+		& y_{it,2}^{**} = \check{\alpha}_0 + \check{\alpha}_{1}u_{t,2} + \sum_{j} \check{\beta}_{j}X_{j,it,12} + \sum_{k}\check{\gamma}_{k} \text{Q}_{k,2} + \sum_{l} \check{\delta}_{l} \text{R}_{l,1}  + \sum_{m} \check{\zeta}_{m} \text{I}_{m,1} + \hat{\lambda}_{it} + \check{\epsilon}_{it} \label{eqn:b} \\
+		& d_{it,2} =
+		\begin{cases}
+			1, & \text{if}\  d^{*}_{it,2} >0  \\
+			0, & \text{if}\ d^{*}_{it,2} \leq0  
+		\end{cases}\label{eqn:c}\\
+		& y_{it,2}^* =\max(0, y_{it,2}^{**})  \label{eqn:d} \\
+		& y_{it,2} = d_{it,2}\; y_{it,2}^* \label{eqn:e} 
+	\end{align}
+\end{subequations}
+
+Where subscripts refer to individual $i$, subscripts $_1$, $_2$ and $_{12}$ refer to data in the first quarter, second quarter, and both quarters of a transition at time $t$, respectively. $Q$ are quarter, $R$ region and $I$ industry fixed effects; $\tilde{\epsilon}_{it}$ and $\check{\epsilon}_{it}$ are error terms. Equations \ref{eqn:a} and \ref{eqn:b} represent the participation and amount hurdles, respectively.  $\hat{X}$ and $X$ are a set of controls which include demographic characteristics, namely age and age squared, marital status, sex, level of education,\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} number of children. We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method.  Note that control variables in the participation equation, $\hat{X}$, differ from those in the amount equation, $X$, in \ref{eqn:b}. This is because this hurdle uses the full estimation sample, which includes those who do not change jobs. As such, we only include controls for the first-period job (or, as we will use interchangeably, `previous' job.) For the same reason we also omit search method and separation type. Finally, $\hat{X}$ also includes an exclusion restriction, which we discuss below. The independent variable of interest is the aggregate unemployment rate, $u_{t,2}$.  $\hat{\lambda}$ is the estimated inverse Mills ratio obtained from estimating equation \ref{eqn:a}. 
+
+
+\vspace{2mm}
+
+
+Equation \ref{eqn:a} is the participation hurdle which captures desired task content or complexity move  $d^{*}$, which is latent. Equation \ref{eqn:b} and  \ref{eqn:d} are the amount hurdle, which is a Tobit model. In equation \ref{eqn:e}, $y_{it,2}$ describes the data actually observed, which captures the combined effect of the participation decision (equations \ref{eqn:a}, \ref{eqn:c}) and the amount decision (equation \ref{eqn:b} and \ref{eqn:d}). $y_{it,2}$ is either $\Delta\text{\textit{Task Content}}_{it,2}$ 
+or $|\Delta\text{\textit{Task Complexity}}_{it,2}|$. For the latter we take the absolute value of the change in task complexity since we cannot have an upper and lower truncation limit for the Tobit equal to zero as this would imply no truncated values. 
+
+\vspace{2mm}
+
+We allow for correlation in the error terms of the first and second hurdles, since table \ref{tab:diffMeans} suggests there are significant differences in observable characteristics between the recession and and non-recession samples. Those that transition in a recession are older, more likely to be married, and have longer tenure. Fewer are in temporary roles for their previous job, and a larger fraction are self employed or work for the public sector in either their previous or current job. Fewer are medium-educated and a higher fraction are low- educated. More have quit (made a voluntary separation) from their previous employer, and a smaller fraction have been fired (made an involuntary separation).  It is likely, therefore, that there are unobserved factors that affect the participation decision and also affect the amount decision.
+
+
+
+%\vspace{2mm}
+
+
+%The Double Hurdle model has the advantage of allowing the extensive (participation) and intensive (amount) margins to be governed by distinct stochastic processes. That is, unlike a simple Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the extensive margin (the decision to change task content/complexity) to be the same as the intensive margin (the amount to change task content/complexity) due to the presence of fixed costs incurred during the participation decision. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance, i.e. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise, important in this case as a zero task content/complexity move is a valid choice. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated.
+
+\vspace{2mm}
+
+To identify the effect of the first hurdle we include the exclusion restriction \textit{Wait}, whether the individual is waiting to start a job that they have already obtained. The exclusion restriction for the selection equation is a dummy which captures whether an individual is waiting to start working in a job that they have already obtained. This applies to all flow types: EE, IE and UE. It captures those still employed but that have obtained a new job (EE). It also covers those who are inactive as they are not currently employed and not seeking work but are waiting to take up a position (IE). Finally, those unemployed and waiting to take up a position (UE) are distinguished from those who are inactive as they have been actively seeking employment in the last 4 weeks. It is also highly but not perfectly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey - since many people that are waiting to take up a job will change jobs within the survey window, as table \ref{tab:t_test_jobMove_EE} in the appendix demonstrates. However, it is not related to the size of the task content or complexity change that an individual makes upon changing jobs conditional on transition type, as a difference in mean task move between those who waited to take up a position and those that didn't (\ref{tab:t_test_wait_EE} - \ref{tab:t_test_wait_UE}, appendix) confirms.
+
+
+	\newpage
+\thispagestyle{empty}
+\begin{table}[H]
+	\centering
+	\caption{Difference in Means Of Observable Characteristics In and Outside of Recessions}\label{tab:diffMeans}
+	\begin{adjustbox}{max width=16cm, max height=10cm}
+		\begin{threeparttable}
+			\input{../Results/t_test.tex}
+			\begin{tablenotes}
+				\item \footnotesize{Notes: Difference in longitudinal-weighted means inside=1 and outside=0 of recession for all transitions in the synthetic 2Q sample. Recession periods defined using UK ECRI indicator. Significance levels:$ \quad ^{*}<10\% \quad ^{**}<5\% \quad ^{***}<1\%$. Standard errors in parentheses. Source: author's calculations.}  
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{adjustbox}
+\end{table}
+\newpage
+
+\begin{comment}
+
+The first hurdle is a Probit model, capturing whether an individual decides to change task content or complexity, or not. If they do not change jobs, their $\Delta$ Task Content and $\Delta$ Task Complexity will be always be zero. If the individual has changed jobs, they must decide whether to change occupations, resulting in $\Delta$ Task Content and $\Delta$ Task Complexity being non-zero. If they do not change occupations, their $\Delta$ Task Content and $\Delta$ Task Complexity will appear as zero in the data. This is illustrated in figure \ref{fig:flowE2E}.  For a large portion of the sample - approximately 40\% of all job changers - the dependent variables are censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and so a Tobit is the appropriate specification for the amount decision.
+
+
+captures demand-side factors 
+
+		
+		
+Table \ref{tab:diffMeans} suggests there are significant differences in observable characteristics between the recession and and non-recession samples. Those that transition in a recession are older, more likely to be married and have longer tenure. Fewer are in temporary roles for their previous job, and a larger fraction are self employed or work for the public sector in either their previous or current job. Fewer are medium-educated and a higher fraction are low- educated. More have quit (made a voluntary separation) from their previous employer, and a smaller fraction have been fired (made an involuntary separation).  It is likely, therefore, that there are unobserved factors that affect the participation decision and also affect the amount decision. As such, we allow for correlation in the error terms of the first and second stages.
+
+
+	The Double Hurdle model has the advantage of allowing the extensive (participation) and intensive (amount) margins to be governed by distinct stochastic processes. That is, unlike a simple Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the extensive margin (the decision to change task content/complexity) to be the same as the intensive margin (the amount to change task content/complexity) due to the presence of fixed costs incurred during the participation decision. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise, important in this case as a zero task content/complexity move is a valid choice. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated.
+
+
+
+
+	
+	
+
 
 \vspace{2mm}
 	
-	This motivates our Double Hurdle specification, proposed by \cite{cragg1971}, and applied in a labour market setting by \cite{BlundellMeghir} and \cite{Blundell1989}. This model captures both the extensive (participation decision) and intensive (amount decision) of task and skill change during employment transitions. The first hurdle is a Probit model, capturing whether an individual decides to change tasks or skills or not. If they do not change jobs, their $\Delta$ Tasks and $\Delta$ Skills will be always be zero. If the individual has changed jobs, they must decide whether to change occupations, resulting in $\Delta$ Tasks and $\Delta$ Skills being non-zero. If they do not change occupations, their $\Delta$ Tasks and $\Delta$ Skills will appear as zero in the data. This is illustrated in figure \ref{fig:flowE2E}.  For a large portion of the sample - approximately 40\% of all job changers - the dependent variables are censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and so a Tobit is the appropriate specification for the amount decision.  Concretely, the equations of the Double Hurdle model are:
+	This motivates our Double Hurdle specification, proposed by \cite{cragg1971}, and applied in a labour market setting by \cite{BlundellMeghir} and \cite{Blundell1989}. This model captures both the extensive (participation decision) and intensive (amount decision) of task content and task complexity change during employment transitions. The first hurdle is a Probit model, capturing whether an individual decides to change task content or complexity, or not. If they do not change jobs, their $\Delta$ Task Content and $\Delta$ Task Complexity will be always be zero. If the individual has changed jobs, they must decide whether to change occupations, resulting in $\Delta$ Task Content and $\Delta$ Task Complexity being non-zero. If they do not change occupations, their $\Delta$ Task Content and $\Delta$ Task Complexity will appear as zero in the data. This is illustrated in figure \ref{fig:flowE2E}.  For a large portion of the sample - approximately 40\% of all job changers - the dependent variables are censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and so a Tobit is the appropriate specification for the amount decision.  Concretely, the equations of the Double Hurdle model are:
 	
-	
-	\begin{subequations}
-		\label{eqn:heckman}
-		\begin{align}
-		& \text{TSC}^{*}_{it,2} = \tilde{\beta}_0 + \tilde{\beta}_{2}\text{u}_{t,2}  +  \tilde{\beta}_{2}\text{Wait}_{t,1} + \sum_{j} \tilde{\beta}_{j}\hat{X}_{j,it,1} + \sum_{k} \tilde{\alpha}_{k} \text{Q}_{k,2} + \sum_{l} \tilde{\gamma}_{l} \text{R}_{l,1} + \sum_{m} \tilde{\delta}_{m} \text{I}_{m,1}+  \tilde{e}_{it} \label{eqn:heckmanProbit}\\
-		& y_{it,2}^{**} = \check{\beta}_0 + \check{\beta}_{1}u_{t} + \sum_{j} \check{\beta}_{j}X_{j,it,12} + \sum_{k}\check{\alpha}_{k} \text{Q}_{k,1} + \sum_{l} \check{\gamma}_{l} \text{R}_{l,1}  + \sum_{m} \check{\delta}_{m} \text{I}_{m,1} + \hat{\lambda}_{it} + \check{e}_{it} \label{eqn:heckmanTobit_start} \\
-		&  \text{TSC}_{it,2} =
-		\begin{cases}
-			1, & \text{if}\ \text{TSC}^{*}_{it,2} >0  \\
-			0, & \text{if}\ \text{TSC}^{*}_{it,2} \leq0  
-		\end{cases}\label{eqn:tasksIndicator}\\
-		& y_{it,2}^* =\max(0, y_{it,2}^{**})  \label{eqn:heckmanTobit_end} \\
-		& y_{it,2} = \text{TSC}_{it,2}y_{it,2}^* \label{eqn:dh} 
-		\end{align}
-	\end{subequations}
-	
-	Where subscripts refer to individual $i$, subscripts $_1$, $_2$ and $_{12}$ refer to data in the first quarter, second quarter, and both quarters of an individual transition at time $t$, respectively. $Q$ are quarter, $R$ region and $I$ industry fixed effects; $e_{it}$ is the error term. 
-	
+
 	
 	\vspace{2mm}
 	
 	
-	Equation \ref{eqn:heckmanProbit} is the Probit participation model which has dependent variable $\text{TSC}^{*}$ (Task or Skill Change) equal to one if an individual changes both jobs and tasks or skills between the first and second quarter of interview, zero otherwise. Note that control variables $\hat{X}$ differ from those in the amount equation, \ref{eqn:heckmanTobit_start}, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} and  \ref{eqn:heckmanTobit_end} are the Tobit structural model with dependent variables $y_{it,2}$ $y_{it}$ is the dependent variable, which is either $\Delta\text{\textit{Tasks}}_{it}$ when estimating the relationship between labour market conditions and the change in task composition of moves or $|\Delta\text{\textit{Skills}}_{it}|$ when estimating the relationship with the absolute change in skill level. We take the absolute value of the change in skill level since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). Equation \ref{eqn:dh} is the data actually observed, which captures the combined effect of the participation decision (equations \ref{eqn:heckmanProbit}, \ref{eqn:tasksIndicator}) and the amount decision (equation \ref{eqn:heckmanTobit_start}). Equations \ref{eqn:heckmanTobit_start} and \ref{eqn:heckmanTobit_end}  are a Tobit model with the addition of the estimated inverse Mills ratio, $\hat{\lambda}$, obtained from estimating equation \ref{eqn:heckmanProbit} to control for selection. Our independent variable of interest is $u_{t}$, the aggregate unemployment rate. We add a set of controls which include demographic characteristics, namely age and age squared, marital status, sex, level of education,\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} number of children. We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. 
+	Equation \ref{eqn:heckmanProbit} is the Probit participation model which has dependent variable  $d^{*}$ equal to one if an individual changes both jobs and task content or task complexity between the first and second quarter of interview, zero otherwise. Note that control variables $\hat{X}$ differ from those in the amount equation, \ref{eqn:heckmanTobit_start}, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} and  \ref{eqn:heckmanTobit_end} are the Tobit structural model with dependent variables $y_{it,2}$ $y_{it}$ is the dependent variable, which is either $\Delta\text{\textit{Task Content}}_{it}$ or $|\Delta\text{\textit{Task Complexity}}_{it}|$. We take the absolute value of the change in task complexity since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). Equation \ref{eqn:dh} is the data actually observed, which captures the combined effect of the participation decision (equations \ref{eqn:heckmanProbit}, \ref{eqn:tasksIndicator}) and the amount decision (equation \ref{eqn:heckmanTobit_start}). Equations \ref{eqn:heckmanTobit_start} and \ref{eqn:heckmanTobit_end}  are a Tobit model with the addition of the estimated inverse Mills ratio, $\hat{\lambda}$, obtained from estimating equation \ref{eqn:heckmanProbit} to control for selection. Our independent variable of interest is $u_{t}$, the aggregate unemployment rate. We add a set of controls which include demographic characteristics, namely age and age squared, marital status, sex, level of education,\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} number of children. We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. 
 	
 	
-	The Double Hurdle model has the advantage of allowing the extensive (participation) and intensive (amount) margins to be governed by distinct stochastic processes. That is, unlike a simple Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the extensive margin (the decision to change task/skills) to be the same as the intensive margin (the amount to change task/skills). This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise, important in this case as a zero task/skills move is a valid choice. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated.
+	The Double Hurdle model has the advantage of allowing the extensive (participation) and intensive (amount) margins to be governed by distinct stochastic processes. That is, unlike a simple Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the extensive margin (the decision to change task content/complexity) to be the same as the intensive margin (the amount to change task content/complexity) due to the presence of fixed costs incurred during the participation decision. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise, important in this case as a zero task content/complexity move is a valid choice. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated.
 	
 	\vspace{2mm}
 	
-	 To identify the effect of the first hurdle we include the exclusion restriction \textit{Wait}, whether the individual is waiting to start a job that they have already obtained. The exclusion restriction for the selection equation is a dummy which captures whether an individual is waiting to start working in a job that they have already obtained. This applies to all flow types: EE, IE and UE. It captures those still employed but that have obtained a new job (EE). It also covers those who are inactive as they are not currently employed and not seeking work but are waiting to take up a position (IE). Finally, those unemployed and waiting to take up a position (UE) are distinguished from those who are inactive as they have been actively seeking employment in the last 4 weeks. It is also highly but not perfectly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey - since many people that are waiting to take up a job will change jobs within the survey window, as table \ref{tab:t_test_jobMove_EE} in the appendix demonstrates. However, it is not related to the size of the task or skill change that an individual makes upon changing jobs conditional on transition type, as a difference in mean task move between those who waited to take up a position and those that didn't (\ref{tab:t_test_wait_EE} - \ref{tab:t_test_wait_UE}, appendix) confirms.
+	 To identify the effect of the first hurdle we include the exclusion restriction \textit{Wait}, whether the individual is waiting to start a job that they have already obtained. The exclusion restriction for the selection equation is a dummy which captures whether an individual is waiting to start working in a job that they have already obtained. This applies to all flow types: EE, IE and UE. It captures those still employed but that have obtained a new job (EE). It also covers those who are inactive as they are not currently employed and not seeking work but are waiting to take up a position (IE). Finally, those unemployed and waiting to take up a position (UE) are distinguished from those who are inactive as they have been actively seeking employment in the last 4 weeks. It is also highly but not perfectly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey - since many people that are waiting to take up a job will change jobs within the survey window, as table \ref{tab:t_test_jobMove_EE} in the appendix demonstrates. However, it is not related to the size of the task content or complexity change that an individual makes upon changing jobs conditional on transition type, as a difference in mean task move between those who waited to take up a position and those that didn't (\ref{tab:t_test_wait_EE} - \ref{tab:t_test_wait_UE}, appendix) confirms.
+	 \end{comment}
 	
-	\newpage
-	\thispagestyle{empty}
-	\begin{table}[H]
-		\centering
-		\caption{Difference in Means of E2E Sample In and Outside Recession}\label{tab:diffMeans}
-		\begin{adjustbox}{max width=16cm, max height=10cm}
-			\begin{threeparttable}
-				\input{../Results/t_test.tex}
-				\begin{tablenotes}
-					\item \footnotesize{Notes: Difference in longitudinal-weighted means inside=1 and outside=0 of recession for all transitions in the synthetic 2Q sample. Recession periods defined using UK ECRI indicator. Significance levels:$ \quad ^{*}<10\% \quad ^{**}<5\% \quad ^{***}<1\%$. Standard errors in parentheses. Source: author's calculations.}  
-				\end{tablenotes}
-			\end{threeparttable}
-		\end{adjustbox}
-	\end{table}
-	\newpage
+
 	
 	\section{Results}
 	\label{sec:results}
@@ -612,7 +631,7 @@ Table \ref{tab:diffMeans} suggests there are significant differences in observab
 			\caption{}
 			\label{fig:Ng3}
 		\end{subfigure}
-		\caption[Mean $\Delta$ Tasks and $\Delta$ Skills by Transition Type]{Five quarter moving average of the (a) $\Delta$ Tasks and (b) $\Delta$ Skills within-quarter for EE, IE transitions.(c) Aggregate Unemployment Rate.}
+		\caption[Mean $\Delta$ Task Content and $\Delta$ Task Complexity by Transition Type]{Five quarter moving average of the (a) $\Delta$ Task Content and (b) $\Delta$ Task Complexity within-quarter for EE, IE transitions.(c) Aggregate Unemployment Rate.}
 	\label{fig:TaskSkillsUR}
 	\end{figure}
 
@@ -621,17 +640,22 @@ Table \ref{tab:diffMeans} suggests there are significant differences in observab
 	%\subsection{Changes in Tasks and  Skills over the Cycle}
 	%\label{sec:TobitProbit}
 	
-	
-	 Results are shown in model (1) of table \ref{tab:TobitResults}. We see that an increase in the unemployment rate of one percentage point is associated with \input{../Results/angSep_sd_CASCOT.txt}\hspace{-1mm} of a standard deviation reduction in task change.\footnote{\input{../Results/agg_urate_angSep_CASCOT.txt}\hspace{-1mm} times the APE factor, \input{../Results/APEfactor_angSep_CASCOT.txt}\hspace{-1mm}} The magnitude of this relationship is very small. To put this into context, we estimate that the conditional average of $\Delta$Task Change is \input{../Results/angSep_s_mean.txt}\hspace{-1mm}\footnote{Conditional on the compositional controls listed in table \ref{tab:TobitResults}.}. An example of a move with $\Delta$Task composition equal to \input{../Results/angSep_s_mean.txt}\hspace{-1mm}  is from $4159$ `Fraud Inspector' to $3533$ `Insurance Underwriter'. During the 2008 recession, the unemployment rate increased by approximately 2.5 percentage points. The estimated standard deviation of $\Delta$Task composition, conditional on the controls listed in section \ref{sec:Model}, is \input{../Results/angSep_s_sd.txt}\hspace{-1mm}. An increase in the unemployment rate by 2.5 percentage points would therefore correspond to an approximate change of:
-	\[
+	\begin{comment}
+
+	 Results are shown in model (1) of table \ref{tab:TobitResults}. We see that an increase in the unemployment rate of one percentage point is associated with \input{../Results/angSep_sd_CASCOT.txt}\hspace{-1mm} of a standard deviation reduction in task change.\footnote{\input{../Results/agg_urate_angSep_CASCOT.txt}\hspace{-1mm} times the APE factor, \input{../Results/APEfactor_angSep_CASCOT.txt}\hspace{-1mm}} The magnitude of this relationship is very small. To put this into context, we estimate that the conditional average of $\Delta$Task Content is \input{../Results/angSep_s_mean.txt}\hspace{-1mm}\footnote{Conditional on the compositional controls listed in table \ref{tab:TobitResults}.}. An example of a move with $\Delta$Task Content equal to \input{../Results/angSep_s_mean.txt}\hspace{-1mm}  is from $4159$ `Fraud Inspector' to $3533$ `Insurance Underwriter'. During the 2008 recession, the unemployment rate increased by approximately 2.5 percentage points. The estimated standard deviation of $\Delta$Task Content, conditional on the controls listed in section \ref{sec:Model}, is \input{../Results/angSep_s_sd.txt}\hspace{-1mm}. An increase in the unemployment rate by 2.5 percentage points would therefore correspond to an approximate change of:
+	%\[
 	\underbrace{2.5}_{\Delta Xu}* \underbrace{\input{../Results/agg_urate_modOfMod_ape_CASCOT.txt}}_{\widehat{\frac{\partial E(y| X)}{\partial Xu}}} *\underbrace{\input{../Results/angSep_s_sd.txt}}_{ \widehat{E(\sigma|X)}} = \input{../Results/agg_urate_context.txt}
 	\]
 	
-	\noindent In our example, this would be an occupational move with $\Delta$Tasks=\input{../Results/angSep_s_mean.txt}\hspace{-1mm} \input{../Results/agg_urate_context.txt} =  \input{../Results/agg_urate_context2.txt}\hspace{-1.5mm}. An example of such a task move is 3532 `Insurance Broker' to 4132 `Administrative Officer, Insurance'. Both of these examples are small occupational moves, and there seems to be minimal difference between the two types of moves.
+	\noindent In our example, this would be an occupational move with $\Delta$Task Content=\input{../Results/angSep_s_mean.txt}\hspace{-1mm} \input{../Results/agg_urate_context.txt} =  \input{../Results/agg_urate_context2.txt}\hspace{-1.5mm}. An example of such a task move is 3532 `Insurance Broker' to 4132 `Administrative Officer, Insurance'. Both of these examples are small occupational moves, and there seems to be minimal difference between the two types of moves.
 	
 	\vspace{2mm}
 	
-	In terms of the absolute change in skill level (i.e. when $y_i=|\Delta\text{\textit{Skills}}_{i}|$), the estimate is in the same direction and of a similar magnitude. An increase in the aggregate unemployment rate corresponds to a \input{../Results/agg_urate_modOfMod_ape_CASCOT.txt} change in skill level.\footnote{\input{../Results/agg_urate_modOfMod_CASCOT.txt} times the APE factor,\input{../Results/APEfactor_modOfMod_CASCOT.txt}\hspace{-1mm}, table \ref{tab:TobitResults}} This estimated relationship is similarly economically insignificant.
+	In terms of the absolute change in task complexity (i.e. when $y_i=|\Delta\text{\textit{Task Complexity}}_{i}|$), the estimate is in the same direction and of a similar magnitude. An increase in the aggregate unemployment rate corresponds to a \input{../Results/agg_urate_modOfMod_ape_CASCOT.txt} change in task complexity level.\footnote{\input{../Results/agg_urate_modOfMod_CASCOT.txt} times the APE factor,\input{../Results/APEfactor_modOfMod_CASCOT.txt}\hspace{-1mm}, table \ref{tab:TobitResults}} This estimated relationship is similarly economically insignificant.
+	
+			content...
+\end{comment}
+
 	\newpage
 	\newgeometry{a4paper,left=1in,right=1in,top=1in,bottom=1in,nohead}
 	%\begin{landscape}
@@ -690,37 +714,39 @@ Table \ref{tab:diffMeans} suggests there are significant differences in observab
 	\end{equation*}
 	
 	This is a substantial fraction attributed to the intensive margin of those who switch occupations (the \textit{extent of task change}). It explains why studies look at only the extensive margin of whether to make an occupational move or not will miss a large portion of the overall relationship between recessions and occupational content changes.
-	\end{comment}
+
 	
 	\vspace{2mm}
 	
-	Regression specification (2) in table \ref{tab:TobitResults}, which estimates equation \ref{eqn:tobit} at the one-digit level of SOC codes, shows further that our results are not driven by our use of more granular occupational codes. Model (2) shows the same Tobit model as (1) but with task and skill moves aggregated to 1-digit occupational categories. As expected the coefficient on the unemployment rate is larger in magnitude, however it remains economically insignificant.
+	Regression specification (2) in table \ref{tab:TobitResults}, which estimates equation \ref{eqn:tobit} at the one-digit level of SOC codes, shows further that our results are not driven by our use of more granular occupational codes. Model (2) shows the same Tobit model as (1) but with task content and complexity changes aggregated to 1-digit occupational categories. As expected the coefficient on the unemployment rate is larger in magnitude, however it remains economically insignificant.
 	
 	\vspace{2mm}
 	
-	Regression specification (3) in table \ref{tab:TobitResults}, which estimates equation \ref{eqn:heckman}, further controls for selection using a Double Hurdle model. Controlling for the selection of those who move occupations in recessions, we see that the coefficient on the unemployment rate is smaller in magnitude for both task and skill moves and is now statistically insignificant. The coefficient on the unemployment rate in the Probit equation \ref{eqn:heckmanProbit} is negative and highly significant, suggesting that negative relationship between recessions and job transitions works entirely through the extensive margin of whether to change employers or not. This suggests that the types of people that move employers in a recession are less likely to make large task and skill moves.
+	Regression specification (3) in table \ref{tab:TobitResults}, which estimates equation \ref{eqn:heckman}, further controls for selection using a Double Hurdle model. Controlling for the selection of those who move occupations in recessions, we see that the coefficient on the unemployment rate is smaller in magnitude for both task content and task complexity moves and is now statistically insignificant. The coefficient on the unemployment rate in the Probit equation \ref{eqn:heckmanProbit} is negative and highly significant, suggesting that negative relationship between recessions and job transitions works entirely through the extensive margin of whether to change employers or not. This suggests that the types of people that move employers in a recession are less likely to make large task content and task complexity moves.
 	
 	
 	
 	
 	\vspace{2mm}
 	
-	In each specification control variables are, for the most part, significant; in a number of cases they are a magnitude larger than the estimated coefficient on the unemployment rate. Older individuals (\textit{Age}) tend to make smaller task and skill moves, consistent with the idea that individuals tend to specialise over their careers. For the same reasons, those with a higher relative to lower education level (\textit{High Education}), and those with greater tenure  (\textit{Tenure}) tend to make smaller task and skill moves. Being full time relative to part time in a previous job (\textit{Full Time in Previous Job}) is associated with much lower task and skill moves in all specifications, and at a magnitude of approximately ten times that of recessions. This suggests that full time workers are much less flexible in changing the content of their jobs when moving employers than part time workers are. Similarly, being fired from a first quarter job (\textit{Involuntary Separation}) is associated with much smaller task and skill moves than quits.
-	If an individuals' second quarter recorded occupation is temporary rather than permanent (\textit{Temporary in Current Job}), this is associated with much larger task and skill moves. Again this association is an order of magnitude greater than that of recessions. The same is true for having a public sector rather than private sector job in the second quarter (\textit{Public Sector in Current Job}), being self employed in either the first or second quarter of interview (\textit{Self Employed in Previous/Current Job}) and applying to jobs via Job Centres (\textit{Search Method: Job Centre}) and Advertisements (\textit{Search Method: Advertisements}) relative to not searching for a job.
+	In each specification control variables are, for the most part, significant; in a number of cases they are a magnitude larger than the estimated coefficient on the unemployment rate. Older individuals (\textit{Age}) tend to make smaller task content and task complexity moves, consistent with the idea that individuals tend to specialise over their careers. For the same reasons, those with a higher relative to lower education level (\textit{High Education}), and those with greater tenure  (\textit{Tenure}) tend to make smaller task content and task complexity moves. Being full time relative to part time in a previous job (\textit{Full Time in Previous Job}) is associated with much lower task content and task complexity moves in all specifications, and at a magnitude of approximately ten times that of recessions. This suggests that full time workers are much less flexible in changing the content of their jobs when moving employers than part time workers are. Similarly, being fired from a first quarter job (\textit{Involuntary Separation}) is associated with much smaller task content and task complexity moves than quits.
+	If an individuals' second quarter recorded occupation is temporary rather than permanent (\textit{Temporary in Current Job}), this is associated with much larger task content and task complexity moves. Again this association is an order of magnitude greater than that of recessions. The same is true for having a public sector rather than private sector job in the second quarter (\textit{Public Sector in Current Job}), being self employed in either the first or second quarter of interview (\textit{Self Employed in Previous/Current Job}) and applying to jobs via Job Centres (\textit{Search Method: Job Centre}) and Advertisements (\textit{Search Method: Advertisements}) relative to not searching for a job.
 	
+		\end{comment}
 	
 	\section{Concluding Remarks}
 	\label{sec:Conclusion}
 	
-	We study the extent to which the occupational content of job transitions is sensitive to cyclical fluctuations. Using the UK Labour Force Survey matched with the O*NET dictionary of tasks for the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}, we find little evidence for an economically significant relationship. Unlike previous research, we focus on observed changes in the task content and skill level of job transitions, not only on changes in occupational category. 
+
+	We study the extent to which the occupational content of job transitions is sensitive to cyclical fluctuations. Using the UK Labour Force Survey matched with the O*NET dictionary of tasks for the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}, we find little evidence for an economically significant relationship. Unlike previous research, we focus on observed changes in the task content and task complexity of job transitions, not only on changes in occupational category. 
 	
 	
-	\vspace{2mm}
+\begin{comment}
 	
-	Our first econometric specification sits closest to the existing literature; we use a Tobit model to estimate the relationship between business cycles and the propensity to make occupational changes. Novel to our paper is the addition of task and skills data. This captures not only the extensive margin of whether people make occupational transitions in recessions, but also the intensive margin of the extent of task and skill change. We find a relationship in the same direction as existing studies: task and skill distances decrease in recessions. However the economic significance of the result is small, and by using a McDonald-Moffit decomposition we show that this is because the intensive margin of the extent of occupational change comprises over \input{../Results/fracMeanPos_angSep_CASCOT_r.txt}\hspace{-1mm}\% of the total relationship. Furthermore, we aggregate the tasks and skills data to the one-digit SOC code level, and show that our result is not simply a result of using more disaggregated data. These results, along with evidence of selection effects in the types of people that change jobs in a recession, suggests a need to capture both the decision to change employers and the decision to make an occupational change. Our final specification, which uses a Double Hurdle model, captures this two-stage decision process and allows for selection. We show that the estimates under this specification show an  insignificant relationship between recessions and the intensive margin of occupational change. In recessions, individuals make smaller occupational changes - but this is driven entirely by a slowing down in the rate of employer change, along with selection effects: the types of people that make employer changes in recessions also tend to make smaller occupational task and skill moves.
+	Our first econometric specification sits closest to the existing literature; we use a Tobit model to estimate the relationship between business cycles and the propensity to make occupational changes. Novel to our paper is the addition of task content and complexity data. This captures not only the extensive margin of whether people make occupational transitions in recessions, but also the intensive margin of the extent of task content and complexity change. We find a relationship in the same direction as existing studies: task content and task complexity distances decrease in recessions. However the economic significance of the result is small, and by using a McDonald-Moffit decomposition we show that this is because the intensive margin of the extent of occupational change comprises over \input{../Results/fracMeanPos_angSep_CASCOT_r.txt}\hspace{-1mm}\% of the total relationship. Furthermore, we aggregate the task content and complexity data to the one-digit SOC code level, and show that our result is not simply a result of using more disaggregated data. These results, along with evidence of selection effects in the types of people that change jobs in a recession, suggests a need to capture both the decision to change employers and the decision to make an occupational change. Our final specification, which uses a Double Hurdle model, captures this two-stage decision process and allows for selection. We show that the estimates under this specification show an  insignificant relationship between recessions and the intensive margin of occupational change. In recessions, individuals make smaller occupational changes - but this is driven entirely by a slowing down in the rate of employer change, along with selection effects: the types of people that make employer changes in recessions also tend to make smaller occupational task content and task complexity moves.
 	
 	
-	
+	\end{comment}
 	
 	%% The Appendices part is started with the command \appendix;
 	%% appendix sections are then done as normal sections
@@ -755,8 +781,57 @@ Table \ref{tab:diffMeans} suggests there are significant differences in observab
 	\newpage
 	\appendix
 	\setcounter{table}{0}
+	\section{Description of Regression Variables}
+	\label{app:regVars}
+	
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}{l*{1}{ll}}
+			\hline\hline
+			&        Name &          Description\\
+			\hline
+			&   Aggregate Unemployment Rate&  Aggregate unemployment rate, calculated using 2Q Quarterly LFS and ONS definitions\\
+			&   Regional-Aggregate Unemployment Rate&   Regional minus aggregate unemployment rate\\
+			& Female & Sex dummy, 1 = female 0 = male \\
+			& Age & Age in years in first quarter of transition \\
+			& Age$^2$ & Age squared \\
+			& Married/Cohabitating & Dummy, 1=Married/Cohabitating \\
+			& Number of Children & Number of children in household  \\
+			& High Education & Education above university entry-level (above A-level, Highers or IB) \\
+			& Medium Education & Education up to university entry-level \\
+			& Low Education & No Qualifications \\
+			& Previous Employment Duration & Time spent at previous job according to LFS definition: \\
+			& & 1 = less than 3 months, 2 = 3-6 months, 3 = 6-12 months, 4 = 1-2 years, \\
+			& & 5 = 2-3 years, 6 = 3-4 years, 7 =4-5 years, 8 = 5+ years\\
+			& Full time, previous job & Dummy, 1 = full time in previous job\\
+			& Full time, current job & Dummy, 1 = full time in current job\\
+			& Public sector, previous job & Dummy, 1 = public sector in previous job\\
+			& Public sector, current job & Dummy, 1 = public sector in current job\\
+			& Self-employed, previous job & Dummy, 1 = self-employed in previous job\\
+			& Self-employed, current job & Dummy, 1 = self-employed in current job\\
+			& Looking for job & Dummy, 1 = was looking for job in first quarter \\
+			& Job Mover & Dummy, 1 = moved jobs  \\
+			& Separation: Involuntary & Dummy, 1 = fired or made redundant \\
+			& Separation: Voluntary & Dummy, 1 = quit  \\
+			& Separation: Other & Dummy, 1 = retired, health issues, other\\
+			& Method of seeking: Agency & Dummy, 1 = got job through employment agency (reference category)\\
+			& Method of seeking: Job Centre & Dummy, 1 = got work through job centre\\
+			& Method of seeking: Ad& Dummy, 1 = got work through applying to advertisement\\
+			& Method of seeking: Direct Application & Dummy, 1 = direct application to employer\\
+			& Method of seeking: Family/Friend & Dummy, 1 = through family/friends \\
+			& Method of seeking: Other & Dummy, 1 = other method\\
+			& Wait & Dummy, 1 = waiting to take up job already obtained \\
+			& Quarters & Quarters, 1-4 \\
+			& Regions & Regions of the UK according to LFS definitions, 1-20 \\
+			\hline
+			\hline\hline
+		\end{tabular}}
+
+
+	
+	\newpage
 	\section{Summary Statistics}
 	\label{app:SummaryStats}
+	
 	
 	% Table A1: Summary statistics for SOC 2010-O*NET matches
 	\input{../Results/SOC_ONETmatchDist.tex} 
@@ -815,13 +890,76 @@ Table \ref{tab:diffMeans} suggests there are significant differences in observab
 		\section{Robustness Checks}
 	%	\setcounter{equation}{0}
 	\label{app:Robust}
+	
+	
+		\subsection{Two-Task Example of the Task Content and Complexity Change Measures}
+	\label{sec:twoTaskEx}
+	
+		Figure \ref{fig:AngSep} provides an illustration of how the $\Delta$Task Content and $\Delta$Task Complexity measures can provide us with information about the content of occupational moves. We construct a basic example in which there are a total of four different occupations ($A$, $B$, $C$, $D$) which comprise two tasks: task 1 and task 2. Moving from occupation $A$, which has a high level of complexity in task 1 and task 2, to $B$, which has a low level of complexity in both tasks gives a change in task content of 0, since the tasks are still used in the same proportion. The $\Delta$Task Complexity$_{o,o'}$ of $\input{../Figures/AB_skillScore.txt}$ reflects the fact that occupation $B$ is much lower skilled than $A$. Moving from occupation $C$ to $A$ represents both a change in task content and increased complexity, whereas the change in tasks from $A$ to $D$ constitutes reduced complexity. Finally, moving from and to the same occupation $A$ results in zeros for both measures.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.50]{../Figures/AngularSeparation_example}
+		\qquad
+		\begin{tabular}{lcc}
+			& $\Delta$Task Content$ _{o,o'}$& $\Delta$Task Complexity$_{o,o'}$\\
+			\hline
+			\hline
+			A $\rightarrow$ B & 0 & \input{../Figures/AB_skillScore.txt}  \\
+			C $\rightarrow$ A &  \input{../Figures/CA_angSep.txt} & \input{../Figures/CA_skillScore.txt}  \\
+			A $\rightarrow$ D &  \input{../Figures/AD_angSep.txt} & \input{../Figures/AD_skillScore.txt}  \\
+			A $\rightarrow$ A & 0 & 0 \\
+		\end{tabular}
+		\caption{An example of $\Delta$Task Content  and $\Delta$Task Complexity with 2 tasks and 4 occupations}
+		\caption*{\footnotesize{Notes: In this example, there are two tasks, task 1 and 2 and 4 occupations, A, B, C and D with differing task content (the angle of the vector) and task complexity intensities (the magnitude of the vector). The tables report calculated $\Delta$ Task Content and $\Delta$ Task Complexity for reported occupation pairs.}}
+		\label{fig:AngSep}
+	\end{figure}
+	
+
+	
+	
+	
+		\subsection{The Relationship between Task Complexity and Wages}
+	\label{sec:wagesSkills}
+	In using the $\Delta$Task Complexity measure, equation \ref{eq:skillScore}, we are assuming that vector length of occupations is a good proxy for complexity or skill requirement of the tasks completed in an occupation. If the measure is capturing this we should expect it to be positively correlated with wages. To test this assumption we calculate the task complexity level for each occupation in the LFS: \\
+	
+	Task Complexity Level$_{o}$ = $\left[\sum_{t=1}^{T}(q_{t,o}^{2})\right]^{\frac{1}{2}} $ \\
+	
+	\noindent  i.e. it is a measure of the vector length of an occupation in the task space, or the left hand side of the term in brackets of equation \ref{eq:skillScore}. We use this measure in a standard Mincerian wage estimation: 
+	\begin{equation}
+		\label{eq:skill_returns}
+		\ln w_{it}= \alpha + \beta_{1}\text{Task Complexity Level}_{o}+  \sum_{k} \beta_{k}X_{k,it} + e_{it}, 
+	\end{equation}
+	
+	where $\ln w_{it}$ are log real gross weekly wages for individual $i$ at time $t$. The vector $X_{it}$ includes controls for age, age squared, a dummy equal to 1 for female, years of tenure in the current job and dummies for high, medium and low eduction. Task Complexity Level is standardised by subtracting its mean and dividing by its standard deviation to facilitate interpretation. We use the five quarter LFS which records wage in the first and fifth quarter of interview, we take the wage to be the one seen in the last quarter of interview. The sample includes all types of job histories ending with employment in the fifth quarter of interview.
+	
+	\vspace{2mm}
+	
+	The estimation of Equation \ref{eq:skill_returns} can been seen in table \ref{skill_returns}. A one standard deviation increase in task complexity level is associated with an increase of \input{../Results/beta_SkillTotal.txt}\hspace{-1mm}\% in weekly gross real wages. This result suggests that our measure of the length of the vector as a task complexity proxy is reasonable since it is strongly positively correlated with wages. 
+	
+	
+	\begin{table}[t]
+		\centering
+		\begin{tabular}{l*{1}{c}}
+			\input{../Results/returns_skill_2000s}
+		\end{tabular}
+		\caption{Estimated Returns to Task Complexity} 
+		\caption*{\footnotesize Notes: Dependent variable is log real gross weekly wages. Estimated on the LFS 5Q sample of full time workers using wages observed in the first interview quarter for years 2000-2010. Task Complexity Level is proxied by linked O*NET data and standardised. The coefficient on Age$^2$ is multiplied by 1000. The reference category for education is Low Education (no qualifications). Standard errors in parentheses;	* \(p<0.10\), ** \(p<0.05\), *** \(p<0.01\)}
+		\label{skill_returns}
+	\end{table}
+	
+	
+
+	
+	
+	
 		\newpage
 	\newgeometry{a4paper,left=1in,right=1in,top=1in,bottom=1in,nohead}
 	%\begin{landscape}
 	\thispagestyle{empty}
 	\begin{table}[htbp]
 		\centering
-		\caption{Changes in Tasks and Skills over the Cycle}\label{tab:ProbitResults}
+		\caption{Changes in Task Content and Task Complexity over the Cycle}\label{tab:ProbitResults}
 		\begin{adjustbox}{width=0.5\textwidth}
 			\begin{threeparttable}
 				% \input{../Results/tobit_ALL_2000s.tex}
