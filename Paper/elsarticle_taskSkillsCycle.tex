@@ -544,7 +544,7 @@ We allow for correlation in the error terms of the first and second hurdles, sin
 
 \vspace{2mm}
 
-To identify the effect of the first hurdle we include the exclusion restriction \textit{Wait}, whether the individual is waiting to start a job that they have already obtained. The exclusion restriction for the selection equation is a dummy which captures whether an individual is waiting to start working in a job that they have already obtained. This applies to all flow types: EE, IE and UE. It captures those still employed but that have obtained a new job (EE). It also covers those who are inactive as they are not currently employed and not seeking work but are waiting to take up a position (IE). Finally, those unemployed and waiting to take up a position (UE) are distinguished from those who are inactive as they have been actively seeking employment in the last 4 weeks. It is also highly but not perfectly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey - since many people that are waiting to take up a job will change jobs within the survey window, as table \ref{tab:t_test_jobMove_EE} in the appendix demonstrates. However, it is not related to the size of the task content or complexity change that an individual makes upon changing jobs conditional on transition type, as a difference in mean task move between those who waited to take up a position and those that didn't (\ref{tab:t_test_wait_EE} - \ref{tab:t_test_wait_UE}, appendix) confirms.
+To identify the effect of the first hurdle we include the exclusion restriction \textit{Wait}, whether the individual is waiting to start a job that they have already obtained. The exclusion restriction for the selection equation is a dummy which captures whether an individual is waiting to start working in a job that they have already obtained. This applies to all flow types: EE, IE and UE. It captures those still employed but that have obtained a new job (EE). It also covers those who are inactive as they are not currently employed and not seeking work but are waiting to take up a position (IE). Finally, those unemployed and waiting to take up a position (UE) are distinguished from those who are inactive as they have been actively seeking employment in the last 4 weeks. It is also highly but not perfectly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey - since many people that are waiting to take up a job will change jobs within the survey window, as table \ref{tab:t_test_jobMove_ALL} in the appendix demonstrates. However, it is not related to the size of the task content or complexity change that an individual makes upon changing jobs conditional on transition type, as a difference in mean task move between those who waited to take up a position and those that didn't (\ref{tab:t_test_wait_EE} - \ref{tab:t_test_wait_UE}, appendix) confirms.
 
 
 	\newpage
@@ -554,65 +554,49 @@ To identify the effect of the first hurdle we include the exclusion restriction 
 	\caption{Difference in Means Of Observable Characteristics In and Outside of Recessions}\label{tab:diffMeans}
 	\begin{adjustbox}{max width=16cm, max height=10cm}
 		\begin{threeparttable}
-			\input{../Results/t_test.tex}
+			\input{../Results/t_test_temp.tex}
 			\begin{tablenotes}
-				\item \footnotesize{Notes: Difference in longitudinal-weighted means inside=1 and outside=0 of recession for all transitions in the synthetic 2Q sample. Recession periods defined using UK ECRI indicator. Significance levels:$ \quad ^{*}<10\% \quad ^{**}<5\% \quad ^{***}<1\%$. Standard errors in parentheses. Source: author's calculations.}  
+				\item \footnotesize{Notes: Difference in longitudinal-weighted means when the aggregate unemployment rate is above=1 and below=0 the unemployment rate average for all transitions in the synthetic 2Q sample. Recession periods defined using UK ECRI indicator. Significance levels:$ \quad ^{*}<10\% \quad ^{**}<5\% \quad ^{***}<1\%$. Standard errors in parentheses. Source: author's calculations.}  
 			\end{tablenotes}
 		\end{threeparttable}
 	\end{adjustbox}
 \end{table}
-\newpage
-
-\begin{comment}
-
-The first hurdle is a Probit model, capturing whether an individual decides to change task content or complexity, or not. If they do not change jobs, their $\Delta$ Task Content and $\Delta$ Task Complexity will be always be zero. If the individual has changed jobs, they must decide whether to change occupations, resulting in $\Delta$ Task Content and $\Delta$ Task Complexity being non-zero. If they do not change occupations, their $\Delta$ Task Content and $\Delta$ Task Complexity will appear as zero in the data. This is illustrated in figure \ref{fig:flowE2E}.  For a large portion of the sample - approximately 40\% of all job changers - the dependent variables are censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and so a Tobit is the appropriate specification for the amount decision.
 
 
-captures demand-side factors 
-
-		
-		
-Table \ref{tab:diffMeans} suggests there are significant differences in observable characteristics between the recession and and non-recession samples. Those that transition in a recession are older, more likely to be married and have longer tenure. Fewer are in temporary roles for their previous job, and a larger fraction are self employed or work for the public sector in either their previous or current job. Fewer are medium-educated and a higher fraction are low- educated. More have quit (made a voluntary separation) from their previous employer, and a smaller fraction have been fired (made an involuntary separation).  It is likely, therefore, that there are unobserved factors that affect the participation decision and also affect the amount decision. As such, we allow for correlation in the error terms of the first and second stages.
-
-
-	The Double Hurdle model has the advantage of allowing the extensive (participation) and intensive (amount) margins to be governed by distinct stochastic processes. That is, unlike a simple Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the extensive margin (the decision to change task content/complexity) to be the same as the intensive margin (the amount to change task content/complexity) due to the presence of fixed costs incurred during the participation decision. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise, important in this case as a zero task content/complexity move is a valid choice. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated.
-
-
-
-
-	
-	
-
-
-\vspace{2mm}
-	
-	This motivates our Double Hurdle specification, proposed by \cite{cragg1971}, and applied in a labour market setting by \cite{BlundellMeghir} and \cite{Blundell1989}. This model captures both the extensive (participation decision) and intensive (amount decision) of task content and task complexity change during employment transitions. The first hurdle is a Probit model, capturing whether an individual decides to change task content or complexity, or not. If they do not change jobs, their $\Delta$ Task Content and $\Delta$ Task Complexity will be always be zero. If the individual has changed jobs, they must decide whether to change occupations, resulting in $\Delta$ Task Content and $\Delta$ Task Complexity being non-zero. If they do not change occupations, their $\Delta$ Task Content and $\Delta$ Task Complexity will appear as zero in the data. This is illustrated in figure \ref{fig:flowE2E}.  For a large portion of the sample - approximately 40\% of all job changers - the dependent variables are censored at zero. Individuals censored at zero are those who experience a job transition, but don't change their occupation code. Individuals that do not change codes may still change tasks since even the most detailed 4-digit SOC codes aggregate occupations into groups, as was shown in section \ref{sec:ONET}. Hence the data is censored, and so a Tobit is the appropriate specification for the amount decision.  Concretely, the equations of the Double Hurdle model are:
-	
-
-	
-	\vspace{2mm}
-	
-	
-	Equation \ref{eqn:heckmanProbit} is the Probit participation model which has dependent variable  $d^{*}$ equal to one if an individual changes both jobs and task content or task complexity between the first and second quarter of interview, zero otherwise. Note that control variables $\hat{X}$ differ from those in the amount equation, \ref{eqn:heckmanTobit_start}, since we include only first-period controls for characteristics of the respondent's previous job. We also omit search method as only those that changed jobs were asked which search method they used.  Equation \ref{eqn:heckmanTobit_start} and  \ref{eqn:heckmanTobit_end} are the Tobit structural model with dependent variables $y_{it,2}$ $y_{it}$ is the dependent variable, which is either $\Delta\text{\textit{Task Content}}_{it}$ or $|\Delta\text{\textit{Task Complexity}}_{it}|$. We take the absolute value of the change in task complexity since we cannot have an upper and lower truncation limit for the Tobit equal to zero (as this would imply no truncated values). Equation \ref{eqn:dh} is the data actually observed, which captures the combined effect of the participation decision (equations \ref{eqn:heckmanProbit}, \ref{eqn:tasksIndicator}) and the amount decision (equation \ref{eqn:heckmanTobit_start}). Equations \ref{eqn:heckmanTobit_start} and \ref{eqn:heckmanTobit_end}  are a Tobit model with the addition of the estimated inverse Mills ratio, $\hat{\lambda}$, obtained from estimating equation \ref{eqn:heckmanProbit} to control for selection. Our independent variable of interest is $u_{t}$, the aggregate unemployment rate. We add a set of controls which include demographic characteristics, namely age and age squared, marital status, sex, level of education,\footnote{We split education into low, medium and high. In the low category we only include individuals with no qualifications; in the middle we include those with at least an Entry Level Qualification and at most A levels (a UK pre-requisite for university entry); and in the high we include all those with any qualification above A levels.} number of children. We also add a set of variables related to the individual's current and previous job: the duration of the previous employment and whether the separation was voluntary/involuntary or related to retirement, as well as controls for whether either job is temporary, part- or full-time, self-employed, and in the public or private sector. Finally, we have a set of controls for the method by which the individual searches for new jobs: through a job centre, ads, direct applications, family/friends, or some other method. 
-	
-	
-	The Double Hurdle model has the advantage of allowing the extensive (participation) and intensive (amount) margins to be governed by distinct stochastic processes. That is, unlike a simple Tobit model, it allows different processes to determine the value of the continuous (non-zero) observations and the discrete switch at zero. This is important for our purposes since there is no reason to expect that the relationship between the unemployment rate and the extensive margin (the decision to change task content/complexity) to be the same as the intensive margin (the amount to change task content/complexity) due to the presence of fixed costs incurred during the participation decision. This modelling approach is also related to the control function advanced by \cite{Heckman}, but whereas the Heckit model assumes first hurdle dominance - ie. that in the second stage there will be no zero observations, the Double Hurdle model allows zero observations to arise, important in this case as a zero task content/complexity move is a valid choice. As in a Heckman model, we allow the errors of the first and second hurdles to be correlated.
-	
-	\vspace{2mm}
-	
-	 To identify the effect of the first hurdle we include the exclusion restriction \textit{Wait}, whether the individual is waiting to start a job that they have already obtained. The exclusion restriction for the selection equation is a dummy which captures whether an individual is waiting to start working in a job that they have already obtained. This applies to all flow types: EE, IE and UE. It captures those still employed but that have obtained a new job (EE). It also covers those who are inactive as they are not currently employed and not seeking work but are waiting to take up a position (IE). Finally, those unemployed and waiting to take up a position (UE) are distinguished from those who are inactive as they have been actively seeking employment in the last 4 weeks. It is also highly but not perfectly predictive of the dependent variable in the selection equation - whether the individual changed jobs between the first and second quarter of their survey - since many people that are waiting to take up a job will change jobs within the survey window, as table \ref{tab:t_test_jobMove_EE} in the appendix demonstrates. However, it is not related to the size of the task content or complexity change that an individual makes upon changing jobs conditional on transition type, as a difference in mean task move between those who waited to take up a position and those that didn't (\ref{tab:t_test_wait_EE} - \ref{tab:t_test_wait_UE}, appendix) confirms.
-	 \end{comment}
-	
-
-	
 	\section{Results}
 	\label{sec:results}
 	
 	
-	
+Table \ref{tab:TobitResults} details the estimation results of equations \ref{eqn:heckman}. Columns 2 - 7 show the results with with dependent variable $\Delta$ Task Content. `ALL', `EE' and `IE \& UE' headings refer to the sample used in the estimation which depends on labour market transition type. 'Above' and 'Hurdle' refer to the participation and amounts equations, respectively.
 
-\newpage
-\thispagestyle{empty}
+
+ For all transition types (EE and IE/UE) , we see an increase in the aggregate unemployment rate is associated with an increase in the likelihood of changing tasks content by 0.23 standard deviations.
+	
+		\newpage
+	\newgeometry{a4paper,left=1in,right=1in,top=1in,bottom=1in,nohead}
+	%\begin{landscape}
+	\thispagestyle{empty}
+	\begin{table}[htbp]
+		\centering
+		\caption{Double-Hurdle Regression Output}\label{tab:TobitResults}
+		\begin{adjustbox}{width=\textwidth}
+			\begin{threeparttable}
+				% \input{../Results/tobit_ALL_2000s.tex}
+				
+				\input{../Results/dh_temp_ALL_28062022.tex}
+				\begin{tablenotes}
+					\item{\footnotesize{Double Hurdle at the 4-digit occupation category level. ALL refers to all labour market transitions, EE refers to direct job-to-job transitions, IE \& UE refers to employment transitions with between 1 and 3 quarters of unemployment and/or inactivity in between. The coefficient on age squared is multiplied by 1000. The reference category for education is Low Education; for Job Separation it is `No Separation';  for Job seeking method it is `Not Looking'. The regression includes quarter and regional fixed effects. Standard errors in parentheses.}}
+				\end{tablenotes}
+			\end{threeparttable}
+		\end{adjustbox}
+	\end{table}
+	%\end{landscape}
+	\restoregeometry % Restore the global document page margins
+
+	
+	
+	\newpage
+	\thispagestyle{empty}
 	\begin{figure}
 		\centering
 		\begin{subfigure}[b]{1\textwidth}
@@ -635,110 +619,16 @@ Table \ref{tab:diffMeans} suggests there are significant differences in observab
 	\label{fig:TaskSkillsUR}
 	\end{figure}
 
-	\newpage
-\clearpage
-	%\subsection{Changes in Tasks and  Skills over the Cycle}
-	%\label{sec:TobitProbit}
-	
-	\begin{comment}
 
-	 Results are shown in model (1) of table \ref{tab:TobitResults}. We see that an increase in the unemployment rate of one percentage point is associated with \input{../Results/angSep_sd_CASCOT.txt}\hspace{-1mm} of a standard deviation reduction in task change.\footnote{\input{../Results/agg_urate_angSep_CASCOT.txt}\hspace{-1mm} times the APE factor, \input{../Results/APEfactor_angSep_CASCOT.txt}\hspace{-1mm}} The magnitude of this relationship is very small. To put this into context, we estimate that the conditional average of $\Delta$Task Content is \input{../Results/angSep_s_mean.txt}\hspace{-1mm}\footnote{Conditional on the compositional controls listed in table \ref{tab:TobitResults}.}. An example of a move with $\Delta$Task Content equal to \input{../Results/angSep_s_mean.txt}\hspace{-1mm}  is from $4159$ `Fraud Inspector' to $3533$ `Insurance Underwriter'. During the 2008 recession, the unemployment rate increased by approximately 2.5 percentage points. The estimated standard deviation of $\Delta$Task Content, conditional on the controls listed in section \ref{sec:Model}, is \input{../Results/angSep_s_sd.txt}\hspace{-1mm}. An increase in the unemployment rate by 2.5 percentage points would therefore correspond to an approximate change of:
-	%\[
-	\underbrace{2.5}_{\Delta Xu}* \underbrace{\input{../Results/agg_urate_modOfMod_ape_CASCOT.txt}}_{\widehat{\frac{\partial E(y| X)}{\partial Xu}}} *\underbrace{\input{../Results/angSep_s_sd.txt}}_{ \widehat{E(\sigma|X)}} = \input{../Results/agg_urate_context.txt}
-	\]
-	
-	\noindent In our example, this would be an occupational move with $\Delta$Task Content=\input{../Results/angSep_s_mean.txt}\hspace{-1mm} \input{../Results/agg_urate_context.txt} =  \input{../Results/agg_urate_context2.txt}\hspace{-1.5mm}. An example of such a task move is 3532 `Insurance Broker' to 4132 `Administrative Officer, Insurance'. Both of these examples are small occupational moves, and there seems to be minimal difference between the two types of moves.
-	
-	\vspace{2mm}
-	
-	In terms of the absolute change in task complexity (i.e. when $y_i=|\Delta\text{\textit{Task Complexity}}_{i}|$), the estimate is in the same direction and of a similar magnitude. An increase in the aggregate unemployment rate corresponds to a \input{../Results/agg_urate_modOfMod_ape_CASCOT.txt} change in task complexity level.\footnote{\input{../Results/agg_urate_modOfMod_CASCOT.txt} times the APE factor,\input{../Results/APEfactor_modOfMod_CASCOT.txt}\hspace{-1mm}, table \ref{tab:TobitResults}} This estimated relationship is similarly economically insignificant.
-	
-			content...
-\end{comment}
+		\newpage
+	\clearpage
 
-	\newpage
-	\newgeometry{a4paper,left=1in,right=1in,top=1in,bottom=1in,nohead}
-	%\begin{landscape}
-	\thispagestyle{empty}
-	\begin{table}[htbp]
-		\centering
-		\caption{Double-Hurdle Regression Output}\label{tab:TobitResults}
-		\begin{adjustbox}{width=\textwidth}
-			\begin{threeparttable}
-				% \input{../Results/tobit_ALL_2000s.tex}
-				
-				\input{../Results/dh_temp_ALL.tex}
-				\begin{tablenotes}
-					\item{\footnotesize{Double Hurdle at the 4-digit occupation category level. ALL refers to all labour market transitions, EE refers to direct job-to-job transitions, IE \& UE refers to employment transitions with between 1 and 3 quarters of unemployment and/or inactivity in between. The coefficient on age squared is multiplied by 1000. The reference category for education is Low Education; for Job Separation it is `No Separation';  for Job seeking method it is `Not Looking'. The regression includes quarter and regional fixed effects. Standard errors in parentheses.}}
-				\end{tablenotes}
-			\end{threeparttable}
-		\end{adjustbox}
-	\end{table}
-	%\end{landscape}
-	\restoregeometry % Restore the global document page margins
-	\newpage
-	
-	
-	\begin{comment}
-	With the addition of task data to occupations, we are able to look not just at the \textit{probability of changing occupations} during recessions but also the \textit{extent of the change} of the task content. \cite{Mcdonald1980} show that the marginal effect of a Tobit model can be decomposed as follows:\footnote{See appendix \ref{app:TobitDecomp} for details}$^{,}$\footnote{Note that, unlike the reported Tobit marginal effects in table \ref{tab:TobitResults}, for ease of interpretation of probabilities this decomposition is not standardised and so it sums to the unstandardised marginal effect, \input{../Results/totalEffect.txt}\hspace{-1mm}.}
-	
-	
-	\begin{equation}
-	\resizebox{\columnwidth}{!}{$\displaystyle
-		\label{eqn:tobit_decomp}
-		\underbrace{\frac{\partial E(y| X)}{\partial Xu}}_{\text{Total marginal effect}} = \underbrace{P(y>0|X)}_{\substack{\text{Probability of changing} \\ \text{ occupations}\\=\input{../Results/APEfactor_angSep_CASCOT_t.txt}}}\times\underbrace{\frac{\partial E(y|X, y>0)}{\partial Xu}}_{\substack{\text{Change in expected task move} \\ \text{given occupation move} \\ \text{following a change in} \\ \text{the unemployment rate} \\ =\input{../Results/dEystarbydXi_angSep_CASCOT.txt}}} + \underbrace{ E(y|X, y>0)}_{\substack{\text{Expected task move} \\ \text{given occupation move}\\=\input{../Results/Eystar_angSep_CASCOT.txt}}}\times \underbrace{\frac{\partial P(y>0|X)}{\partial Xu}}_{\substack{\text{Change in probability of} \\ \text{occupation move}  \\ \text{following a change in} \\ \text{the unemployment rate}\\=\input{../Results/dFzbydXi_angSep_CASCOT.txt}}}
-		$}
-	\end{equation}
-	
-	
-	\vspace{3mm}
-	Of particular interest to this study is the relationship between the unemployment rate and the change in task composition given that there is an occupation change, i.e. the term $\frac{\partial E(y|X, y>0)}{\partial X_{u}}$, as opposed to the term $\frac{\partial P(y>0|X)}{\partial X_u}$ which only measures the impact on the probability of changing occupation and has previously been shown to be negative and economically significant. Here, we estimate this change in probability to still be negative, but it is not as large in magnitude as in previous research. This is due to our definition of occupational change being much more granular, at the 4-digit occupational code rather than 1-digit as in previous work.
-	Using $z \equiv X\beta/\sigma$ and the cumulative normal distribution function $F(z)\equiv P(y>0|X)$ and dividing both sides of equation \ref{eqn:tobit_decomp} by $F(z)\beta_{u}$, we can get the expression:
-	
-	\begin{equation}
-	\frac{\partial E(y|X, y>0)}{\partial X_{u}}=\pi_{u}*\beta_{u}
-	\end{equation}
-	
-	\noindent where:
-	
-	\begin{equation*}
-	\label{eqn:fracMeanResponse}
-	\pi_{u} = (1- zf( z)/F( z) - f( z)^2/F( z)^2)
-	\end{equation*}
-	
-	\noindent  is the fraction of the mean total response attributable to the response from those who change occupations \textit{and} tasks. We obtain the estimate of this fraction $\hat{\pi}_{u}$,  by calculating $\hat{z}$ using our reduced-form estimates in $\hat{z}= \sum_{i=1}^N F^{-1}(X_i \hat{\beta}_{u}/ \hat{\sigma})$ as:
-	
-	\begin{equation*}
-	\label{eqn:fracMeanResponseequals}
-	\hat{\pi}_{u} = \input{../Results/fracMeanPos_angSep_CASCOT.txt} \%
-	\end{equation*}
-	
-	This is a substantial fraction attributed to the intensive margin of those who switch occupations (the \textit{extent of task change}). It explains why studies look at only the extensive margin of whether to make an occupational move or not will miss a large portion of the overall relationship between recessions and occupational content changes.
-
-	
-	\vspace{2mm}
-	
-	Regression specification (2) in table \ref{tab:TobitResults}, which estimates equation \ref{eqn:tobit} at the one-digit level of SOC codes, shows further that our results are not driven by our use of more granular occupational codes. Model (2) shows the same Tobit model as (1) but with task content and complexity changes aggregated to 1-digit occupational categories. As expected the coefficient on the unemployment rate is larger in magnitude, however it remains economically insignificant.
-	
-	\vspace{2mm}
-	
-	Regression specification (3) in table \ref{tab:TobitResults}, which estimates equation \ref{eqn:heckman}, further controls for selection using a Double Hurdle model. Controlling for the selection of those who move occupations in recessions, we see that the coefficient on the unemployment rate is smaller in magnitude for both task content and task complexity moves and is now statistically insignificant. The coefficient on the unemployment rate in the Probit equation \ref{eqn:heckmanProbit} is negative and highly significant, suggesting that negative relationship between recessions and job transitions works entirely through the extensive margin of whether to change employers or not. This suggests that the types of people that move employers in a recession are less likely to make large task content and task complexity moves.
-	
-	
-	
-	
-	\vspace{2mm}
-	
-	In each specification control variables are, for the most part, significant; in a number of cases they are a magnitude larger than the estimated coefficient on the unemployment rate. Older individuals (\textit{Age}) tend to make smaller task content and task complexity moves, consistent with the idea that individuals tend to specialise over their careers. For the same reasons, those with a higher relative to lower education level (\textit{High Education}), and those with greater tenure  (\textit{Tenure}) tend to make smaller task content and task complexity moves. Being full time relative to part time in a previous job (\textit{Full Time in Previous Job}) is associated with much lower task content and task complexity moves in all specifications, and at a magnitude of approximately ten times that of recessions. This suggests that full time workers are much less flexible in changing the content of their jobs when moving employers than part time workers are. Similarly, being fired from a first quarter job (\textit{Involuntary Separation}) is associated with much smaller task content and task complexity moves than quits.
-	If an individuals' second quarter recorded occupation is temporary rather than permanent (\textit{Temporary in Current Job}), this is associated with much larger task content and task complexity moves. Again this association is an order of magnitude greater than that of recessions. The same is true for having a public sector rather than private sector job in the second quarter (\textit{Public Sector in Current Job}), being self employed in either the first or second quarter of interview (\textit{Self Employed in Previous/Current Job}) and applying to jobs via Job Centres (\textit{Search Method: Job Centre}) and Advertisements (\textit{Search Method: Advertisements}) relative to not searching for a job.
-	
-		\end{comment}
 	
 	\section{Concluding Remarks}
 	\label{sec:Conclusion}
 	
 
-	We study the extent to which the occupational content of job transitions is sensitive to cyclical fluctuations. Using the UK Labour Force Survey matched with the O*NET dictionary of tasks for the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}, we find little evidence for an economically significant relationship. Unlike previous research, we focus on observed changes in the task content and task complexity of job transitions, not only on changes in occupational category. 
+	%We study the extent to which the occupational content of job transitions is sensitive to cyclical fluctuations. Using the UK Labour Force Survey matched with the O*NET dictionary of tasks for the period \input{../Results/min_date.txt}\hspace{-1mm}-\input{../Results/max_date.txt}\hspace{-1mm}, we find little evidence for an economically significant relationship. Unlike previous research, we focus on observed changes in the task content and task complexity of job transitions, not only on changes in occupational category. 
 	
 	
 \begin{comment}
@@ -881,7 +771,7 @@ Table \ref{tab:diffMeans} suggests there are significant differences in observab
 			\input{../Results/t_test_wait_UE.tex} 
 	\vspace{2mm}
 	
-	\input{../Results/t_test_jobMove_EE.tex} 
+	\input{../Results/t_test_jobMove_ALL.tex} 
 	
 	\vspace{2mm}
 	

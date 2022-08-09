@@ -131,8 +131,8 @@ eststo clear
 * does wait predict jobMove?
 * since the variances between the samples are different, we'll use the Satterthwaite approximation *
 	local varlist "jobMover"
-	local condition "jobMover!=. & status=="EE"" 
-	dmout `varlist'  if `condition' using "Results/t_test_jobMove_EE" , by(wait) replace tex caption("Likelihood of job move for EE transitions by whether waiting to start job, 1= yes , 0=no")
+	local condition "jobMover!=. & (status=="EE" | status=="IE" | status=="UE")" 
+	dmout `varlist'  if `condition' using "Results/t_test_jobMove_ALL" , by(wait) replace tex caption("Likelihood of job move for all transitions by whether waiting to start job, 1= yes , 0=no")
 
 eststo clear
 sort status 
@@ -160,11 +160,11 @@ estpost tabulate status if jobMover==1
 eststo status_synth_jm
 
 *synthetic sample, career movers
-gen careerMover = 0
-replace careerMover = 1 if jobMover==1 & angSep_CASCOT>0
+*gen careerMover = 0
+*replace careerMover = 1 if jobMover==1 & angSep_CASCOT>0
 
-estpost tab status if careerMover==1
-eststo status_synth_cm
+*estpost tab status if careerMover==1
+*eststo status_synth_cm
 
 use Data/LFS_2q_dates.dta, clear
 keep if status=="EE" | status=="IE" | status=="UE"
@@ -182,5 +182,5 @@ eststo status_2q_jm
 
 
 *esttab status_synth status_2q status_synth_jm status_2q_jm using Results/status_bySample.tex, replace nonotes nogaps nonumbers title("Transition types by sample") keep(EE IE UE) mtitles("All transitions, synthetic" "All transitions, 2Q" "Job Movers, synthetic" "Job Movers, 2Q")
-esttab status_synth status_synth_jm using Results/status_bySample.tex, cells("count pct(fmt(2))")replace nonotes nogaps nonumbers title("Observations by Transition Type") keep(EE IE UE) mtitles("All transitions"  "Job Movers")
+esttab status_2q status_2q_jm status_synth status_synth_jm  using Results/status_bySample.tex, cells("pct(fmt(2))")replace nonotes nogaps nonumbers title("Observations by Transition Type") keep(EE IE UE) mtitles("All transitions"  "Job Movers" "All transitions"  "Job Movers")
 

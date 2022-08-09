@@ -4,20 +4,24 @@
 
 clear
 
+
+
+* Bring in soc crosswalk
+
+insheet using Inputs/UniqueSOC2010.csv
+rename soc2000 soc2km1 
+clonevar soc2km2 = soc2km1 
+drop soc90
+sort soc2km1 soc2km2
+save UniqueSOC2010.dta, replace
+clear
+
+
 local types CASCOT CASCOT_AGG 
 
 foreach type of local types {
 
 * Bring angSep scores from .csv file
-
-*** SOC2000  ***
-insheet using Data/angSep_2000_`type'.csv
-rename soccode1 soc2km1 
-rename soccode2 soc2km2
-sort soc2km1 soc2km2
-rename angsep angSep_2000_`type'
-save angSep_2000_`type'.dta, replace
-clear
 
 *** SOC2010 ***
 
@@ -32,14 +36,6 @@ clear
 
 * Bring modOfMod scores from .csv file
 
-*** SOC2000  ***
-insheet using Data/modOfMod_2000_`type'.csv
-rename soccode1 soc2km1 
-rename soccode2 soc2km2
-sort soc2km1 soc2km2
-rename modofmod modOfMod_2000_`type'
-save modOfMod_2000_`type'.dta, replace
-clear
 
 *** SOC2010  ***
 
@@ -61,18 +57,26 @@ local filenames _2q _5q
 foreach filename of local filenames {
 use Data/LFS`filename'.dta, clear
 
+
+sort soc2km1
+merge m:m soc2km1 using UniqueSOC2010.dta
+drop if _merge==2
+drop _merge
+
+replace soc10m1 = soc2010 if soc10m1==.
+drop soc2010
+
+sort soc2km2
+merge m:m soc2km2 using UniqueSOC2010.dta
+drop if _merge==2
+drop _merge
+
+replace soc10m2 = soc2010 if soc10m2==.
+drop soc2010
+
+
 foreach type of local types {
 
-*** SOC2000  ***
-
-sort soc2km1 soc2km2
-merge m:m soc2km1 soc2km2 using angSep_2000_`type'.dta
-drop if _merge==2
-drop _merge
-
-merge m:m soc2km1 soc2km2 using modOfMod_2000_`type'.dta
-drop if _merge==2
-drop _merge
 
 *** SOC2010  ***
 
@@ -88,20 +92,9 @@ drop _merge
 
 * make just one angSep & modofmod variable
 
-*gen angSep_`type' = angSep_90_`type'
-*replace angSep_`type' = angSep_2000_`type' if date> yq(2001,3)
-gen angSep_`type' = angSep_2000_`type' if date> yq(1999,4) & date<=yq(2010,4)
-replace angSep_`type' = angSep_2010_`type' if date> yq(2010,4)
-*replace angSep_raw = angSep_2000_2010 if date== yq(2010,4)
-*replace angSep_`type' = . if date==yq(2010,4)
 
-
-
-*gen modOfMod_`type' = modOfMod_90_`type'
-*replace modOfMod_`type' = modOfMod_2000_`type' if date> yq(2001,3)
-gen modOfMod_`type' = modOfMod_2000_`type' if date> yq(1999,4) & date<=yq(2010,4)
-replace modOfMod_`type' = modOfMod_2010_`type' if date> yq(2010,4)
-*create absolute mod
+rename angSep_2010_`type' angSep_`type'
+rename modOfMod_2010_`type' modOfMod_`type'
 replace modOfMod_`type' = abs(modOfMod_`type')
 
 
@@ -177,7 +170,7 @@ save Data/all_variables`filename'.dta, replace
 
 * delete lots of files no longer needed
 local measures angSep modOfMod
-local decades 2000 2010
+local decades 2010
 foreach type of local types {
 foreach measure of local measures{
 foreach decade of local decades{

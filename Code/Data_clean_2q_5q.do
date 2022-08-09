@@ -121,30 +121,30 @@ replace edulevel1=1 if hiqual1>0 & hiqual1<=4 & date>yq(1996,1) & date< yq(2004,
 replace edulevel1=2 if hiqual1>4 & hiqual1<=39 & date>yq(1996,1) & date< yq(2004,2)
 replace edulevel1=3 if hiqual1==40 & date>yq(1996,1) & date< yq(2004,2)
 
-replace edulevel1=. if (hiqual41==-9| hiqual41==-8 |hiqual41==46) & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=1 if hiqual41>0 & hiqual41<=4 & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=2 if hiqual41>4 & hiqual41<=44 & date>yq(2004,1) & date< yq(2005,2)
-replace edulevel1=3 if hiqual41==45 & date>yq(2004,1) & date< yq(2005,2)
+replace edulevel1=. if (hiqual41==-9| hiqual41==-8 |hiqual41==46) & date>=yq(2004,1) & date< yq(2005,2)
+replace edulevel1=1 if hiqual41>0 & hiqual41<=4 & date>=yq(2004,1) & date< yq(2005,2)
+replace edulevel1=2 if hiqual41>4 & hiqual41<=44 & date>=yq(2004,1) & date< yq(2005,2)
+replace edulevel1=3 if hiqual41==45 & date>=yq(2004,1) & date< yq(2005,2)
 
-replace edulevel1=. if (hiqual51==-9| hiqual51==-8 |hiqual51==49) & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=1 if hiqual51>0 & hiqual51<=4 & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=2 if hiqual51>4 & hiqual51<48 & date>yq(2005,1) & date< yq(2008,1)
-replace edulevel1=3 if hiqual51==48 & date>yq(2005,1) & date< yq(2008,1)
+replace edulevel1=. if (hiqual51==-9| hiqual51==-8 |hiqual51==49) & date>=yq(2005,1) & date< yq(2008,1)
+replace edulevel1=1 if hiqual51>0 & hiqual51<=4 & date>=yq(2005,1) & date< yq(2008,1)
+replace edulevel1=2 if hiqual51>4 & hiqual51<48 & date>=yq(2005,1) & date< yq(2008,1)
+replace edulevel1=3 if hiqual51==48 & date>=yq(2005,1) & date< yq(2008,1)
 
 replace edulevel1=. if (hiqual81==-9 | hiqual81==-8 | hiqual81==50) & date>yq(2007,4) & date <yq(2011,1)
 replace edulevel1=1 if hiqual81>0 & hiqual81<=4 & date>yq(2007,4) & date< yq(2011,1)
 replace edulevel1=2 if hiqual81>4 & hiqual81<=48 & date>yq(2007,4) & date< yq(2011,1)
 replace edulevel1=3 if hiqual81==49 & date>yq(2007,4) & date< yq(2011,1)
 
-replace edulevel1=. if (hiqua111==-9 | hiqua111==-8 | hiqua111==71) & date>=yq(2011,1) & date <yq(2015,1)
-replace edulevel1=1 if hiqua111>0 & hiqua111<=9 & date>=yq(2011,1) & date <yq(2015,1)
-replace edulevel1=2 if hiqua111>9 & hiqua111<=69  & date>=yq(2011,1) & date <yq(2015,1)
-replace edulevel1=3 if hiqua111==70  & date>=yq(2011,1) & date <yq(2015,1)
+replace edulevel1=. if (hiqua111==-9 | hiqua111==-8 | hiqua111==71) & date>=yq(2011,1) & date <yq(2015,3)
+replace edulevel1=1 if hiqua111>0 & hiqua111<=9 & date>=yq(2011,1) & date <yq(2015,3)
+replace edulevel1=2 if hiqua111>9 & hiqua111<=69  & date>=yq(2011,1) & date <yq(2015,3)
+replace edulevel1=3 if hiqua111==70  & date>=yq(2011,1) & date <yq(2015,3)
 
-replace edulevel1=. if (hiqua151==-9 | hiqua151==-8 | hiqua151==75) & date>=yq(2015,2)
-replace edulevel1=1 if hiqua151>0 & hiqua151<=9 & date>=yq(2015,2)
-replace edulevel1=2 if hiqua151>9 & hiqua151<=73  & date>=yq(2015,2)
-replace edulevel1=3 if hiqua151==74 & date>yq(2007,4) & date>=yq(2015,2)
+replace edulevel1=. if (hiqua151==-9 | hiqua151==-8 | hiqua151==75) & date>=yq(2015,3)
+replace edulevel1=1 if hiqua151>0 & hiqua151<=9 & date>=yq(2015,3)
+replace edulevel1=2 if hiqua151>9 & hiqua151<=73  & date>=yq(2015,3)
+replace edulevel1=3 if hiqua151==74 & date>yq(2007,4) & date>=yq(2015,3)
 
 
 drop hiqual*
@@ -263,7 +263,7 @@ gen IEorUE=0
 replace IEorUE = 1 if status=="UE" | status=="IE"
 
 
-keep if date >yq(2001,2) & date <yq(2021,1) /* something weird going on 2001q1-q2, ONS aware but not fixing */
+keep if date >=yq(2000,4) & date <yq(2021,1) /* something weird going on in lgwt pre 2000q4*/
 
 
 save Data/LFS`filename'.dta, replace

@@ -31,41 +31,31 @@ keep lgwt* ///
  persid ///
  grsswk* ///
  hdpch* ///
+ qrtr* ///
+ w1yr* ///
  wneft*
 ****************** define time *************************************************
 
-* create a date variable for first quarter we see you in
-
-split source, p("_") gen(stub)
-split stub2, p("/") gen(stib) 
+* create a date variable
 
 
-*** quarter ***
-gen quarter = "."
-replace quarter = substr(stib2,1,2)
-replace quarter = "q1" if substr(stub4,1,2)=="jm" 
-replace quarter = "q2" if substr(stub4,1,2)=="aj" 
-replace quarter = "q3" if substr(stub4,1,2)=="js" 
-replace quarter = "q4" if substr(stub4,1,2)=="od"  
-
-split stub5, p("-") gen(stob) 
-replace quarter = "q1" if substr(stob1,1,2)=="jm" 
-replace quarter = "q2" if substr(stob1,1,2)=="aj" 
-replace quarter = "q3" if substr(stob1,1,2)=="js" 
-replace quarter = "q4" if substr(stob1,1,2)=="od"  
+*** quarter *** of when first seen
+gen quarter ="."
+replace quarter = "q1" if qrtr==1
+replace quarter = "q2" if qrtr==2
+replace quarter = "q3" if qrtr==3 
+replace quarter = "q4" if qrtr==4
 
 *** year ***
+
+split source, p("_") gen(stub)
+*split stub2, p("/") gen(stib) 
 gen year = "."
-replace year = substr(stub3,-2,2)
-replace year = substr(stub4,-2,2) if substr(stub3,-2,2)=="5q"
+replace year = substr(stub2,-2,2) if  substr(stub2,-2,2)=="06" |substr(stub2,-2,2)=="07" | substr(stub2,-2,2)=="08" | substr(stub2,-2,2)=="09" 
+replace year = substr(stub3,-2,2) if year=="." & (substr(stub3,-2,2)=="00" | substr(stub3,-2,2)=="01" | substr(stub3,-2,2)=="02" | substr(stub3,-2,2)=="03" | substr(stub3,-2,2)=="04" | substr(stub3,-2,2)=="05" | substr(stub3,-2,2)=="06" | substr(stub3,-2,2)=="07" | substr(stub3,-2,2)=="08" | substr(stub3,-2,2)=="09" | substr(stub3,-2,2)=="10")
+replace year = substr(stub4,3,2) if year=="." & (substr(stub4,3,2)=="10" | substr(stub4,3,2)=="11" | substr(stub4,3,2)=="16" | substr(stub4,3,2)=="17" | substr(stub4,3,2)=="18" | substr(stub4,3,2)=="19" | substr(stub4,3,2)=="20")
+replace year = substr(stub5,3,2) if year=="." & (substr(stub5,3,2)=="11"| substr(stub5,3,2)=="12" | substr(stub5,3,2)=="13" | substr(stub5,3,2)=="14" | substr(stub5,3,2)=="15" | substr(stub5,3,2)=="16" | substr(stub5,3,2)=="17")
 
-split stub4, p("-") gen(steb) 
-replace year = substr(steb1,-2,2) if substr(stub3,-2,2)=="al"
-
-replace year = substr(stub4,-2,2) if stub3=="q"
-split stub5, p("-") gen(stab) 
-replace year = substr(stab1,-2,2) if substr(stub4,-2,2)=="al"
-replace year = substr(stub4,3,2) if stub5=="eul.dta"
 
 replace year =  "20" + year
 
@@ -90,13 +80,11 @@ rename qtime2 date2
 rename qtime3 date3
 rename qtime4 date4
 rename qtime5 date5
-drop stib*
 drop stub*
-drop stob*
 drop year
 
 
-
+save Data/LFS_all_raw_5q_dates.dta, replace
 ******************************************************************************************************
 
 
@@ -223,7 +211,6 @@ drop if q1_status=="." & q2_dummy==1 & q3_dummy==1 & firstQTrans==2 & lastQTrans
 drop if q1_status=="." & q3_dummy==1 & q4_dummy==1 & firstQTrans==3 & lastQTrans==4
 drop if q1_status=="." &  q2_status=="." & q3_dummy==1 & q4_dummy==1 & firstQTrans==3 & lastQTrans==4
 drop if q1_status=="." &  q2_status=="." & q4_dummy==1 & q5_dummy==1 & firstQTrans==4 & lastQTrans==5
-
 drop if q1_status=="." &  q2_status=="." &  q3_status=="." & q4_dummy==1 & q5_dummy==1 & firstQTrans==4 & lastQTrans==5
 
 
@@ -311,8 +298,9 @@ drop *5
 drop copyTrans num_E *_status *_dummy lastQTrans firstQTrans
 
 * lgwt 
-replace lgwt = lgwt17 if date>yq(2011,2)
-replace lgwt = lgwt18 if date>yq(2018,2)
+replace lgwt = lgwt16 if date>=yq(2014,3) & lgwt==.
+replace lgwt = lgwt17 if date>=yq(2011,3) & lgwt==.
+replace lgwt = lgwt18 if date>=yq(2018,2) & lgwt==.
 
 save Data/LFS_5q_dates.dta, replace
 

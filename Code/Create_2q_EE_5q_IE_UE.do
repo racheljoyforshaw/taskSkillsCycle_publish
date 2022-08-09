@@ -19,7 +19,7 @@ keep if status=="IE" | status=="UE"
 append using Data/regressionData_2q_EE.dta
 
 
-keep if date >yq(2001,2) & date <yq(2021,1) /* something weird going on 2001q1-q2, ONS aware but not fixing */
+keep if date >yq(2001,1) & date <yq(2020,3) /* something weird going on 2001q1-q2, ONS aware but not fixing */
 
 
 save Data/regressionData_2q_5q.dta, replace
