@@ -64,6 +64,7 @@ drop if _merge==2
 drop _merge
 
 replace soc10m1 = soc2010 if soc10m1==.
+replace soc10m1 = . if soc10m1 ==-9 | soc10m1==-8
 drop soc2010
 
 sort soc2km2
@@ -72,6 +73,7 @@ drop if _merge==2
 drop _merge
 
 replace soc10m2 = soc2010 if soc10m2==.
+replace soc10m2 = . if soc10m2 ==-9 | soc10m2==-8
 drop soc2010
 
 
@@ -94,9 +96,10 @@ drop _merge
 
 
 rename angSep_2010_`type' angSep_`type'
+replace angSep_`type' = 0 if soc10m1==soc10m2 & soc10m1!=. & soc10m2!=.
 rename modOfMod_2010_`type' modOfMod_`type'
 replace modOfMod_`type' = abs(modOfMod_`type')
-
+replace modOfMod_`type' = 0 if soc10m1==soc10m2 & soc10m1!=. & soc10m2!=.
 
 *get rid of spurious transitions
 *drop if jobMover==0 & angSep_`type'!=0
