@@ -67,5 +67,6 @@ do Code/Regressions.do
 * INPUTS: regressionData_2q_5q.dta.dta
 * OUTPUTS: min_date.txt, max_date.txt, beta_skillTotal.txt, returns_skill_2000s.tex
 do Code/SummaryStats_regData.do
+do Code/summaryStats.do
 
 

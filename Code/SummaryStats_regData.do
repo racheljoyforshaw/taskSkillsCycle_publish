@@ -2,10 +2,10 @@
 use Data/regressionData_2q_5q_post.dta, clear
 keep if used_ALL
 
-label variable angSep_CASCOT "$\Delta$ Tasks"
-label variable angSep_CASCOT_AGG "$\Delta$ Tasks 1 digit"
-label variable modOfMod_CASCOT "$\Delta$ Skills"
-label variable modOfMod_CASCOT_AGG "$\Delta$ Skills 1 digit"
+label variable angSep_CASCOT "$\Delta$ Task Content"
+label variable angSep_CASCOT_AGG "$\Delta$ Task Content 1 digit"
+label variable modOfMod_CASCOT "$\Delta$ Task Complexity"
+label variable modOfMod_CASCOT_AGG "$\Delta$ Task Complexity 1 digit"
 label variable jobMover "JobMover"
 
 * job movers
@@ -30,7 +30,7 @@ eststo clear
 sort jobMover
 by jobMover: eststo: estpost summarize ///
     angSep_CASCOT modOfMod_CASCOT 
-esttab using Results/angSepJobMove.tex, replace cells("mean sd") mtitles("Job Mover=0" "Job Mover=1") nogaps nonumbers  title("Mean and sd of $\Delta$ tasks and $\Delta$ skills by job move, 0 = did not move jobs, 1= moved jobs") coeflabels(angSep_CASCOT "$\Delta$ Tasks" modOfMod_CASCOT "$\Delta$ Skills") label
+esttab using Results/angSepJobMove.tex, replace cells("mean sd") mtitles("Job Mover=0" "Job Mover=1") nogaps nonumbers  title("Mean and sd of $\Delta$ task content and $\Delta$ task complexity by job move, 0 = did not move jobs, 1= moved jobs") coeflabels(angSep_CASCOT "$\Delta$ Task Content" modOfMod_CASCOT "$\Delta$ Task Complexity") label
 * this is for aggregate measure, currently taken out:
 *    angSep_CASCOT angSep_CASCOT_AGG modOfMod_CASCOT modOfMod_CASCOT_AGG
 *esttab using Results/angSepJobMove.tex, replace cells("mean sd") mtitles("Job Mover=0" "Job Mover=1") nogaps nonumbers  title("Mean and sd of $\Delta$ tasks and $\Delta$ skills by job move, 0 = did not move jobs, 1= moved jobs") coeflabels(angSep_CASCOT "$\Delta$ Tasks" angSep_CASCOT_AGG "$\Delta$ Tasks 1 digit" modOfMod_CASCOT "$\Delta$ Skills" modOfMod_CASCOT_AGG "$\Delta$ Skills 1 digit") label
@@ -45,7 +45,7 @@ eststo clear
 sort angSep_mover status 
 by angSep_mover: eststo: estpost tab ///
     status
-esttab using Results/angSepTabbyStatus.tex, replace nonotes nogaps nonumbers mtitles("Skill/Task Mover=0" "Skill/Task Mover=1")  keep(EE IE UE) order(EE IE UE) title("Number of skill/task movers by transition type, 0 = did not move jobs, 1= moved jobs")	
+esttab using Results/angSepTabbyStatus.tex, replace nonotes nogaps nonumbers mtitles("Task Mover=0" "Task Mover=1")  keep(EE IE UE) order(EE IE UE) title("Number of task movers by transition type, 0 = did not move jobs, 1= moved jobs")	
 
 
 
@@ -58,7 +58,7 @@ eststo clear
 sort angSep_mover
 by angSep_mover : eststo: estpost summarize ///
     angSep_CASCOT  modOfMod_CASCOT 
-esttab using Results/angSepTaskMove.tex, replace cells("mean sd") mtitles("Task/skill mover=0" "Task/skill mover=1") nogaps nonumbers title("Mean and sd of $\Delta$ tasks and $\Delta$ skills by task/skill move") coeflabels(angSep_CASCOT "$\Delta$ Tasks" modOfMod_CASCOT "$\Delta$ Skills") label
+esttab using Results/angSepTaskMove.tex, replace cells("mean sd") mtitles("Task mover=0" "Task mover=1") nogaps nonumbers title("Mean and sd of $\Delta$ task content and $\Delta$ task complexity by task move") coeflabels(angSep_CASCOT "$\Delta$ Task Content" modOfMod_CASCOT "$\Delta$ Task Complexity") label
 * this is for aggregate measure, currently taken out:
 *angSep_CASCOT angSep_CASCOT_AGG modOfMod_CASCOT modOfMod_CASCOT_AGG
 *esttab using Results/angSepTaskMove.tex, replace cells("mean sd") mtitles("Task/skill mover=0" "Task/skill mover=1") nogaps nonumbers title("Mean and sd of $\Delta$ tasks and $\Delta$ skills by task/skill move, 0 = did not move task/skills, 1= moved task/skills") coeflabels(angSep_CASCOT "$\Delta$ Tasks" angSep_CASCOT_AGG "$\Delta$ Tasks 1 digit" modOfMod_CASCOT "$\Delta$ Skills" modOfMod_CASCOT_AGG "$\Delta$ Skills 1 digit") label
@@ -68,7 +68,7 @@ eststo clear
 sort angSep_mover
 by angSep_mover : eststo: estpost summarize ///
     jobMover
-esttab using Results/angSepjobMover.tex, replace cells("mean sd") mtitles("Task/skill mover=0" "Task/skill mover=1") nogaps nonumbers title("Mean and sd of job mover by task/skill move, 0 = did not move task/skills, 1= moved task/skills") coeflabels(jobMover "Job Mover") label
+esttab using Results/angSepjobMover.tex, replace cells("mean sd") mtitles("Task mover=0" "Task mover=1") nogaps nonumbers title("Mean and sd of job mover by task move, 0 = did not move tasks, 1= moved tasks") coeflabels(jobMover "Job Mover") label
  	
 
 drop angSep_mover
@@ -111,21 +111,21 @@ eststo clear
 * since the variances between the samples are different, we'll use the Satterthwaite approximation *
 	local varlist " angSep_CASCOT modOfMod_CASCOT"	
 	local condition "jobMover==1 & status=="EE"" 
-	dmout `varlist' if `condition' using "Results/t_test_wait_EE" , by(wait) replace tex caption("Mean values of $\Delta$ tasks and $\Delta$ skills for EE transitions by whether waited to start new job, 1= yes , 0=no") 
+	dmout `varlist' if `condition' using "Results/t_test_wait_EE" , by(wait) replace tex caption("Mean values of $\Delta$ task content and $\Delta$ task complexity for EE transitions by whether waited to start new job, 1= yes , 0=no") 
 	
 eststo clear
 * are differences in task and skills by wait significant - IE?
 * since the variances between the samples are different, we'll use the Satterthwaite approximation *
 	local varlist " angSep_CASCOT modOfMod_CASCOT"	
 	local condition "jobMover==1 & status=="IE"" 
-	dmout `varlist' if `condition' using "Results/t_test_wait_IE" , by(wait) replace tex caption("Mean values of $\Delta$ tasks and $\Delta$ skills for IE transitions by whether waited to start new job, 1= yes , 0=no") 
+	dmout `varlist' if `condition' using "Results/t_test_wait_IE" , by(wait) replace tex caption("Mean values of $\Delta$ task content and $\Delta$ task complexity for IE transitions by whether waited to start new job, 1= yes , 0=no") 
 
 eststo clear
 * are differences in task and skills by wait significant - UE?
 * since the variances between the samples are different, we'll use the Satterthwaite approximation *
 	local varlist " angSep_CASCOT modOfMod_CASCOT"	
 	local condition "jobMover==1 & status=="UE"" 
-	dmout `varlist' if `condition' using "Results/t_test_wait_UE" , by(wait) replace tex caption("Mean values of $\Delta$ tasks and $\Delta$ skills for UE transitions by whether waited to start new job, 1= yes , 0=no") 
+	dmout `varlist' if `condition' using "Results/t_test_wait_UE" , by(wait) replace tex caption("Mean values of $\Delta$ task content and $\Delta$ task complexity for UE transitions by whether waited to start new job, 1= yes , 0=no") 
 
 
 * does wait predict jobMove?

@@ -196,7 +196,7 @@ estimates store returns_skills
 		b(2) ///
 		unstack compress keep(skillTotal age1 age1_sq sex _Iedul* empyear1) ///
 		order(skillTotal age1 age1_sq sex empmon1 _Iedul*)  /// 
-		varwidth(15) modelwidth(8) coeflabels(skillTotal "Skill Level" age1 Age age1_sq "Age$^{2}$" sex Female empyear1 "Years Tenure" _Iedulevel1_1 "High Education" _Iedulevel1_2 "Medium Education") nonumbers 
+		varwidth(15) modelwidth(8) coeflabels(skillTotal "Task Complexity Level" age1 Age age1_sq "Age$^{2}$" sex Female empyear1 "Years Tenure" _Iedulevel1_1 "High Education" _Iedulevel1_2 "Medium Education") nonumbers 
 	
 	shell $my_python_path Code/format_returns_skill_2000s.py
 	erase  Results/returns_skill_2000s_temp.tex
