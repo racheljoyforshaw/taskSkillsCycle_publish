@@ -107,13 +107,38 @@ by wait : eststo: estpost summarize ///
 esttab using Results/waitTaskMove.tex, replace cells("mean sd") mtitles("wait=0" "wait=1") nogaps nonumbers label 
 
 eststo clear
+
+* are differences in task and skills by wait significant 
+
+gen angSep_jm_EE = .
+replace angSep_jm_EE = angSep_CASCOT if jobMover==1 & status=="EE"
+label variable angSep_jm_EE "$\Delta$ Task Content, EE job movers"
+gen modOfMod_jm_EE = .
+replace modOfMod_jm_EE = modOfMod_CASCOT if jobMover==1 & status=="EE"
+label variable modOfMod_jm_EE "$\Delta$ Task Complexity, EE job movers"
+gen angSep_jm_UE = .
+replace angSep_jm_UE = angSep_CASCOT if jobMover==1 & status=="UE"
+label variable angSep_jm_UE "$\Delta$ Task Content, UE job movers"
+gen modOfMod_jm_UE = .
+replace modOfMod_jm_UE = modOfMod_CASCOT if jobMover==1 & status=="UE"
+label variable modOfMod_jm_UE "$\Delta$ Task Complexity, UE job movers"
+gen angSep_jm_IE = .
+replace angSep_jm_IE = angSep_CASCOT if jobMover==1 & status=="IE"
+label variable angSep_jm_IE "$\Delta$ Task Content, IE job movers"
+gen modOfMod_jm_IE = .
+replace modOfMod_jm_IE = modOfMod_CASCOT if jobMover==1 & status=="IE"
+label variable modOfMod_jm_IE "$\Delta$ Task Complexity, UE job movers"
+
+
+local varlist " angSep_jm_EE modOfMod_jm_EE angSep_jm_UE modOfMod_jm_UE angSep_jm_IE modOfMod_jm_IE"	
+dmout `varlist' using "Results/test" , by(wait) replace tex
+
 * are differences in task and skills by wait significant - EE?
 * since the variances between the samples are different, we'll use the Satterthwaite approximation *
 	local varlist " angSep_CASCOT modOfMod_CASCOT"	
 	local condition "jobMover==1 & status=="EE"" 
 	dmout `varlist' if `condition' using "Results/t_test_wait_EE" , by(wait) replace tex caption("Mean values of $\Delta$ task content and $\Delta$ task complexity for EE transitions by whether waited to start new job, 1= yes , 0=no") 
-	
-eststo clear
+	*mvtest means `varlist' if `condition', by(wait)
 * are differences in task and skills by wait significant - IE?
 * since the variances between the samples are different, we'll use the Satterthwaite approximation *
 	local varlist " angSep_CASCOT modOfMod_CASCOT"	
